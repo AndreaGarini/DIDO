@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="it.polito.did.provanavgraph.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_singlePlantFragment"
+            app:destination="@id/singlePlantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singlePlantFragment"
+        android:name="it.polito.did.provanavgraph.ui.main.SinglePlantFragment"
+        android:label="fragment_single_plant"
+        tools:layout="@layout/fragment_single_plant" />
+</navigation>
