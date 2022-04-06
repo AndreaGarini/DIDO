@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "559387704299",
+    "firebase_url": "https://leafya-7a3e1-default-rtdb.firebaseio.com",
+    "project_id": "leafya-7a3e1",
+    "storage_bucket": "leafya-7a3e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559387704299:android:19618189fcd5c9354637ae",
+        "android_client_info": {
+          "package_name": "it.polito.did.provanavgraph"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559387704299-7j65b6kd92jpf6pj6sq9el8md0lvehpa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhgW0vLeNfZ0R-yZ5g7cx3-J8qIfGSk44"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559387704299-7j65b6kd92jpf6pj6sq9el8md0lvehpa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
