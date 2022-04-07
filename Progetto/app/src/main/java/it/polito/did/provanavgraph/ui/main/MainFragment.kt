@@ -2,14 +2,9 @@ package it.polito.did.provanavgraph.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
-import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -32,18 +27,30 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private lateinit var viewModel: MainViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val nome = view.findViewById<Button>(R.id.ToSinglePlant)
+        val nome1 = view.findViewById<Button>(R.id.pianta1)
+        val nome2 = view.findViewById<Button>(R.id.pianta2)
         val db = Firebase.database.reference
 
-        val ref = db.child("message")
-        ref.addValueEventListener(object: ValueEventListener {
+        val ref1 = db.child("message1")
+        val ref2 =db.child("message2")
+        ref1.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                nome.text = snapshot.getValue<String>()
-
+                nome1.text = snapshot.getValue<String>()
             }
 
             override fun onCancelled(error: DatabaseError) {
             }
+
+        })
+
+        ref2.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                nome2.text = snapshot.getValue<String>()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
         })
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
