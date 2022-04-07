@@ -33,10 +33,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         val nome2 = view.findViewById<Button>(R.id.pianta2)
         val db = Firebase.database.reference
 
-        val homeButton= view.findViewById<ImageButton>(R.id.homeButton)
-        val profileButton= view.findViewById<ImageButton>(R.id.profileButton)
-        val messageButton= view.findViewById<ImageButton>(R.id.messageButton)
-
 
         val ref1 = db.child("message1")
         val ref2 =db.child("message2")
@@ -63,13 +59,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
 
 
-        profileButton.setOnClickListener{
-            findNavController().navigate(R.id.action_mainFragment_to_profileFragment)
-        }
 
-        messageButton.setOnClickListener{
-            findNavController().navigate(R.id.action_mainFragment_to_messageFragment)
-        }
 
         nome1.setOnClickListener{
             findNavController().navigate(R.id.action_mainFragment_to_singlePlantFragment)
