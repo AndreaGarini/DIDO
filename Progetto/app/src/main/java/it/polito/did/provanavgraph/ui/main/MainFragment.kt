@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -31,6 +33,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         val nome2 = view.findViewById<Button>(R.id.pianta2)
         val db = Firebase.database.reference
 
+        val homeButton= view.findViewById<ImageButton>(R.id.homeButton)
+        val profileButton= view.findViewById<ImageButton>(R.id.profileButton)
+        val messageButton= view.findViewById<ImageButton>(R.id.messageButton)
+
+
         val ref1 = db.child("message1")
         val ref2 =db.child("message2")
         ref1.addValueEventListener(object: ValueEventListener {
@@ -53,6 +60,22 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         })
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+
+
+        profileButton.setOnClickListener{
+            findNavController().navigate(R.id.action_mainFragment_to_profileFragment)
+        }
+
+        messageButton.setOnClickListener{
+            findNavController().navigate(R.id.action_mainFragment_to_messageFragment)
+        }
+
+        nome1.setOnClickListener{
+            findNavController().navigate(R.id.action_mainFragment_to_singlePlantFragment)
+        }
+
+
+
 
     }
 

@@ -13,10 +13,25 @@
         <action
             android:id="@+id/action_mainFragment_to_singlePlantFragment"
             app:destination="@id/singlePlantFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/singlePlantFragment"
         android:name="it.polito.did.provanavgraph.ui.main.SinglePlantFragment"
         android:label="fragment_single_plant"
         tools:layout="@layout/fragment_single_plant" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="it.polito.did.provanavgraph.ui.main.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="it.polito.did.provanavgraph.ui.main.MessageFragment"
+        android:label="fragment_message"
+        tools:layout="@layout/fragment_message" />
 </navigation>

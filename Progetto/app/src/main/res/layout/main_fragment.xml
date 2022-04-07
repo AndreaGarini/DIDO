@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:id="@+id/HomeButton"
+            android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -76,4 +76,5 @@
             android:contentDescription="profile"
             android:src="@android:drawable/ic_menu_myplaces" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
