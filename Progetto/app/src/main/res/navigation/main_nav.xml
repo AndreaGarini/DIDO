@@ -26,12 +26,13 @@
         android:label="fragment_single_plant"
         tools:layout="@layout/fragment_single_plant" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="it.polito.did.provanavgraph.ui.main.ProfileFragment"
-        android:label="ProfileFragment" />
-    <fragment
         android:id="@+id/messageFragment"
         android:name="it.polito.did.provanavgraph.ui.main.MessageFragment"
         android:label="fragment_message"
         tools:layout="@layout/fragment_message" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="it.polito.did.provanavgraph.ui.main.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

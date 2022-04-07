@@ -62,6 +62,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
 
+
         profileButton.setOnClickListener{
             findNavController().navigate(R.id.action_mainFragment_to_profileFragment)
         }
