@@ -2,17 +2,26 @@ package it.polito.did.provanavgraph
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+
 
         val homeButton= findViewById<ImageButton>(R.id.HomeButton)
         val profileButton= findViewById<ImageButton>(R.id.ProfileButton)
@@ -35,6 +44,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
+data class Plant (var name: String, var species : String)
+
+
 
 
 

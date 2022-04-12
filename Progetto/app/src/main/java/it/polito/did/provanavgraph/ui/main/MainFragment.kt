@@ -47,8 +47,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
 
         val rv: RecyclerView= view.findViewById(R.id.recyclerView)
-        rv.layoutManager= LinearLayoutManager(this.activity)
-        rv.adapter= PlantAdapter(list)
+        rv.layoutManager= LinearLayoutManager(activity)
+
 
 
 
@@ -65,7 +65,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
                     var plant= Plant(item.child("plantName").value.toString(), item.child("spieces").value.toString())
                     list.add(plant)
-
+                    rv.adapter= PlantAdapter(list)
+                    Log.d("name", list.toString())
                 }
             }
 
@@ -122,6 +123,7 @@ class PlantAdapter(val list: MutableList<Plant>): RecyclerView.Adapter<PlantAdap
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
         holder.name.text= list.get(position).name
+        Log.d("name", list.toString())
     }
 
     override fun getItemCount(): Int {
