@@ -17,4 +17,6 @@ class MessageFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
     }
+
+    //copiare il recycler view e creare la lista delle notifiche
 }

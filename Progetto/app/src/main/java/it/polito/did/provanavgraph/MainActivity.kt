@@ -45,8 +45,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-data class Plant (var name: String, var species : String)
-
 
 
 

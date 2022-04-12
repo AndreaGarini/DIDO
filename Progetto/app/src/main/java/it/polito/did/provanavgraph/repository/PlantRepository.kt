@@ -10,7 +10,7 @@ import com.google.firebase.ktx.Firebase
 import it.polito.did.provanavgraph.models.Plant
 
 class PlantRepository {
-
+    var focusPlant: Int=0
     val db = Firebase.database.reference
     val plantList = MutableLiveData<Plant>()
 

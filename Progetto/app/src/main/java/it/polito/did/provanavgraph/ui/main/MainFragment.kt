@@ -2,16 +2,15 @@ package it.polito.did.provanavgraph.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -20,9 +19,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import it.polito.did.provanavgraph.Plant
 import it.polito.did.provanavgraph.R
-import kotlin.math.log
+import it.polito.did.provanavgraph.models.Plant
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
@@ -39,34 +37,25 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private lateinit var viewModel: MainViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val nome1 = view.findViewById<Button>(R.id.pianta1)
-        val nome2 = view.findViewById<Button>(R.id.pianta2)
         var list: MutableList<Plant> = mutableListOf()
-        val db = Firebase.database.reference
+        var db = Firebase.database.reference
+        var parent = db.child("plants")
+        var referenceToFragment: MainFragment= this
 
 
 
         val rv: RecyclerView= view.findViewById(R.id.recyclerView)
-        rv.layoutManager= LinearLayoutManager(activity)
-
-
-
-
-
-
-        val ref1 = db.child("message1")
-        val ref2 =db.child("message2")
-        var parent = db.child("plants")
+        rv.layoutManager= GridLayoutManager(activity, 2)
+        rv.adapter= PlantAdapter(list, this)
 
         parent.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 for(item in snapshot.children){
 
-                    var plant= Plant(item.child("plantName").value.toString(), item.child("spieces").value.toString())
+                    var plant= Plant(item.child("plantName").value.toString(), item.child("species").value.toString())
                     list.add(plant)
-                    rv.adapter= PlantAdapter(list)
-                    Log.d("name", list.toString())
+                    rv.adapter= PlantAdapter(list, referenceToFragment)
                 }
             }
 
@@ -74,44 +63,20 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
             }
         })
-        ref1.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                nome1.text = snapshot.getValue<String>()
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-
-        })
-
-        ref2.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                nome2.text = snapshot.getValue<String>()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-
-        })
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-
-
-
-
-
-        nome1.setOnClickListener{
-            findNavController().navigate(R.id.action_mainFragment_to_singlePlantFragment)
-        }
 
 
         }
 
     }
 
-class PlantAdapter(val list: MutableList<Plant>): RecyclerView.Adapter<PlantAdapter.PlantViewHolder>(){
+class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment): RecyclerView.Adapter<PlantAdapter.PlantViewHolder>(){
 
     class PlantViewHolder(v: View): RecyclerView.ViewHolder(v){
-        val name: TextView = v.findViewById(R.id.plantNameHome)
+        val name1: TextView = v.findViewById(R.id.plantNameHome1)
+        val species1: TextView = v.findViewById(R.id.plantSpeciesHome1)
+        var plantButton1: ImageButton= v.findViewById(R.id.plantImageHome1)
 
     }
 
@@ -122,8 +87,14 @@ class PlantAdapter(val list: MutableList<Plant>): RecyclerView.Adapter<PlantAdap
     }
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
-        holder.name.text= list.get(position).name
-        Log.d("name", list.toString())
+        holder.name1.text= list.get(position).name
+        holder.species1.text= list.get(position).species
+       // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'imagine
+
+        holder.plantButton1.setOnClickListener{
+            fragment.findNavController().navigate(R.id.action_mainFragment_to_singlePlantFragment)
+        }
+
     }
 
     override fun getItemCount(): Int {
