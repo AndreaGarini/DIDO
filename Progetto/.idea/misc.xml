@@ -5,10 +5,19 @@
       <map>
         <entry key="..\:/Politecnico/Magistrale/Secondo Anno/Primo Semestre/Digital Interaction Design/Repository/OleandriForReal/Progetto/app/src/main/res/layout/main_activity.xml" value="0.25416666666666665" />
         <entry key="..\:/Politecnico/Magistrale/Secondo Anno/Primo Semestre/Digital Interaction Design/Repository/OleandriForReal/Progetto/app/src/main/res/layout/main_fragment.xml" value="0.25416666666666665" />
+<<<<<<< Updated upstream
         <entry key="..\:/Users/simon/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/fragment_message.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/simon/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/fragment_single_plant.xml" value="0.33" />
         <entry key="..\:/Users/simon/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/main_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/simon/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/plant_item_layout.xml" value="0.20416666666666666" />
+=======
+        <entry key="..\:/Users/Maria/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/fragment_message.xml" value="0.25" />
+        <entry key="..\:/Users/Maria/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/Maria/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/fragment_single_plant.xml" value="0.25" />
+        <entry key="..\:/Users/Maria/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/main_activity.xml" value="0.25" />
+        <entry key="..\:/Users/Maria/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/main_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/Maria/Documents/GitHub/OleandriForReal/Progetto/app/src/main/res/layout/plant_item_layout.xml" value="0.25" />
+>>>>>>> Stashed changes
         <entry key="app/src/main/res/layout/fragment_message.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/fragment_single_plant.xml" value="0.23489583333333333" />
