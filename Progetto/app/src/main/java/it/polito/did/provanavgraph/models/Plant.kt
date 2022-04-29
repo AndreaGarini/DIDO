@@ -1,6 +1,9 @@
 package it.polito.did.provanavgraph.models
 
+import android.icu.number.IntegerWidth
+
 class Plant(plantName: String, plantSpecies: String) {
+
     var name: String
     var species: String
 
@@ -16,6 +19,7 @@ class Plant(plantName: String, plantSpecies: String) {
     fun getPlantSpecies(): String{
         return species
     }
+
 
 
 }

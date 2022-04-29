@@ -21,6 +21,8 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.models.Plant
+import it.polito.did.provanavgraph.repository.PlantRepository
+import java.util.stream.Collectors
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
@@ -34,7 +36,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: PlantRepository
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var list: MutableList<Plant> = mutableListOf()
@@ -50,13 +52,16 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         parent.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
-                for(item in snapshot.children){
-
-                    var plant= Plant(item.child("plantName").value.toString(), item.child("species").value.toString())
+                list.clear()
+                for(item in snapshot.children) {
+                    var plant = Plant(
+                        item.child("plantName").value.toString(),
+                        item.child("species").value.toString(),
+                    )
                     list.add(plant)
-                    rv.adapter= PlantAdapter(list, referenceToFragment)
                 }
+
+                rv.adapter= PlantAdapter(list, referenceToFragment)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -64,7 +69,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             }
         })
 
-        viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
 
         }
