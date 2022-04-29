@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,20 +49,24 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         val rv: RecyclerView= view.findViewById(R.id.recyclerView)
         rv.layoutManager= GridLayoutManager(activity, 2)
-        rv.adapter= PlantAdapter(list, this)
+        rv.adapter= PlantAdapter(list, this, viewModel)
 
         parent.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 list.clear()
+                viewModel.plantCounter=0
                 for(item in snapshot.children) {
                     var plant = Plant(
                         item.child("plantName").value.toString(),
                         item.child("species").value.toString(),
+                        viewModel.plantCounter
                     )
+                    viewModel.plantCount()
                     list.add(plant)
                 }
+                viewModel.plantList=list
 
-                rv.adapter= PlantAdapter(list, referenceToFragment)
+                rv.adapter= PlantAdapter(list, referenceToFragment, viewModel)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -76,7 +81,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     }
 
-class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment): RecyclerView.Adapter<PlantAdapter.PlantViewHolder>(){
+class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val viewModel: PlantRepository): RecyclerView.Adapter<PlantAdapter.PlantViewHolder>(){
+
 
     class PlantViewHolder(v: View): RecyclerView.ViewHolder(v){
         val name1: TextView = v.findViewById(R.id.plantNameHome1)
@@ -97,6 +103,7 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment): Re
        // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'imagine
 
         holder.plantButton1.setOnClickListener{
+            viewModel.focusPlant=position
             fragment.findNavController().navigate(R.id.action_mainFragment_to_singlePlantFragment)
         }
 

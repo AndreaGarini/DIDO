@@ -14,13 +14,16 @@ import it.polito.did.provanavgraph.ui.main.PlantAdapter
 class PlantRepository: ViewModel() {
 
     var focusPlant: Int=0
+    var plantCounter=0
     val db = Firebase.database.reference
-    var list: MutableList<Plant> = mutableListOf()
+    var plantList: MutableList<Plant> = mutableListOf()
 
 
     val ref1 = db.child("plants")
 
-
+    fun plantCount(){
+        plantCounter++
+    }
 
 
 
