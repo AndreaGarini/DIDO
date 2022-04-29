@@ -10,43 +10,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.948" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="141dp"
-            tools:layout_editor_absoluteY="64dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
         <Button
             android:id="@+id/modificaPassword"
-            android:layout_width="330"
-            android:layout_height="72"
+            android:layout_width="330dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="128dp"
             android:text="Modifica password"
             app:icon="@android:drawable/ic_lock_idle_lock"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.312" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <Button
             android:id="@+id/mail"
-            android:layout_width="330"
-            android:layout_height="72"
+            android:layout_width="330dp"
+            android:layout_height="72dp"
             android:text="Mail"
             app:icon="@android:drawable/ic_dialog_email"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -58,8 +47,8 @@
 
         <Button
             android:id="@+id/credits"
-            android:layout_width="330"
-            android:layout_height="72"
+            android:layout_width="330dp"
+            android:layout_height="72dp"
             android:text="credits"
             app:icon="@android:drawable/ic_dialog_info"
             app:layout_constraintBottom_toBottomOf="parent"
