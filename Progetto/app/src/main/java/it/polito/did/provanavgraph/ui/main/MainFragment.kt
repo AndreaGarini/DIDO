@@ -59,7 +59,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     var plant = Plant(
                         item.child("plantName").value.toString(),
                         item.child("species").value.toString(),
-                        viewModel.plantCounter
+                        viewModel.plantCounter,
+                        item.child("category").value.toString(),
+                        item.child("humidity").value.toString().toInt(),
+                        item.child("waterInTank").value.toString().toInt(),
+                        item.child("isOutside").value.toString().toBoolean()
+
                     )
                     viewModel.plantCount()
                     list.add(plant)

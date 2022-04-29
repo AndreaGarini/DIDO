@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.repository.PlantRepository
@@ -27,7 +29,21 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
 
 
         var plantButton = view.findViewById<Button>(R.id.singlePlantButton)
+        var plantName=view.findViewById<TextView>(R.id.plantName)
+        var plantSpecies=view.findViewById<TextView>(R.id.plantSpecies)
+        var plantLocation=view.findViewById<TextView>(R.id.plantLocation)
+        var plantHumidity=view.findViewById<ProgressBar>(R.id.plantHumidity)
+        var plantWaterInTank=view.findViewById<ProgressBar>(R.id.plantWaterInTank)
 
-        plantButton.text= viewModel.plantList[viewModel.focusPlant].name
+        plantName.text= viewModel.plantList[viewModel.focusPlant].name
+        plantSpecies.text= viewModel.plantList[viewModel.focusPlant].species
+        if(viewModel.plantList[viewModel.focusPlant].isOutside){
+            plantLocation.text="Outside"
+        }else{
+            plantLocation.text="Inside"
+        }
+
+        plantHumidity.progress=viewModel.plantList[viewModel.focusPlant].humidity
+        plantWaterInTank.progress=viewModel.plantList[viewModel.focusPlant].waterInTank
     }
 }
