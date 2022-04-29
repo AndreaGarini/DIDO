@@ -44,7 +44,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         var db = Firebase.database.reference
         var parent = db.child("plants")
         var referenceToFragment: MainFragment= this
-
+        viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
 
         val rv: RecyclerView= view.findViewById(R.id.recyclerView)
