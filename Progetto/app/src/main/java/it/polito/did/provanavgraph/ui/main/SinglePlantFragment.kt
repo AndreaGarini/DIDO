@@ -28,7 +28,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
 
-        var plantButton = view.findViewById<Button>(R.id.singlePlantButton)
+        
         var plantName=view.findViewById<TextView>(R.id.plantName)
         var plantSpecies=view.findViewById<TextView>(R.id.plantSpecies)
         var plantLocation=view.findViewById<TextView>(R.id.plantLocation)
