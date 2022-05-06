@@ -20,6 +20,7 @@ class PlantRepository: ViewModel() {
 
 
     val ref1 = db.child("plants")
+    val ref2= db.child("users")
 
     fun plantCount(){
         plantCounter++
