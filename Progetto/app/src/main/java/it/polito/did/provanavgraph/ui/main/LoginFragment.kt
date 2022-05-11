@@ -53,16 +53,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 if (userList.keys.contains(user))
                 {
                     Log.d("contains user: ", "true")
-                    if (userList.get(user) == pass)
-                    {
-                        val i= Intent(this.activity, HomeActivity::class.java)
+                    if (userList.get(user) == pass) {
+                        val i = Intent(this.activity, HomeActivity::class.java)
                         startActivity(i)
                     }
+                    else{
+                        Toast.makeText(this.activity, "Mail o password errati", Toast.LENGTH_LONG).show()
+                    }
+                }
                     else
                     {
                        Toast.makeText(this.activity, "Mail o password errati", Toast.LENGTH_LONG).show()
                     }
-                }
             }
 
             else{
