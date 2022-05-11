@@ -5,9 +5,6 @@
       <map>
         <entry key="vectorWizard">
           <value>
-<<<<<<< Updated upstream
-            <PersistentState />
-=======
             <PersistentState>
               <option name="children">
                 <map>
@@ -21,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/arrow_back_ios/baseline_arrow_back_ios_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/notifications/outline_notifications_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -31,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="freccia_back" />
-                            <entry key="sourceFile" value="C:\Users\Maria\Documents\GitHub\OleandriForReal\Progetto" />
+                            <entry key="color" value="2f5653" />
+                            <entry key="outputName" value="ic_notification" />
+                            <entry key="sourceFile" value="C:\Users\simon\Documents\GitHub\OleandriForReal\Progetto" />
                           </map>
                         </option>
                       </PersistentState>
@@ -41,7 +39,6 @@
                 </map>
               </option>
             </PersistentState>
->>>>>>> Stashed changes
           </value>
         </entry>
       </map>

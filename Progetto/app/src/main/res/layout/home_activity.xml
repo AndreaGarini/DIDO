@@ -36,26 +36,26 @@
             <ImageButton
                 android:id="@+id/HomeButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FAC8C8"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                android:backgroundTint="#FFFFFF"
+                app:srcCompat="@drawable/ic_home" />
 
             <ImageButton
                 android:id="@+id/MessageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FAC8C8"
-                app:srcCompat="@android:drawable/ic_dialog_email" />
+                android:backgroundTint="#FFFFFF"
+                app:srcCompat="@drawable/ic_notification" />
 
             <ImageButton
                 android:id="@+id/ProfileButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#FAC8C8"
-                app:srcCompat="@android:drawable/ic_menu_myplaces" />
+                android:backgroundTint="#FFFFFF"
+                app:srcCompat="@drawable/ic_account" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
