@@ -21,8 +21,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
-        val button= view.findViewById<Button>(R.id.signIn2)
-        val signIn= view.findViewById<Button>(R.id.signIn)
+        val button= view.findViewById<Button>(R.id.singIn2)
+        val signIn= view.findViewById<Button>(R.id.singIn)
         val username= view.findViewById<TextView>(R.id.username)
         val password= view.findViewById<TextView>(R.id.password)
 
