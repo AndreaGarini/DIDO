@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -88,11 +89,15 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
 class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val viewModel: PlantRepository): RecyclerView.Adapter<PlantAdapter.PlantViewHolder>(){
 
-
+    var currentSelectedIndex = -1
     class PlantViewHolder(v: View): RecyclerView.ViewHolder(v){
         val name1: TextView = v.findViewById(R.id.plantNameHome1)
         val species1: TextView = v.findViewById(R.id.plantSpeciesHome1)
         var plantButton1: ImageButton= v.findViewById(R.id.plantImageHome1)
+        val constraintLayout: ConstraintLayout = v.findViewById(R.id.constraintLayout)
+        var deletePlant: Button = v.findViewById(R.id.deletePlant)
+
+
 
     }
 
@@ -103,18 +108,40 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
     }
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
+
         holder.name1.text= list.get(position).name
         holder.species1.text= list.get(position).species
-       // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'imagine
-
+       // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'immagine
         holder.plantButton1.setOnClickListener{
             viewModel.focusPlant=position
             fragment.findNavController().navigate(R.id.action_mainFragment_to_singlePlantFragment)
         }
+
+        if(list.get(position).selected == true){
+            holder.deletePlant.visibility = View.VISIBLE
+        } else{
+            holder.deletePlant.visibility = View.GONE
+        }
+        //qui implementato il tenere premuto che fa apparire il bidone per eliminare
+        holder.constraintLayout.setOnLongClickListener{markSelectedItem(position)}
+
 
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
+
+    fun markSelectedItem(index: Int): Boolean {
+        for(item in list){
+            item.selected = false;
+        }
+
+        list.get(index).selected = true
+        currentSelectedIndex = index
+        notifyDataSetChanged()
+
+        return true
+    }
+
 }

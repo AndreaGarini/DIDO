@@ -11,6 +11,7 @@ class Plant(plantName: String, plantSpecies: String, idNum: Int, plantCategory: 
     var humidity: Int
     var waterInTank: Int
     var isOutside: Boolean
+    var selected: Boolean? = false
 
 
     init {
