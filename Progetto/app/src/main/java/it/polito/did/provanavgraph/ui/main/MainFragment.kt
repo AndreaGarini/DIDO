@@ -2,7 +2,6 @@ package it.polito.did.provanavgraph.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -11,21 +10,17 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.models.Plant
 import it.polito.did.provanavgraph.repository.PlantRepository
-import java.util.stream.Collectors
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
@@ -118,7 +113,7 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
         val species1: TextView = v.findViewById(R.id.plantSpeciesHome1)
         var plantButton1: ImageButton= v.findViewById(R.id.plantImageHome1)
         val constraintLayout: ConstraintLayout = v.findViewById(R.id.constraintLayout)
-        var deletePlant: Button = v.findViewById(R.id.deletePlant)
+        var deletePlantButton: Button = v.findViewById(R.id.deletePlantButton)
 
 
 
@@ -142,9 +137,14 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
         }
 
         if(list.get(position).selected == true){
-            holder.deletePlant.visibility = View.VISIBLE
+            holder.deletePlantButton.visibility = View.VISIBLE
+           holder.deletePlantButton.setOnClickListener{
+                deletePlant(position)
+
+            }
+
         } else{
-            holder.deletePlant.visibility = View.GONE
+            holder.deletePlantButton.visibility = View.GONE
         }
         //qui implementato il tenere premuto che fa apparire il bidone per eliminare
         holder.constraintLayout.setOnLongClickListener{markSelectedItem(position)}
@@ -167,5 +167,10 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
 
         return true
     }
+   fun deletePlant(index: Int){
+        list.removeAt(index)
+        notifyDataSetChanged()
 
-}
+    }
+
+    }
