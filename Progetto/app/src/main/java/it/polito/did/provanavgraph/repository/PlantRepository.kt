@@ -21,10 +21,23 @@ class PlantRepository: ViewModel() {
     val db = Firebase.database.reference
     var plantList: MutableList<Plant> = mutableListOf()
     var userPlants: MutableList<String> = mutableListOf()
+    var usersCount: Int=0
 
 
     val ref1 = db.child("plants")
     val ref2 = db.child("users")
+
+    val usersRef= db.child("users").addValueEventListener(
+        object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                 usersCount=snapshot.children.count()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
 
     fun plantCount(){
         plantCounter++
