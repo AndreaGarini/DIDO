@@ -10,51 +10,71 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/cactus"
-            app:layout_constraintBottom_toTopOf="@+id/mail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/modificaPassword"
-            android:layout_width="330dp"
-            android:layout_height="72dp"
-            android:text="Modifica password"
-            app:icon="@android:drawable/ic_lock_idle_lock"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/credits" />
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck">
 
-        <Button
-            android:id="@+id/mail"
-            android:layout_width="330dp"
-            android:layout_height="72dp"
-            android:text="Mail"
-            app:icon="@android:drawable/ic_dialog_email"
-            app:layout_constraintBottom_toTopOf="@+id/credits"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
 
-        <Button
-            android:id="@+id/credits"
-            android:layout_width="330dp"
-            android:layout_height="72dp"
-            android:text="credits"
-            app:icon="@android:drawable/ic_dialog_info"
-            app:layout_constraintBottom_toTopOf="@+id/modificaPassword"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mail" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="206dp"
+                android:layout_height="206dp"
+                android:src="@drawable/cactus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/modificaPassword"
+                android:layout_width="330dp"
+                android:layout_height="72dp"
+                android:text="Modifica password"
+                app:icon="@android:drawable/ic_lock_idle_lock"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <Button
+                android:id="@+id/mail"
+                android:layout_width="330dp"
+                android:layout_height="72dp"
+                android:text="Mail"
+                app:icon="@android:drawable/ic_dialog_email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/modificaPassword" />
+
+            <Button
+                android:id="@+id/credits"
+                android:layout_width="330dp"
+                android:layout_height="72dp"
+                android:text="credits"
+                app:icon="@android:drawable/ic_dialog_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mail" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
