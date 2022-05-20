@@ -23,7 +23,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val button= view.findViewById<Button>(R.id.Login)
         val signIn= view.findViewById<Button>(R.id.LoginSingIn)
         val username= view.findViewById<TextView>(R.id.username)
-        val password= view.findViewById<TextView>(R.id.passwordSignIn)
+        val password= view.findViewById<TextView>(R.id.password)
 
         var userList: MutableMap<String,String> = mutableMapOf()
         val userPlantList: MutableList<String> = mutableListOf()
