@@ -23,9 +23,9 @@ class PlantRepository: ViewModel() {
     var userPlants: MutableList<String> = mutableListOf()
     var usersCount: Int=0
 
+    val ref2 = db.child("users")
 
     val ref1 = db.child("plants")
-    val ref2 = db.child("users")
 
     val usersRef= db.child("users").addValueEventListener(
         object : ValueEventListener {
@@ -37,6 +37,7 @@ class PlantRepository: ViewModel() {
 
             }
         })
+
 
 
     fun plantCount(){

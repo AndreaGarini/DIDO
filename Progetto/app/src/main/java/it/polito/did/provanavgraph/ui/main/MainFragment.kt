@@ -77,6 +77,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 for(item in snapshot.children) {
                     if(viewModel.userPlants.contains(item.key.toString())) {
                         var plant = Plant(
+                            item.key.toString(),
                             item.child("plantName").value.toString(),
                             item.child("species").value.toString(),
                             viewModel.plantCounter,

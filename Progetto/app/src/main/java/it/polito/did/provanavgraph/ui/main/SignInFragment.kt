@@ -41,7 +41,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                         newUser.put("ownedPlants", "null")
                         newUser.put("username", userText.toString())
 
-
                         viewModel.ref2.child("user"+(viewModel.usersCount+1)).setValue(newUser)
                         val i = Intent(this.activity, HomeActivity::class.java)
                         val b= Bundle()
