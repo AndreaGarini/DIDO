@@ -25,18 +25,24 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
 
         signIn.setOnClickListener{
-            Log.d("tutto giusto", viewModel.usersCount.toString())
             val emailText= email.text.trim()
             val userText= username.text.trim()
             val passText= password.text.trim()
             val numbers = "0123456789"
             val symbols= "/?!:;%"
+            var newUser: MutableMap<String,String?> = mutableMapOf()
 
             if(emailText.contains("@") && emailText.contains(".") )
             {
-                Log.d("pass length", passText.length.toString())
+
                     if (passText.length>6 && passText.any{it in numbers} /*&& passText.contains("?=.*[A-Z]")*/) {
-                        viewModel.ref2.child("user"+(viewModel.usersCount+1)).setValue("va dio amico delle guardie")
+                        newUser.put("email", emailText.toString())
+                        newUser.put("password", passText.toString())
+                        newUser.put("ownedPlants", "null")
+                        newUser.put("username", userText.toString())
+
+
+                        viewModel.ref2.child("user"+(viewModel.usersCount+1)).setValue(newUser)
                         val i = Intent(this.activity, HomeActivity::class.java)
                         val b= Bundle()
                         b.putString("user", emailText.toString())
