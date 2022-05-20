@@ -2,9 +2,10 @@ package it.polito.did.provanavgraph.models
 
 import android.icu.number.IntegerWidth
 
-class Plant(plantKey: String, plantName: String, plantSpecies: String, idNum: Int, plantCategory: String, plantHumidity: Int, plantWaterInTank: Int, plantIsOutside: Boolean) {
+class Plant(plantKey: String,plantOwner: String, plantName: String, plantSpecies: String, idNum: Int, plantCategory: String, plantHumidity: Int, plantWaterInTank: Int, plantIsOutside: Boolean) {
 
     var key: String
+    var owner: String
     var name: String
     var species: String
     var id: Int
@@ -17,6 +18,7 @@ class Plant(plantKey: String, plantName: String, plantSpecies: String, idNum: In
 
     init {
         key = plantKey
+        owner = plantOwner
         name = plantName
         species = plantSpecies
         id=idNum
@@ -55,5 +57,12 @@ class Plant(plantKey: String, plantName: String, plantSpecies: String, idNum: In
         return isOutside
     }
 
+    fun getPlantKey(): String{
+        return key
+    }
+
+    fun getPlantOwner(): String{
+        return owner
+    }
 
 }

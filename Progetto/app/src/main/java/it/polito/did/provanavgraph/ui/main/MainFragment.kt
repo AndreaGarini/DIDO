@@ -2,6 +2,7 @@ package it.polito.did.provanavgraph.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -78,6 +79,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     if(viewModel.userPlants.contains(item.key.toString())) {
                         var plant = Plant(
                             item.key.toString(),
+                            item.child("owner").value.toString(),
                             item.child("plantName").value.toString(),
                             item.child("species").value.toString(),
                             viewModel.plantCounter,
@@ -141,7 +143,6 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
             holder.deletePlantButton.visibility = View.VISIBLE
            holder.deletePlantButton.setOnClickListener{
                 deletePlant(position)
-
             }
 
         } else{
@@ -169,8 +170,14 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
         return true
     }
    fun deletePlant(index: Int){
-        list.removeAt(index)
-        notifyDataSetChanged()
+       var pianta: Plant = list.get(index)
+       var chiave: String = pianta.getPlantKey()
+       var utente: String= pianta.getPlantOwner()
+        viewModel.ref1.child("plants").child(chiave).removeValue()
+        viewModel.ref2.child("users").child(utente).child("ownedPlants")
+            .child(chiave).removeValue()
+       Log.d("chiave", chiave)
+       Log.d("utente",utente)
 
     }
 
