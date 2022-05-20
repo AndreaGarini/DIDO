@@ -2,6 +2,7 @@ package it.polito.did.provanavgraph.ui.main
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -50,29 +51,51 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         val rv: RecyclerView= view.findViewById(R.id.recyclerView)
         rv.layoutManager= GridLayoutManager(activity, 2)
-        rv.adapter= PlantAdapter(list, this, viewModel)
+        rv.adapter= PlantAdapter(viewModel.plantList, referenceToFragment, viewModel)
+
+            viewModel.ref2.orderByChild("email").equalTo(viewModel.user).addValueEventListener(object : ValueEventListener
+            {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(item in snapshot.children.first().children){
+                        if(item.key=="ownedPlants"){
+                            for(plant in item.children){
+                               viewModel.userPlants.add(plant.key.toString())
+                            }
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+
+
+            )
+
 
         parent.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                list.clear()
+                viewModel.plantList.clear()
                 viewModel.plantCounter=0
                 for(item in snapshot.children) {
-                    var plant = Plant(
-                        item.child("plantName").value.toString(),
-                        item.child("species").value.toString(),
-                        viewModel.plantCounter,
-                        item.child("category").value.toString(),
-                        item.child("humidity").value.toString().toInt(),
-                        item.child("waterInTank").value.toString().toInt(),
-                        item.child("isOutside").value.toString().toBoolean()
+                    if(viewModel.userPlants.contains(item.key.toString())) {
+                        var plant = Plant(
+                            item.child("plantName").value.toString(),
+                            item.child("species").value.toString(),
+                            viewModel.plantCounter,
+                            item.child("category").value.toString(),
+                            item.child("humidity").value.toString().toInt(),
+                            item.child("waterInTank").value.toString().toInt(),
+                            item.child("isOutside").value.toString().toBoolean()
 
-                    )
-                    viewModel.plantCount()
-                    list.add(plant)
+                        )
+                        viewModel.plantCount()
+                        viewModel.plantList.add(plant)
+                    }
                 }
-                viewModel.plantList=list
-
-                rv.adapter= PlantAdapter(list, referenceToFragment, viewModel)
+                rv.adapter= PlantAdapter(viewModel.plantList, referenceToFragment, viewModel)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -96,6 +119,7 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
         var plantButton1: ImageButton= v.findViewById(R.id.plantImageHome1)
         val constraintLayout: ConstraintLayout = v.findViewById(R.id.constraintLayout)
         var deletePlant: Button = v.findViewById(R.id.deletePlant)
+
 
 
 

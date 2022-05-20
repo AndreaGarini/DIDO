@@ -1,5 +1,6 @@
 package it.polito.did.provanavgraph
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
         viewModel = ViewModelProvider(this).get(PlantRepository::class.java)
+        viewModel.user = getIntent().getExtras()?.getString("user")!!
 
 
         val homeButton= findViewById<ImageButton>(R.id.HomeButton)

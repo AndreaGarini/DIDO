@@ -27,6 +27,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val password= view.findViewById<TextView>(R.id.password)
 
         var userList: MutableMap<String,String> = mutableMapOf()
+        val userPlantList: MutableList<String> = mutableListOf()
 
         viewModel.ref2.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -34,7 +35,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     userList.put(item.child("email").value.toString(), item.child("password").value.toString())
 
                 }
-                Log.d("userList", userList.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -45,16 +45,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         button.setOnClickListener{
             val user= username.text.toString().trim()
             val pass= password.text.toString()
-            Log.d("user: ", user)
+
 
             if(user.contains("@") && user.contains("."))
             {
-                Log.d("contains: ", "true")
+
                 if (userList.keys.contains(user))
                 {
-                    Log.d("contains user: ", "true")
+
                     if (userList.get(user) == pass) {
                         val i = Intent(this.activity, HomeActivity::class.java)
+                        val b= Bundle()
+                        b.putString("user", user)
+                        i.putExtras(b)
                         startActivity(i)
                     }
                     else{
