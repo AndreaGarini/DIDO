@@ -1,7 +1,6 @@
 package it.polito.did.provanavgraph
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -21,10 +20,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
-        val button= view.findViewById<Button>(R.id.singIn2)
-        val signIn= view.findViewById<Button>(R.id.singIn)
+        val button= view.findViewById<Button>(R.id.Login)
+        val signIn= view.findViewById<Button>(R.id.LoginSingIn)
         val username= view.findViewById<TextView>(R.id.username)
-        val password= view.findViewById<TextView>(R.id.password)
+        val password= view.findViewById<TextView>(R.id.passwordSignIn)
 
         var userList: MutableMap<String,String> = mutableMapOf()
         val userPlantList: MutableList<String> = mutableListOf()
