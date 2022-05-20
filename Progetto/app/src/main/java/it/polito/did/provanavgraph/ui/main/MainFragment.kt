@@ -170,10 +170,11 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
         return true
     }
    fun deletePlant(index: Int){
+       var db = Firebase.database.reference
        var pianta: Plant = list.get(index)
        var chiave: String = pianta.getPlantKey()
        var utente: String= pianta.getPlantOwner()
-        viewModel.ref1.child("plants").child(chiave).removeValue()
+        db.child("plants").child(chiave).removeValue()
         viewModel.ref2.child("users").child(utente).child("ownedPlants")
             .child(chiave).removeValue()
        Log.d("chiave", chiave)

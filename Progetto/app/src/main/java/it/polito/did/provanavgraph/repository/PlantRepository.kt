@@ -1,5 +1,6 @@
 package it.polito.did.provanavgraph.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.DataSnapshot
@@ -25,7 +26,35 @@ class PlantRepository: ViewModel() {
 
     val ref2 = db.child("users")
 
-    val ref1 = db.child("plants")
+    val ref1 = db.child("plants").addValueEventListener(object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            plantList.clear()
+            plantCounter=0
+            for(item in snapshot.children) {
+                if (userPlants.contains(item.key.toString())) {
+                    var plant = Plant(
+                        item.key.toString(),
+                        item.child("owner").value.toString(),
+                        item.child("plantName").value.toString(),
+                        item.child("species").value.toString(),
+                        plantCounter,
+                        item.child("category").value.toString(),
+                        item.child("humidity").value.toString().toInt(),
+                        item.child("waterInTank").value.toString().toInt(),
+                        item.child("isOutside").value.toString().toBoolean()
+
+                    )
+                    Log.d("new humidity", plant.humidity.toString())
+                    plantCount()
+                    plantList.add(plant)
+                }
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+
+        }
+    })
 
     val usersRef= db.child("users").addValueEventListener(
         object : ValueEventListener {

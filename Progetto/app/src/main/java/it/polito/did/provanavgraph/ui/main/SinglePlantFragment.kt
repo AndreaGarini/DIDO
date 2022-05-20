@@ -41,6 +41,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
             plantLocation.text="Inside"
         }
 
+        viewModel.plantList[viewModel.focusPlant].humidity
         plantHumidity.progress=viewModel.plantList[viewModel.focusPlant].humidity
         plantWaterInTank.progress=viewModel.plantList[viewModel.focusPlant].waterInTank
 
