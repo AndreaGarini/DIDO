@@ -1,4 +1,5 @@
 package it.polito.did.provanavgraph
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -22,8 +23,25 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             val emailText= email.text.trim()
             val userText= username.text.trim()
             val passText= password.text.trim()
+            val numbers = "0123456789"
+            val symbols= "/?!:;%"
 
+            if(emailText.contains("@") && userText.contains(".") )
+            {
+                    if (passText.length<8 && passText.any{it in symbols}  ) {
+                        val i = Intent(this.activity, HomeActivity::class.java)
+                        val b= Bundle()
+                        i.putExtras(b)
+                        startActivity(i)
+                    }
+                    else{
+                        Toast.makeText(this.activity, "La password deve contenere almeno un numero", Toast.LENGTH_LONG).show()
+                    }
+                }
 
+                else {
+                Toast.makeText(this.activity, "Email errata ", Toast.LENGTH_LONG).show()
+            }
         }
 
 
