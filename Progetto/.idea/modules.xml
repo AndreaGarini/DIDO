@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GitHub.OleandriForReal.Progetto.ProvaNavGraph.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GitHub.OleandriForReal.Progetto.ProvaNavGraph.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/OleandriForReal.Progetto.ProvaNavGraph.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/OleandriForReal.Progetto.ProvaNavGraph.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Progetto.ProvaNavGraph.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Progetto.ProvaNavGraph.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProvaNavGraph.iml" filepath="$PROJECT_DIR$/.idea/modules/ProvaNavGraph.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProvaNavGraph.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProvaNavGraph.app.iml" />
     </modules>
   </component>
 </project>
