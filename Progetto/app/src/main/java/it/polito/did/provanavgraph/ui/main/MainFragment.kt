@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,34 +45,20 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         var referenceToFragment: MainFragment= this
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
+        viewModel.setPlants()
+        viewModel.setUserPlants()
+        val liveData = viewModel.getPLants()
 
         val rv: RecyclerView= view.findViewById(R.id.recyclerView)
         rv.layoutManager= GridLayoutManager(activity, 2)
-        rv.adapter= PlantAdapter(viewModel.plantList, referenceToFragment, viewModel)
-
-            viewModel.ref2.orderByChild("email").equalTo(viewModel.user).addValueEventListener(object : ValueEventListener
-            {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(item in snapshot.children.first().children){
-                        if(item.key=="ownedPlants"){
-                            for(plant in item.children){
-                               viewModel.userPlants.add(plant.key.toString())
-                            }
-                        }
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            }
+        liveData.observe(viewLifecycleOwner, Observer{
+            rv.adapter= PlantAdapter(liveData.value, referenceToFragment, viewModel)
+        })
+        rv.adapter= PlantAdapter(viewModel.plantList.value, referenceToFragment, viewModel)
 
 
-            )
 
-
-        parent.addValueEventListener(object : ValueEventListener {
+       /* parent.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 viewModel.plantList.clear()
                 viewModel.plantCounter=0
@@ -99,7 +86,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             override fun onCancelled(error: DatabaseError) {
 
             }
-        })
+        })*/
 
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
@@ -108,7 +95,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
     }
 
-class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val viewModel: PlantRepository): RecyclerView.Adapter<PlantAdapter.PlantViewHolder>(){
+class PlantAdapter(val list: MutableList<Plant>?, val fragment: MainFragment, val viewModel: PlantRepository): RecyclerView.Adapter<PlantAdapter.PlantViewHolder>(){
 
     var currentSelectedIndex = -1
     class PlantViewHolder(v: View): RecyclerView.ViewHolder(v){
@@ -131,55 +118,65 @@ class PlantAdapter(val list: MutableList<Plant>, val fragment: MainFragment, val
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
 
-        holder.name1.text= list.get(position).name
-        holder.species1.text= list.get(position).species
-       // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'immagine
-        holder.plantButton1.setOnClickListener{
-            viewModel.focusPlant=position
+        if (list != null) {
+            holder.name1.text = list.get(position).name
+            holder.species1.text = list.get(position).species
+
+        // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'immagine
+        holder.plantButton1.setOnClickListener {
+            viewModel.focusPlant = position
             fragment.findNavController().navigate(R.id.action_mainFragment_to_singlePlantFragment)
         }
 
-        if(list.get(position).selected == true){
+        if (list.get(position).selected == true) {
             holder.deletePlantButton.visibility = View.VISIBLE
-           holder.deletePlantButton.setOnClickListener{
+            holder.deletePlantButton.setOnClickListener {
                 deletePlant(position)
             }
 
-        } else{
+        } else {
             holder.deletePlantButton.visibility = View.GONE
         }
         //qui implementato il tenere premuto che fa apparire il bidone per eliminare
-        holder.constraintLayout.setOnLongClickListener{markSelectedItem(position)}
+        holder.constraintLayout.setOnLongClickListener { markSelectedItem(position) }
 
-
+    }
     }
 
     override fun getItemCount(): Int {
+        if(list!=null){
         return list.size
+        }
+        else return 0
     }
 
     fun markSelectedItem(index: Int): Boolean {
-        for(item in list){
-            item.selected = false;
+        if (list != null) {
+            for (item in list) {
+                item.selected = false;
+            }
+
+            list.get(index).selected = true
+            currentSelectedIndex = index
+            notifyDataSetChanged()
+
+            return true
         }
-
-        list.get(index).selected = true
-        currentSelectedIndex = index
-        notifyDataSetChanged()
-
-        return true
+        else return false
     }
-   fun deletePlant(index: Int){
-       var db = Firebase.database.reference
-       var pianta: Plant = list.get(index)
-       var chiave: String = pianta.getPlantKey()
-       var utente: String= pianta.getPlantOwner()
-        db.child("plants").child(chiave).removeValue()
-        viewModel.ref2.child("users").child(utente).child("ownedPlants")
-            .child(chiave).removeValue()
-       Log.d("chiave", chiave)
-       Log.d("utente",utente)
+   fun deletePlant(index: Int) {
+       if (list != null) {
+           var db = Firebase.database.reference
+           var pianta: Plant = list.get(index)
+           var chiave: String = pianta.getPlantKey()
+           var utente: String = pianta.getPlantOwner()
+           db.child("plants").child(chiave).removeValue()
+           db.child("users").child(utente).child("ownedPlants")
+               .child(chiave).removeValue()
+           Log.d("chiave", chiave)
+           Log.d("utente", utente)
 
-    }
+       }
+   }
 
     }

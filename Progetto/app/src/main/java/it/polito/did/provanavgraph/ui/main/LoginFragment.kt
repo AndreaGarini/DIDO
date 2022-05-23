@@ -26,9 +26,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val password= view.findViewById<TextView>(R.id.password)
 
         var userList: MutableMap<String,String> = mutableMapOf()
-        val userPlantList: MutableList<String> = mutableListOf()
 
-        viewModel.ref2.addValueEventListener(object : ValueEventListener {
+        viewModel.db.child("users").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (item in snapshot.children){
                     userList.put(item.child("email").value.toString(), item.child("password").value.toString())
