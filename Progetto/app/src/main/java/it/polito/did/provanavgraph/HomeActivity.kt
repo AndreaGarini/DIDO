@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
         val messageButton= findViewById<ImageButton>(R.id.MessageButton)
         val container= findViewById<FragmentContainerView>(R.id.fragmentContainerView5)
 
-        container.get
+      //  container.get
 
 
         profileButton.setOnClickListener{
