@@ -35,8 +35,11 @@
 
                 <TextView
                     android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
+                    android:layout_width="328"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="40dp"
+                    android:paddingBottom="8dp"
                     android:text="Nome" />
 
                 <androidx.cardview.widget.CardView
@@ -63,8 +66,11 @@
 
                 <TextView
                     android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
+                    android:layout_width="328dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="8dp"
                     android:text="Dov'è posizionata la pianta?" />
 
                 <RadioGroup
@@ -73,21 +79,26 @@
 
                     <RadioButton
                         android:id="@+id/radioButton"
-                        android:layout_width="match_parent"
+                        android:layout_width="328"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="Interno" />
 
                     <RadioButton
                         android:id="@+id/radioButton2"
-                        android:layout_width="match_parent"
+                        android:layout_width="328"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="Esterno" />
                 </RadioGroup>
 
                 <TextView
                     android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
+                    android:layout_width="328"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="8dp"
                     android:text="Varietà" />
 
                 <androidx.cardview.widget.CardView
@@ -127,7 +138,8 @@
                     android:layout_height="match_parent"
                     android:clipToPadding="true"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="20dp">
 
                     <Button
                         android:id="@+id/button5"
