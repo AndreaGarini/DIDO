@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_creazione_pianta"
+            app:destination="@id/creazione_pianta" />
     </fragment>
     <fragment
         android:id="@+id/singlePlantFragment"
@@ -35,4 +38,9 @@
         android:name="it.polito.did.provanavgraph.ui.main.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/creazione_pianta"
+        android:name="it.polito.did.provanavgraph.ui.main.Creazione_pianta"
+        android:label="fragment_creazione_pianta"
+        tools:layout="@layout/fragment_creazione_pianta" />
 </navigation>

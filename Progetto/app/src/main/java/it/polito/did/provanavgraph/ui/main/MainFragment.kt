@@ -1,5 +1,6 @@
 package it.polito.did.provanavgraph.ui.main
 
+import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,10 @@ import com.google.firebase.ktx.Firebase
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.models.Plant
 import it.polito.did.provanavgraph.repository.PlantRepository
+import android.graphics.drawable.Drawable
+
+
+
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
@@ -56,39 +61,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         })
         rv.adapter= PlantAdapter(viewModel.plantList.value, referenceToFragment, viewModel)
 
-
-
-       /* parent.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                viewModel.plantList.clear()
-                viewModel.plantCounter=0
-                for(item in snapshot.children) {
-                    if(viewModel.userPlants.contains(item.key.toString())) {
-                        var plant = Plant(
-                            item.key.toString(),
-                            item.child("owner").value.toString(),
-                            item.child("plantName").value.toString(),
-                            item.child("species").value.toString(),
-                            viewModel.plantCounter,
-                            item.child("category").value.toString(),
-                            item.child("humidity").value.toString().toInt(),
-                            item.child("waterInTank").value.toString().toInt(),
-                            item.child("isOutside").value.toString().toBoolean()
-
-                        )
-                        viewModel.plantCount()
-                        viewModel.plantList.add(plant)
-                    }
-                }
-                rv.adapter= PlantAdapter(viewModel.plantList, referenceToFragment, viewModel)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })*/
-
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
+
 
 
         }
@@ -119,27 +93,54 @@ class PlantAdapter(val list: MutableList<Plant>?, val fragment: MainFragment, va
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
 
         if (list != null) {
-            holder.name1.text = list.get(position).name
+            if (position != list.size-1){
+                holder.name1.text = list.get(position).name
             holder.species1.text = list.get(position).species
 
-        // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'immagine
-        holder.plantButton1.setOnClickListener {
-            viewModel.focusPlant = position
-            fragment.findNavController().navigate(R.id.action_mainFragment_to_singlePlantFragment)
-        }
-
-        if (list.get(position).selected == true) {
-            holder.deletePlantButton.visibility = View.VISIBLE
-            holder.deletePlantButton.setOnClickListener {
-                deletePlant(position)
+            // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'immagine
+            holder.plantButton1.setOnClickListener {
+                viewModel.focusPlant = position
+                fragment.findNavController()
+                    .navigate(R.id.action_mainFragment_to_singlePlantFragment)
             }
 
-        } else {
-            holder.deletePlantButton.visibility = View.GONE
-        }
-        //qui implementato il tenere premuto che fa apparire il bidone per eliminare
-        holder.constraintLayout.setOnLongClickListener { markSelectedItem(position) }
+            if (list.get(position).selected == true) {
+                holder.deletePlantButton.visibility = View.VISIBLE
+                holder.deletePlantButton.setOnClickListener {
+                    val builder = AlertDialog.Builder(fragment.requireActivity())
+                    builder.setMessage("Are you sure you want to delete " + list.get(position).name + "?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes"){ dialog, id ->
 
+
+                            deletePlant(position)
+                        }
+                        .setNegativeButton("No") { dialog, id ->
+                            dialog.dismiss()
+                        }
+                    val alert = builder.create()
+                    alert.show()
+                }
+
+            } else {
+                holder.deletePlantButton.visibility = View.GONE
+            }
+            //qui implementato il tenere premuto che fa apparire il bidone per eliminare
+            holder.constraintLayout.setOnLongClickListener { markSelectedItem(position) }
+        }
+            else{
+                holder.name1.text= null
+                holder.species1.text= null
+                holder.deletePlantButton.visibility = View.INVISIBLE
+                val uri = "@drawable/ic_add_plant" // where myresource (without the extension) is the file
+                val imageResource: Int = fragment.resources.getIdentifier(uri, null, fragment.requireActivity().packageName)
+                val res: Drawable = fragment.resources.getDrawable(imageResource)
+                holder.plantButton1.setImageDrawable(res)
+                holder.plantButton1.setOnClickListener {
+                    fragment.findNavController()
+                        .navigate(R.id.action_mainFragment_to_creazione_pianta)
+                }
+            }
     }
     }
 

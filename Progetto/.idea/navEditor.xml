@@ -51,6 +51,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="creazione_pianta">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-465" />
+                            <option name="y" value="90" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="mainFragment">
                     <value>
                       <LayoutPositions>
@@ -63,6 +75,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_mainFragment_to_messageFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_mainFragment_to_profileFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

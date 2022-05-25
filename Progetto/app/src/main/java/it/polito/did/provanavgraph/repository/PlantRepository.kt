@@ -55,6 +55,17 @@ class PlantRepository: ViewModel() {
                         list.add(plant)
                     }
                 }
+                list.add(Plant(
+                    "plusButton",
+                   "null",
+                    "null",
+                    "null",
+                    plantCounter,
+                    "null",
+                    0,
+                    0,
+                    false
+                ))
                 plantList.value=list
             }
 
