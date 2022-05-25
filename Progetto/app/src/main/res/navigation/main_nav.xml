@@ -9,7 +9,8 @@
         android:id="@+id/mainFragment"
         android:name="it.polito.did.provanavgraph.ui.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        android:tag="main"
+        tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_singlePlantFragment"
             app:destination="@id/singlePlantFragment" />
@@ -22,25 +23,70 @@
         <action
             android:id="@+id/action_mainFragment_to_creazione_pianta"
             app:destination="@id/creazione_pianta" />
+        <argument android:name="Tag"
+            app:argType="string"
+            android:defaultValue="main" />
     </fragment>
     <fragment
         android:id="@+id/singlePlantFragment"
         android:name="it.polito.did.provanavgraph.ui.main.SinglePlantFragment"
         android:label="fragment_single_plant"
-        tools:layout="@layout/fragment_single_plant" />
+        tools:layout="@layout/fragment_single_plant" >
+        <argument
+            android:name="Tag"
+            android:defaultValue="single" />
+        <action
+            android:id="@+id/action_singlePlantFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
+        <action
+            android:id="@+id/action_singlePlantFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_singlePlantFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_singlePlantFragment_to_mainFragment2"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/messageFragment"
         android:name="it.polito.did.provanavgraph.ui.main.MessageFragment"
         android:label="fragment_message"
-        tools:layout="@layout/fragment_message" />
+        tools:layout="@layout/fragment_message" >
+        <argument
+            android:name="Tag"
+            app:argType="string"
+            android:defaultValue="message" />
+        <action
+            android:id="@+id/action_messageFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_messageFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="it.polito.did.provanavgraph.ui.main.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="Tag"
+            app:argType="string"
+            android:defaultValue="profile" />
+        <action
+            android:id="@+id/action_profileFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/creazione_pianta"
         android:name="it.polito.did.provanavgraph.ui.main.Creazione_pianta"
         android:label="fragment_creazione_pianta"
-        tools:layout="@layout/fragment_creazione_pianta" />
+        tools:layout="@layout/fragment_creazione_pianta" >
+        <argument
+            android:name="Tag"
+            android:defaultValue="creazione" />
+    </fragment>
 </navigation>
