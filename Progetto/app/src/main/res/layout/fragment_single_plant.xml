@@ -18,7 +18,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="667dp">
+                android:layout_height="718dp">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
@@ -92,6 +92,7 @@
                     android:id="@+id/cardView7"
                     android:layout_width="328dp"
                     android:layout_height="140dp"
+                    android:layout_marginBottom="32dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:contentPadding="10dp"
