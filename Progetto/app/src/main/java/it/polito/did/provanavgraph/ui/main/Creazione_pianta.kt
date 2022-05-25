@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import it.polito.did.provanavgraph.R
 
 
-class Creazione_pianta : Fragment() {
+class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
     private lateinit var viewModel: MainViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

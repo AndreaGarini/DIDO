@@ -14,6 +14,7 @@
             android:id="@+id/scrollView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:backgroundTint="#E1DCDC"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,9 +24,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#E1DCDC"
                 android:orientation="vertical">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageView"
                     android:layout_width="206dp"
                     android:layout_height="206dp"
@@ -33,7 +35,9 @@
                     android:layout_marginTop="24dp"
                     android:foregroundGravity="top"
                     android:src="@drawable/cactus"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    app:shapeAppearanceOverlay="@style/Circular"/>
+
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="330dp"
