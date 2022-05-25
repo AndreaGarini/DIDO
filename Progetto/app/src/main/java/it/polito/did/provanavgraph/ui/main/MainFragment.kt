@@ -134,7 +134,7 @@ class PlantAdapter(val list: MutableList<Plant>?, val fragment: MainFragment, va
                 holder.deletePlantButton.visibility = View.INVISIBLE
                 val uri = "@drawable/ic_add_plant" // where myresource (without the extension) is the file
                 val imageResource: Int = fragment.resources.getIdentifier(uri, null, fragment.requireActivity().packageName)
-                val res: Drawable = fragment.resources.getDrawable(imageResource)
+                var res: Drawable = fragment.resources.getDrawable(imageResource)
                 holder.plantButton1.setImageDrawable(res)
                 holder.plantButton1.setOnClickListener {
                     fragment.findNavController()

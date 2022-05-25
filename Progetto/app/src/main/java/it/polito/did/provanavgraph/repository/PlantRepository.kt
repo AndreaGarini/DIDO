@@ -23,8 +23,26 @@ class PlantRepository: ViewModel() {
     val db = Firebase.database.reference
     var plantList: MutableLiveData<MutableList<Plant>> = MutableLiveData()
     var userPlants: MutableLiveData<MutableList<String>> = MutableLiveData()
-    var usersCount: Int=0
+    var usersNum: Int=0
 
+    val usersRef= db.child("users").addValueEventListener(object : ValueEventListener
+    {
+        override fun onDataChange(snapshot: DataSnapshot) {
+          usersNum= snapshot.childrenCount.toInt()
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            TODO("Not yet implemented")
+        }
+
+    }
+
+
+    )
+
+    fun usersCount(): Int {
+        return usersNum
+    }
 
     fun plantCount(){
         plantCounter++
