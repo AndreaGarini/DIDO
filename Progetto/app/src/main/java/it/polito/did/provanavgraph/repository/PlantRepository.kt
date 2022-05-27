@@ -20,10 +20,12 @@ class PlantRepository: ViewModel() {
     lateinit var plantOnFocus: Plant //pianta per i dati di pianta singola
     var plantCounter=0
     var user: String= "null"
+    var userDB: String= "null"
     val db = Firebase.database.reference
     var plantList: MutableLiveData<MutableList<Plant>> = MutableLiveData()
     var userPlants: MutableLiveData<MutableList<String>> = MutableLiveData()
     var usersNum: Int=0
+    var plantsNum: Int=0
 
     val usersRef= db.child("users").addValueEventListener(object : ValueEventListener
     {
@@ -35,13 +37,14 @@ class PlantRepository: ViewModel() {
             TODO("Not yet implemented")
         }
 
-    }
-
-
-    )
+    })
 
     fun usersCount(): Int {
         return usersNum
+    }
+
+    fun getPlantCount(): Int{
+        return plantsNum
     }
 
     fun plantCount(){
@@ -54,6 +57,7 @@ class PlantRepository: ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var list: MutableList<Plant> = mutableListOf()
                 plantCounter=0
+                plantsNum=snapshot.childrenCount.toInt()
                 for(item in snapshot.children) {
                     if (userPlants.value!!.contains(item.key.toString())) {
                         var plant = Plant(
@@ -101,6 +105,7 @@ class PlantRepository: ViewModel() {
         db.child("users").orderByChild("email").equalTo(user).addValueEventListener(object : ValueEventListener
         {
             override fun onDataChange(snapshot: DataSnapshot) {
+                userDB=snapshot.children.first().key.toString()
                 var list: MutableList<String> = mutableListOf()
                 for(item in snapshot.children.first().children){
                     if(item.key=="ownedPlants"){

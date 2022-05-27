@@ -1,6 +1,7 @@
 package it.polito.did.provanavgraph
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -13,6 +14,10 @@ class HomeActivity : AppCompatActivity() {
 
     lateinit var viewModel: PlantRepository
     lateinit var currentFrag: String
+
+    lateinit var homeButton: ImageButton
+    lateinit var profileButton: ImageButton
+    lateinit var messageButton: ImageButton
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,12 +26,11 @@ class HomeActivity : AppCompatActivity() {
         viewModel.user = getIntent().getExtras()?.getString("user")!!
 
 
-        val homeButton= findViewById<ImageButton>(R.id.HomeButton)
-        val profileButton= findViewById<ImageButton>(R.id.ProfileButton)
-        val messageButton= findViewById<ImageButton>(R.id.MessageButton)
+        homeButton= findViewById<ImageButton>(R.id.HomeButton)
+        profileButton= findViewById<ImageButton>(R.id.ProfileButton)
+        messageButton= findViewById<ImageButton>(R.id.MessageButton)
 
         setCurrentTag()
-        Log.d("currentFrag", currentFrag)
 
         homeButton.setOnClickListener {
             setCurrentTag()
@@ -73,5 +77,17 @@ class HomeActivity : AppCompatActivity() {
     fun setCurrentTag(){
         currentFrag= supportFragmentManager.findFragmentById(R.id.fragmentContainerView5)?.childFragmentManager?.fragments?.
         get(0)?.arguments?.get("Tag").toString()
+    }
+
+    fun hideFooter(){
+        homeButton.visibility = View.INVISIBLE
+        profileButton.visibility = View.INVISIBLE
+        messageButton.visibility = View.INVISIBLE
+    }
+
+    fun showFooter(){
+        homeButton.visibility = View.VISIBLE
+        profileButton.visibility = View.VISIBLE
+        messageButton.visibility = View.VISIBLE
     }
 }

@@ -33,7 +33,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textview"
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
@@ -77,7 +77,7 @@
                 app:layout_constraintVertical_bias="0.48" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textview"
                 android:layout_width="335dp"
                 android:layout_height="45dp"
                 android:text="Accedi con i dati che hai inserito durante la registrazione"
@@ -99,7 +99,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toBottomOf="@+id/textview">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

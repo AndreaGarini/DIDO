@@ -88,5 +88,8 @@
         <argument
             android:name="Tag"
             android:defaultValue="creazione" />
+        <action
+            android:id="@+id/action_creazione_pianta_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

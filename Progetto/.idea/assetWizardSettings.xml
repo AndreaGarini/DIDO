@@ -321,7 +321,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/add_circle_outline/baseline_add_circle_outline_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/arrow_left/baseline_arrow_left_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -332,7 +332,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="2f5653" />
-                            <entry key="outputName" value="ic_add_plant" />
+                            <entry key="outputName" value="ic_arrow_back" />
                             <entry key="sourceFile" value="/C:\Users\simon\Documents\GitHub\OleandriForReal\Progetto" />
                           </map>
                         </option>
