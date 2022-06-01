@@ -43,15 +43,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
-            app:srcCompat="@drawable/ic_dropdown_arrow" />
+            app:srcCompat="@drawable/ic_dropdown_arrow"
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView"
         android:background="@drawable/dialog_bg"
-        />
+        android:backgroundTint="#F2DCDD" />
 
 
 </LinearLayout>

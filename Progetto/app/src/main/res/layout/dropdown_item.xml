@@ -10,28 +10,39 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:backgroundTint="#F2DCDD"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/dropdown_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_weight="1.5"
             android:background="#FFFFFF"
             android:backgroundTint="#F2DCDD"
+            app:shapeAppearanceOverlay="@style/Circular"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/dropdown_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="294dp"
+            android:layout_height="74dp"
             android:layout_weight="1"
             android:background="#FFFFFF"
             android:backgroundTint="#F2DCDD"
             android:clickable="false"
             android:gravity="center"
             android:text="text"
-            android:textSize="24sp" />
+            android:textAlignment="viewStart"
+            android:textColor="#354044"
+            android:textSize="16sp"
+            tools:ignore="RtlCompat" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
