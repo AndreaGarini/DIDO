@@ -21,18 +21,20 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/dropdown_image"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="142dp"
+            android:layout_height="69dp"
+            android:layout_gravity="start"
             android:layout_weight="1.5"
             android:background="#FFFFFF"
             android:backgroundTint="#F2DCDD"
+            android:src="@drawable/piantaimg"
             app:shapeAppearanceOverlay="@style/Circular"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/dropdown_text"
-            android:layout_width="294dp"
-            android:layout_height="74dp"
+            android:layout_width="254dp"
+            android:layout_height="71dp"
             android:layout_weight="1"
             android:background="#FFFFFF"
             android:backgroundTint="#F2DCDD"
