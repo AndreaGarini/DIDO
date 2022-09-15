@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MessageFragment">
 
+<<<<<<< Updated upstream
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,4 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+=======
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/noteRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+>>>>>>> Stashed changes
 </FrameLayout>
