@@ -10,6 +10,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import it.polito.did.provanavgraph.models.Note
 import it.polito.did.provanavgraph.models.Plant
 import it.polito.did.provanavgraph.ui.main.PlantAdapter
 import kotlinx.coroutines.newFixedThreadPoolContext
@@ -23,6 +24,7 @@ class PlantRepository: ViewModel() {
     var userDB: String= "null"
     val db = Firebase.database.reference
     var plantList: MutableLiveData<MutableList<Plant>> = MutableLiveData()
+    var notes: MutableLiveData<MutableList<Note>> = MutableLiveData()
     var userPlants: MutableLiveData<MutableList<String>> = MutableLiveData()
     var usersNum: Int=0
     var plantsNum: Int=0
@@ -130,6 +132,36 @@ class PlantRepository: ViewModel() {
 
     fun getUserPlants() : LiveData<MutableList<String>>{
         return userPlants
+    }
+
+    fun setUserNotes(){
+        db.child("notifications").addValueEventListener(object : ValueEventListener
+        {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var noteList: MutableList<Note> = mutableListOf()
+                for(item in snapshot.children){
+                    if(userPlants.value!!.contains(item.children.first().key.toString())){
+                       var note = Note(item.key.toString(), item.children.first().value.toString(), item.children.first().key.toString())
+                        noteList.add(note)
+                    }
+                }
+                notes.value = noteList
+                Log.d("userNotes", noteList.first().name)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+
+        )
+
+    }
+
+    fun getUserNotes() : LiveData<MutableList<Note>>{
+        return notes
     }
 
 
