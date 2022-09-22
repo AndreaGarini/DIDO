@@ -59,17 +59,17 @@
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
-            <ImageButton
-                android:id="@+id/plantImageHome1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:backgroundTint="#FFFFFF"
-                android:padding="5dp"
-                android:visibility="visible"
-                tools:ignore="SpeakableTextPresentCheck"
-                tools:src="@tools:sample/backgrounds/scenic"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+           <pl.droidsonroids.gif.GifImageButton
+               android:id="@+id/plantImageHome1"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:scaleType="centerInside"
+               android:layout_margin="5dp"
+               android:backgroundTint="#FFFFFF"
+               android:padding="5dp"
+               android:visibility="visible"
+               tools:ignore="SpeakableTextPresentCheck"
+               />
 
 
         </LinearLayout>

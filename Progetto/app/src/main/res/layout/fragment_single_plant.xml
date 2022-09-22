@@ -24,7 +24,6 @@
                     android:id="@+id/cardView"
                     android:layout_width="328dp"
                     android:layout_height="140dp"
-                    android:layout_marginTop="36dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:contentPadding="10dp"
@@ -109,6 +108,51 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textInformazioni">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/infoIcon"
+                                    android:layout_width="60px"
+                                    android:layout_height="70px"
+                                    android:layout_weight="1"
+                                    android:padding="10px"
+                                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                                <TextView
+                                    android:id="@+id/infoText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:gravity="center"
+                                    android:paddingLeft="30px"
+                                    android:textAlignment="textStart"
+                                    android:textSize="18dp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/infoTimestamp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingRight="100px"
+                                android:textAlignment="textEnd"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
                         <TextView
                             android:id="@+id/textInformazioni"
                             android:layout_width="wrap_content"
@@ -189,16 +233,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
-                <ImageView
+                <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/plantImage"
-                    android:layout_width="134dp"
-                    android:layout_height="130dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView8"
-                    app:layout_constraintVertical_bias="0.089"
                     tools:src="@tools:sample/avatars" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

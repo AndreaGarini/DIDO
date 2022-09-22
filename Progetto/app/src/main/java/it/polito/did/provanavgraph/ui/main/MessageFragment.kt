@@ -1,29 +1,18 @@
 package it.polito.did.provanavgraph.ui.main
 
-import android.app.AlertDialog
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.models.Note
-import it.polito.did.provanavgraph.models.Plant
 import it.polito.did.provanavgraph.repository.PlantRepository
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,9 +42,9 @@ class MessageFragment : Fragment(R.layout.fragment_message) {
 
     class NoteAdapter(val list: MutableList<Note>?, val fragment: MessageFragment, val viewModel: PlantRepository): RecyclerView.Adapter<NoteAdapter.NoteViewHolder>(){
         class NoteViewHolder(v: View): RecyclerView.ViewHolder(v){
-            val text: TextView = v.findViewById(R.id.noteText)
-            val time: TextView = v.findViewById(R.id.noteTimestamp)
-            var plantIcon: ImageView = v.findViewById(R.id.noteIcon)
+            val text: TextView = v.findViewById(R.id.infoText)
+            val time: TextView = v.findViewById(R.id.infoTimestamp)
+            var plantIcon: ImageView = v.findViewById(R.id.infoIcon)
 
         }
 

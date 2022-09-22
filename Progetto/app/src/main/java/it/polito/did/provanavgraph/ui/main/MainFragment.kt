@@ -8,24 +8,20 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.models.Plant
 import it.polito.did.provanavgraph.repository.PlantRepository
 import android.graphics.drawable.Drawable
-import android.widget.SearchView
+import android.widget.*
+import androidx.core.content.ContextCompat
+import pl.droidsonroids.gif.GifImageView
 
 
 class MainFragment : Fragment(R.layout.main_fragment) {
@@ -150,7 +146,19 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     holder.name1.text = list.get(position).name
                     holder.species1.text = list.get(position).species
 
-                    // holder.plantButton1.setImageDrawable( ) aggiungere riferimento all'immagine
+                    //dare dei dati sensati al water in tank
+                    holder.plantButton1.setImageDrawable(fragment.activity?.let {
+                        when {
+                            list.get(position).waterInTank > 70 ->  ContextCompat.getDrawable(it, R.drawable.happycactus)
+                            list.get(position).waterInTank > 45 && list.get(position).waterInTank <= 70 -> ContextCompat.getDrawable(it, R.drawable.angrycactus)
+                            list.get(position).waterInTank > 15 && list.get(position).waterInTank <= 45 -> ContextCompat.getDrawable(it, R.drawable.sadcactus)
+                            list.get(position).waterInTank > 0 && list.get(position).waterInTank <= 15 -> ContextCompat.getDrawable(it, R.drawable.deadcactus)
+                            else -> {
+                                ContextCompat.getDrawable(it, R.drawable.happycactusnew)
+                            }
+                        }
+                    })
+
                     holder.plantButton1.setOnClickListener {
                         viewModel.focusPlant = position
                         fragment.findNavController()

@@ -1,18 +1,16 @@
 package it.polito.did.provanavgraph.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.repository.PlantRepository
 import java.util.*
+import java.text.SimpleDateFormat
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,7 +41,14 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         plantWaterInTank = view.findViewById<ProgressBar>(R.id.plantWaterInTank)
         plantImage = view.findViewById<ImageView>(R.id.plantImage)
 
+        val infoText = view.findViewById<TextView>(R.id.infoText)
+        val infoIcon = view.findViewById<ImageView>(R.id.infoIcon)
+        val infoTime = view.findViewById<TextView>(R.id.infoTimestamp)
+
+        viewModel.setUserNotes()
+
         val liveData = viewModel.getPLants()
+        val liveNote = viewModel.getUserNotes()
 
         liveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
@@ -58,13 +63,46 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
             plantHumidity.progress = liveData.value!!.get(viewModel.focusPlant).humidity
             plantWaterInTank.progress = liveData.value!!.get(viewModel.focusPlant).waterInTank
 
-            if (liveData.value!!.get(viewModel.focusPlant).humidity > 50) {
-                plantImage.setImageResource(R.drawable.happycactus)
-            } else {
-                plantImage.setImageResource(R.drawable.angrycactus)
+
+            when {
+                liveData.value!!.get(viewModel.focusPlant).waterInTank > 70 ->
+                    plantImage.setImageResource(R.drawable.happycactusnew)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank > 45 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 70 ->
+                    plantImage.setImageResource(R.drawable.angrycactusnew)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank > 15 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 45 ->
+                    plantImage.setImageResource(R.drawable.sadcactusnew)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank > 0 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 15 ->
+                    plantImage.setImageResource(R.drawable.deadcactusnew)
+                else -> {
+                    plantImage.setImageResource(R.drawable.happycactusnew)
+                }
+            }
+        })
+
+        liveNote.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            var time: Int = 0
+            var name: String = "null"
+            var origin: String = "null"
+
+            for (note in liveNote.value!!)
+            {
+                if(note.time.toInt() > time && note.name.equals(liveData.value!!.get(viewModel.focusPlant).key)){
+                    time = note.time.toInt()
+                    name = getPlantNameFromCode(note.name)
+                    origin = note.origin
+                }
             }
 
+            infoTime.text = getDateTime(time.toString())
+            if (origin.equals("Water")){
+                infoText.text = "Lefya ha bagnato " + name + " oggi!"
+            }
+            else{
+                infoText.text = "L' acqua nel serbatoio di" + name + "sta finendo"
+            }
         })
+
+
 
         backButton.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
@@ -74,6 +112,22 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         })
 
 
+    }
+
+    private fun getDateTime(s: String): String? {
+        val sdf = SimpleDateFormat("MM/dd/yyyy")
+        val netDate = Date(s.toLong() * 1000)
+        return sdf.format(netDate)
+    }
+
+    private fun getPlantNameFromCode (s: String) : String{
+        var name: String = "null"
+        for ( item in viewModel.plantList.value!!){
+            if (item.key.equals(s)){
+                name = item.name
+            }
+        }
+        return name
     }
 
 }
