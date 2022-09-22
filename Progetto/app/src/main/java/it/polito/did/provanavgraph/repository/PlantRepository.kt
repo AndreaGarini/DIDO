@@ -12,7 +12,6 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import it.polito.did.provanavgraph.models.Note
 import it.polito.did.provanavgraph.models.Plant
-import it.polito.did.provanavgraph.ui.main.PlantAdapter
 import kotlinx.coroutines.newFixedThreadPoolContext
 
 class PlantRepository: ViewModel() {
@@ -28,6 +27,8 @@ class PlantRepository: ViewModel() {
     var userPlants: MutableLiveData<MutableList<String>> = MutableLiveData()
     var usersNum: Int=0
     var plantsNum: Int=0
+    var userName: MutableLiveData<String> = MutableLiveData()
+
 
     val usersRef= db.child("users").addValueEventListener(object : ValueEventListener
     {
@@ -40,6 +41,25 @@ class PlantRepository: ViewModel() {
         }
 
     })
+
+    fun setUserName(){
+        db.child("users").orderByChild("email").equalTo(user).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                userName.value = snapshot.children.first().child("username").value.toString()
+                Log.d("snapshot child: ", snapshot.children.first().child("username").value.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getUserName(): LiveData<String> {
+        return userName
+    }
+
 
     fun usersCount(): Int {
         return usersNum

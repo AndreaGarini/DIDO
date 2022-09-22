@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.repository.PlantRepository
 import java.util.*
@@ -32,6 +34,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
+        val backButton: Button = view.findViewById(R.id.frecciaBack)
 
         plantName = view.findViewById<TextView>(R.id.plantName)
         plantSpecies = view.findViewById<TextView>(R.id.plantSpecies)
@@ -62,24 +65,13 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
             }
 
         })
-/*
-            plantName.text = viewModel.plantList.[viewModel.focusPlant]?.name
-            plantSpecies.text = viewModel.plantList[viewModel.focusPlant].species
-            if (viewModel.plantList[viewModel.focusPlant].isOutside) {
-                plantLocation.text = "Outside"
-            } else {
-                plantLocation.text = "Inside"
+
+        backButton.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View?) {
+                activity?.findNavController(R.id.fragmentContainerView5)?.navigate(R.id.action_singlePlantFragment_to_mainFragment)
             }
 
-            viewModel.plantList[viewModel.focusPlant].humidity
-            plantHumidity.progress = viewModel.plantList[viewModel.focusPlant].humidity
-            plantWaterInTank.progress = viewModel.plantList[viewModel.focusPlant].waterInTank
-
-            if (viewModel.plantList[viewModel.focusPlant].humidity > 50) {
-                plantImage.setImageResource(R.drawable.happycactus)
-            } else {
-                plantImage.setImageResource(R.drawable.angrycactus)
-            }*/
+        })
 
 
     }
