@@ -28,6 +28,7 @@ class PlantRepository: ViewModel() {
     var usersNum: Int=0
     var plantsNum: Int=0
     var userName: MutableLiveData<String> = MutableLiveData()
+    var openTimestamp: Double = 0.0
 
 
     val usersRef= db.child("users").addValueEventListener(object : ValueEventListener
@@ -42,11 +43,14 @@ class PlantRepository: ViewModel() {
 
     })
 
+    fun newTimestamp(){
+        openTimestamp = System.currentTimeMillis().toDouble()
+    }
+
     fun setUserName(){
         db.child("users").orderByChild("email").equalTo(user).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userName.value = snapshot.children.first().child("username").value.toString()
-                Log.d("snapshot child: ", snapshot.children.first().child("username").value.toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -94,7 +98,6 @@ class PlantRepository: ViewModel() {
                             item.child("isOutside").value.toString().toBoolean()
 
                         )
-                        Log.d("new humidity", plant.humidity.toString())
                         plantCount()
                         list.add(plant)
                     }
@@ -166,7 +169,6 @@ class PlantRepository: ViewModel() {
                     }
                 }
                 notes.value = noteList
-                Log.d("userNotes", noteList.first().name)
             }
 
             override fun onCancelled(error: DatabaseError) {

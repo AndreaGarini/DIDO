@@ -1,14 +1,20 @@
 package it.polito.did.provanavgraph
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import it.polito.did.provanavgraph.repository.PlantRepository
+import it.polito.did.provanavgraph.ui.main.MainFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -29,8 +35,34 @@ class HomeActivity : AppCompatActivity() {
         homeButton= findViewById<ImageButton>(R.id.HomeButton)
         profileButton= findViewById<ImageButton>(R.id.ProfileButton)
         messageButton= findViewById<ImageButton>(R.id.MessageButton)
+        val notesNum = findViewById<TextView>(R.id.notesNumber)
+        val notesNumImage = findViewById<ImageView>(R.id.notesImageNum)
 
         setCurrentTag()
+
+        viewModel.newTimestamp()
+        viewModel.setUserNotes()
+        val liveNoteNum = viewModel.getUserNotes()
+
+        liveNoteNum.observe(this, Observer {
+             var counter: Int = 0
+             for (note in liveNoteNum.value!!){
+                 if (note.time.toDouble() > viewModel.openTimestamp){
+                     counter++
+                 }
+             }
+             Log.d("timestamp: ", viewModel.openTimestamp.toString())
+             if (counter > 0){
+                 notesNum.text = counter.toString()
+                 notesNumImage.setImageDrawable(getDrawable(R.drawable.circle))
+                 val color = Color.parseColor("#AE6118") //The color u want
+                 notesNumImage.setColorFilter(color)
+             }
+            else{
+                 notesNum.text = ""
+                 notesNumImage.setImageResource(android.R.color.transparent)
+             }
+        })
 
         homeButton.setOnClickListener {
             setCurrentTag()
@@ -58,7 +90,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         messageButton.setOnClickListener{
-            setCurrentTag()
+            notesNum.text = ""
+            viewModel.newTimestamp()
             if (currentFrag.equals("main")) {
                 findNavController(R.id.fragmentContainerView5).navigate(R.id.action_mainFragment_to_messageFragment)
             }

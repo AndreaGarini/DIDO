@@ -242,9 +242,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 db.child("plants").child(chiave).removeValue()
                 db.child("users").child(utente).child("ownedPlants")
                     .child(chiave).removeValue()
-                Log.d("chiave", chiave)
-                Log.d("utente", utente)
-
             }
         }
 

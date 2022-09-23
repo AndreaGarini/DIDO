@@ -59,6 +59,37 @@
                 android:backgroundTint="#FFFFFF"
                 app:srcCompat="@drawable/ic_account" />
         </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView5">
+
+            <ImageView
+                android:id="@+id/notesImageNum"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="#00FFFFFF"
+                android:backgroundTint="#00FFFFFF"
+                tools:srcCompat="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/notesNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#F8F8F8"
+                android:textStyle="bold" />
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

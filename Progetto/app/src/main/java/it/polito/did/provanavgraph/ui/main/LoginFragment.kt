@@ -1,6 +1,7 @@
 package it.polito.did.provanavgraph
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.Fragment

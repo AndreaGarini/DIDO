@@ -1,9 +1,11 @@
 package it.polito.did.provanavgraph.ui.main
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -11,6 +13,10 @@ import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.repository.PlantRepository
 import java.util.*
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +34,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
     private lateinit var plantWaterInTank: ProgressBar
     private lateinit var plantImage: ImageView
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
@@ -80,20 +87,20 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         })
 
         liveNote.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            var time: Int = 0
+            var time: Long = 0
             var name: String = "null"
             var origin: String = "null"
 
             for (note in liveNote.value!!)
             {
                 if(note.time.toInt() > time && note.name.equals(liveData.value!!.get(viewModel.focusPlant).key)){
-                    time = note.time.toInt()
+                    time = note.time.toLong()
                     name = getPlantNameFromCode(note.name)
                     origin = note.origin
                 }
             }
 
-            infoTime.text = getDateTime(time.toString())
+            infoTime.text = convertDate(time.toString())
             if (origin.equals("Water")){
                 infoText.text = "Lefya ha bagnato " + name + " oggi!"
             }
@@ -114,10 +121,14 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
 
     }
 
-    private fun getDateTime(s: String): String? {
-        val sdf = SimpleDateFormat("MM/dd/yyyy")
-        val netDate = Date(s.toLong() * 1000)
-        return sdf.format(netDate)
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun convertDate(dateInMilliseconds: String): String? {
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+        val instant = Instant.ofEpochMilli(dateInMilliseconds.toLong())
+
+        val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
+        return formatter.format(date)
     }
 
     private fun getPlantNameFromCode (s: String) : String{

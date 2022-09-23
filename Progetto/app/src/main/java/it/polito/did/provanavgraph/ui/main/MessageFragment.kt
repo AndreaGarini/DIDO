@@ -1,12 +1,16 @@
 package it.polito.did.provanavgraph.ui.main
 
+import android.os.Build
 import android.os.Bundle
+import android.text.format.DateFormat.format
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +18,14 @@ import androidx.recyclerview.widget.RecyclerView
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.models.Note
 import it.polito.did.provanavgraph.repository.PlantRepository
+import java.lang.String.format
+import java.text.DateFormat
+import java.text.MessageFormat.format
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -54,6 +65,7 @@ class MessageFragment : Fragment(R.layout.fragment_message) {
             return NoteViewHolder(singleObject)
         }
 
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
 
             if (list != null) {
@@ -61,9 +73,9 @@ class MessageFragment : Fragment(R.layout.fragment_message) {
                         holder.text.text = "Lefya ha bagnato " + getPlantNameFromCode(list.get(position).name) + " oggi!"
                     }
                     else{
-                        holder.text.text = "L' acqua nel serbatoio di" + list.get(position).name + "sta finendo"
+                        holder.text.text = "L' acqua di " + getPlantNameFromCode(list.get(position).name) + " sta finendo"
                     }
-                    holder.time.text = getDateTime(list.get(position).time)
+                    holder.time.text = convertDate(list.get(position).time)
                     //aggiungere binding icone
             }
         }
@@ -75,10 +87,14 @@ class MessageFragment : Fragment(R.layout.fragment_message) {
             else return 0
         }
 
-        private fun getDateTime(s: String): String? {
-                val sdf = SimpleDateFormat("MM/dd/yyyy")
-                val netDate = Date(s.toLong() * 1000)
-                return sdf.format(netDate)
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun convertDate(dateInMilliseconds: String): String? {
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            val num = dateInMilliseconds.toDouble()
+            val instant = Instant.ofEpochMilli(num.toLong())
+
+            val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
+            return formatter.format(date)
         }
 
         private fun getPlantNameFromCode (s: String) : String{

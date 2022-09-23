@@ -11,14 +11,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/noteRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="700dp" />
     </LinearLayout>
+    <![CDATA[
 =======
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/noteRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
->>>>>>> Stashed changes
+    >>>>>>> Stashed changes
+]]>
 </FrameLayout>
