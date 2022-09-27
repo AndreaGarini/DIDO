@@ -33,6 +33,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
+                        android:textColor="#2F5653"
+                        android:textSize="34dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -40,17 +42,37 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.833" />
 
-                    <SearchView
-                        android:id="@+id/searchPlant"
-                        android:layout_width="207dp"
-                        android:layout_height="48dp"
-                        android:backgroundTint="#ffffff"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="226dp"
+                        android:layout_height="57dp"
+                        app:cardCornerRadius="8dp"
+                        app:contentPadding="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintHorizontal_bias="0.901"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.317" />
+                        app:layout_constraintVertical_bias="0.191">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <SearchView
+                                android:id="@+id/searchPlant"
+                                android:layout_width="207dp"
+                                android:layout_height="48dp"
+                                android:backgroundTint="#ffffff"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.466"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.533" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
