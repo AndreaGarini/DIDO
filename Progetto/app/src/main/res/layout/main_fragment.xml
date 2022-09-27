@@ -17,16 +17,16 @@
             android:orientation="vertical" >
 
             <androidx.cardview.widget.CardView
-                android:layout_width="408dp"
-                android:layout_height="213dp"
+                android:layout_width="match_parent"
+                android:layout_height="217dp"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="#C4C4C4"
                 app:cardCornerRadius="40dp"
                 app:contentPadding="10dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_width="368dp"
+                    android:layout_height="186dp">
 
                     <TextView
                         android:id="@+id/textGarden"
@@ -52,7 +52,7 @@
                         app:layout_constraintHorizontal_bias="0.901"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.191">
+                        app:layout_constraintVertical_bias="0.316">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -78,8 +78,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_width="424dp"
-                android:layout_height="524dp" />
+                android:layout_width="match_parent"
+                android:layout_height="464dp" />
 
         </LinearLayout>
     </ScrollView>
