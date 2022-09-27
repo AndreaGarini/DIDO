@@ -21,6 +21,10 @@ import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import androidx.annotation.ContentView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import it.polito.did.provanavgraph.ui.main.MessageFragment
+import it.polito.did.provanavgraph.ui.main.ProfileFragment
 
 
 class HomeActivity : AppCompatActivity() {
@@ -28,51 +32,80 @@ class HomeActivity : AppCompatActivity() {
     lateinit var viewModel: PlantRepository
     lateinit var currentFrag: String
 
-    lateinit var homeButton: ImageButton
-    lateinit var profileButton: ImageButton
-    lateinit var messageButton: ImageButton
 
-
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
         viewModel = ViewModelProvider(this).get(PlantRepository::class.java)
         viewModel.user = getIntent().getExtras()?.getString("user")!!
 
-        homeButton= findViewById<ImageButton>(R.id.HomeButton)
-        profileButton= findViewById<ImageButton>(R.id.ProfileButton)
-        messageButton= findViewById<ImageButton>(R.id.MessageButton)
+
+        val bottom_nav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         val notesNum = findViewById<TextView>(R.id.notesNumber)
         val notesNumImage = findViewById<ImageView>(R.id.notesImageNum)
 
-        setCurrentTag()
+        //setCurrentTag()
 
         viewModel.newTimestamp()
         viewModel.setUserNotes()
         val liveNoteNum = viewModel.getUserNotes()
 
         liveNoteNum.observe(this, Observer {
-             var counter: Int = 0
-             for (note in liveNoteNum.value!!){
-                 if (note.time.toDouble() > viewModel.openTimestamp){
-                     counter++
-                 }
-             }
-             Log.d("timestamp: ", viewModel.openTimestamp.toString())
-             if (counter > 0){
-                 notesNum.text = counter.toString()
-                 notesNumImage.setImageDrawable(getDrawable(R.drawable.circle))
-                 val color = Color.parseColor("#AE6118") //The color u want
-                 notesNumImage.setColorFilter(color)
-             }
-            else{
-                 notesNum.text = ""
-                 notesNumImage.setImageResource(android.R.color.transparent)
-             }
+            var counter: Int = 0
+            for (note in liveNoteNum.value!!) {
+                if (note.time.toDouble() > viewModel.openTimestamp) {
+                    counter++
+                }
+            }
+            Log.d("timestamp: ", viewModel.openTimestamp.toString())
+            if (counter > 0) {
+                notesNum.text = counter.toString()
+                notesNumImage.setImageDrawable(getDrawable(R.drawable.circle))
+                val color = Color.parseColor("#AE6118") //The color u want
+                notesNumImage.setColorFilter(color)
+            } else {
+                notesNum.text = ""
+                notesNumImage.setImageResource(android.R.color.transparent)
+            }
         })
 
-        homeButton.setOnClickListener {
+        val bottomListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home -> {
+                    val fragment = MainFragment()
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.fragmentContainerView5,
+                        fragment
+                    )
+                        .commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.msg -> {
+                    val fragment = MessageFragment()
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.fragmentContainerView5,
+                        fragment
+                    )
+                        .commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.prof -> {
+                    val fragment = ProfileFragment()
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.fragmentContainerView5,
+                        fragment
+                    )
+                        .commit()
+                    return@OnNavigationItemSelectedListener true
+                }
+            }
+            false
+        }
+
+        bottom_nav.setOnNavigationItemSelectedListener(bottomListener)
+
+
+        /* homeButton.setOnClickListener {
             setCurrentTag()
             if (currentFrag.equals("profile")) {
                 findNavController(R.id.fragmentContainerView5).navigate(R.id.action_profileFragment_to_mainFragment)
@@ -111,15 +144,17 @@ class HomeActivity : AppCompatActivity() {
                 findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_messageFragment)
             }
         }
-    }
+    } */
 
 
-    fun setCurrentTag(){
-        currentFrag= supportFragmentManager.findFragmentById(R.id.fragmentContainerView5)?.childFragmentManager?.fragments?.
-        get(0)?.arguments?.get("Tag").toString()
-    }
+        fun setCurrentTag() {
+            currentFrag =
+                supportFragmentManager.findFragmentById(R.id.fragmentContainerView5)?.childFragmentManager?.fragments?.get(
+                    0
+                )?.arguments?.get("Tag").toString()
+        }
 
-    public fun hideFooter(){
+        /* public fun hideFooter(){
         homeButton.visibility = View.INVISIBLE
         profileButton.visibility = View.INVISIBLE
         messageButton.visibility = View.INVISIBLE
@@ -129,5 +164,6 @@ class HomeActivity : AppCompatActivity() {
         homeButton.visibility = View.VISIBLE
         profileButton.visibility = View.VISIBLE
         messageButton.visibility = View.VISIBLE
+    }*/
     }
 }

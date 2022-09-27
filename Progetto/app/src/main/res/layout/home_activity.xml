@@ -15,61 +15,23 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView5"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            android:layout_width="match_parent"
+            android:name="it.polito.did.provanavgraph.ui.main.MainFragment"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/FooterView"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/main_nav" />
-
-        <LinearLayout
-            android:id="@+id/FooterView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:animationCache="false"
-            android:background="#FFFFFF"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageButton
-                android:id="@+id/HomeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                app:srcCompat="@drawable/ic_home" />
-
-            <ImageButton
-                android:id="@+id/MessageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                app:srcCompat="@drawable/ic_notification" />
-
-            <ImageButton
-                android:id="@+id/ProfileButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                app:srcCompat="@drawable/ic_account" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView5">
+            app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
                 android:id="@+id/notesImageNum"
@@ -92,6 +54,15 @@
                 android:textColor="#F8F8F8"
                 android:textStyle="bold" />
         </FrameLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/nav_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
