@@ -29,6 +29,7 @@ class PlantRepository: ViewModel() {
     var plantsNum: Int=0
     var unicode: MutableLiveData<Long> = MutableLiveData()
     var userName: MutableLiveData<String> = MutableLiveData()
+    var desHum: MutableLiveData<Map<String, Long>> = MutableLiveData()
     var openTimestamp: Double = 0.0
 
 
@@ -46,6 +47,32 @@ class PlantRepository: ViewModel() {
 
     fun newTimestamp(){
         openTimestamp = System.currentTimeMillis().toDouble()
+    }
+
+    fun setDesHum(){
+        db.child("plantCategories").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var map: MutableMap<String, Long> = mutableMapOf()
+               for (cat in snapshot.children){
+                   Log.d ("cat: ", cat.toString())
+                   for (species in cat.children){
+                       var hum = species.child("desiredHumidity").value as Long
+                       var spc = species.child("name").value as String
+                       map.put(spc, hum)
+                   }
+               }
+                desHum.value = map
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getDes() : MutableLiveData<Map<String, Long>>{
+        return desHum
     }
 
     fun setUnicode(){

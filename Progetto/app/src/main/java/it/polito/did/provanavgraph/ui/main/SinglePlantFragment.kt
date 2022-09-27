@@ -78,7 +78,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                     plantImage.setImageResource(R.drawable.angrycactusnew)
                 liveData.value!!.get(viewModel.focusPlant).waterInTank > 15 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 45 ->
                     plantImage.setImageResource(R.drawable.sadcactusnew)
-                liveData.value!!.get(viewModel.focusPlant).waterInTank > 0 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 15 ->
+                liveData.value!!.get(viewModel.focusPlant).waterInTank >= 0 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 15 ->
                     plantImage.setImageResource(R.drawable.deadcactusnew)
                 else -> {
                     plantImage.setImageResource(R.drawable.happycactusnew)
@@ -100,12 +100,19 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                 }
             }
 
-            infoTime.text = convertDate(time.toString())
-            if (origin.equals("Water")){
-                infoText.text = "Lefya ha bagnato " + name + " oggi!"
+            if (name!= "null"){
+                infoTime.text = convertDate(time.toString())
+                if (origin.equals("Water")){
+                    infoText.text = "Lefya ha bagnato " + name + " oggi!"
+                }
+                else {
+                    infoText.text = "L' acqua nel serbatoio di " + name + " sta finendo"
+                }
+
             }
             else{
-                infoText.text = "L' acqua nel serbatoio di " + name + " sta finendo"
+                infoTime.text = ""
+                infoText.text = "leafya sorveglia. passo e chiudo."
             }
         })
 

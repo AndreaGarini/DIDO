@@ -89,7 +89,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
                 if (txt != "") {
                     for (item in list!!) {
-                        if (item.name.contains(txt) || item.species.contains(txt) || item.category.contains(txt)) {
+                        if (item.name.contains(txt, ignoreCase = true) || item.species.contains(txt, ignoreCase = true) || item.category.contains(txt, ignoreCase = true)) {
                                 shortList!!.add(item)
                         }
                     }

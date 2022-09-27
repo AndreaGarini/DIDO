@@ -36,8 +36,11 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
         viewModel.setUnicode()
+        viewModel.setDesHum()
+        var des = viewModel.getDes()
         var uniRef = viewModel.getUni()
         var uni: Long = 0
+        var desMap : Map<String, Long> = mutableMapOf()
 
         val annulla = view.findViewById<Button>(R.id.annulla)
         val conferma = view.findViewById<Button>(R.id.conferma)
@@ -52,12 +55,10 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
             uni = uniRef.value!!
         })
 
-        /*nome.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(v: View?) {
-                Log.d("dio", "cane")
-                (activity as HomeActivity?)?.hideFooter()
-            }
-        })*/
+        des.observe(viewLifecycleOwner,Observer {
+            desMap = des.value!!
+        })
+
 
         dropdown.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
@@ -133,6 +134,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                         }
                         else{
                             newPlant.put("species", adapter.getItem(position).toString())
+                            desMap[adapter.getItem(position).toString()]?.let { newPlant.put("desHum", it) }
                             adapterList= firstSet
                             dropdown.text=adapter.getItem(position)
                             dialog.dismiss()
