@@ -15,6 +15,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import it.polito.did.provanavgraph.repository.PlantRepository
 import it.polito.did.provanavgraph.ui.main.MainFragment
+import android.graphics.Rect
+
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import androidx.annotation.ContentView
+import androidx.constraintlayout.widget.ConstraintLayout
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -24,13 +31,14 @@ class HomeActivity : AppCompatActivity() {
     lateinit var homeButton: ImageButton
     lateinit var profileButton: ImageButton
     lateinit var messageButton: ImageButton
+
+
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
         viewModel = ViewModelProvider(this).get(PlantRepository::class.java)
         viewModel.user = getIntent().getExtras()?.getString("user")!!
-
 
         homeButton= findViewById<ImageButton>(R.id.HomeButton)
         profileButton= findViewById<ImageButton>(R.id.ProfileButton)
@@ -90,6 +98,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         messageButton.setOnClickListener{
+            setCurrentTag()
             notesNum.text = ""
             viewModel.newTimestamp()
             if (currentFrag.equals("main")) {
@@ -102,8 +111,6 @@ class HomeActivity : AppCompatActivity() {
                 findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_messageFragment)
             }
         }
-
-
     }
 
 
@@ -112,13 +119,13 @@ class HomeActivity : AppCompatActivity() {
         get(0)?.arguments?.get("Tag").toString()
     }
 
-    fun hideFooter(){
+    public fun hideFooter(){
         homeButton.visibility = View.INVISIBLE
         profileButton.visibility = View.INVISIBLE
         messageButton.visibility = View.INVISIBLE
     }
 
-    fun showFooter(){
+    public fun showFooter(){
         homeButton.visibility = View.VISIBLE
         profileButton.visibility = View.VISIBLE
         messageButton.visibility = View.VISIBLE

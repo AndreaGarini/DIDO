@@ -9,12 +9,14 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/generalconstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView5"
             android:name="androidx.navigation.fragment.NavHostFragment"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
@@ -90,6 +92,7 @@
                 android:textColor="#F8F8F8"
                 android:textStyle="bold" />
         </FrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -27,6 +27,7 @@ class PlantRepository: ViewModel() {
     var userPlants: MutableLiveData<MutableList<String>> = MutableLiveData()
     var usersNum: Int=0
     var plantsNum: Int=0
+    var unicode: MutableLiveData<Long> = MutableLiveData()
     var userName: MutableLiveData<String> = MutableLiveData()
     var openTimestamp: Double = 0.0
 
@@ -45,6 +46,23 @@ class PlantRepository: ViewModel() {
 
     fun newTimestamp(){
         openTimestamp = System.currentTimeMillis().toDouble()
+    }
+
+    fun setUnicode(){
+        db.child("unicode").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                unicode.value = snapshot.value as Long
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    fun getUni() : MutableLiveData<Long>{
+        return unicode
     }
 
     fun setUserName(){

@@ -93,7 +93,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
 
             for (note in liveNote.value!!)
             {
-                if(note.time.toInt() > time && note.name.equals(liveData.value!!.get(viewModel.focusPlant).key)){
+                if(note.time.toLong() > time && note.name.equals(liveData.value!!.get(viewModel.focusPlant).key)){
                     time = note.time.toLong()
                     name = getPlantNameFromCode(note.name)
                     origin = note.origin
@@ -105,7 +105,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                 infoText.text = "Lefya ha bagnato " + name + " oggi!"
             }
             else{
-                infoText.text = "L' acqua nel serbatoio di" + name + "sta finendo"
+                infoText.text = "L' acqua nel serbatoio di " + name + " sta finendo"
             }
         })
 

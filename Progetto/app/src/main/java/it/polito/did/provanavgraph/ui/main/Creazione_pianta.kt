@@ -18,6 +18,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.repository.PlantRepository
+import androidx.lifecycle.Observer
+import it.polito.did.provanavgraph.HomeActivity
 
 
 class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
@@ -27,11 +29,15 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
     private val secondSet = arrayListOf("Aloe", "Cactus", "Zamia")
     private var buttonStatus: String= "down"
 
-    private var newPlant: MutableMap<String, String> = mutableMapOf()
+    private var newPlant: MutableMap<String, Any> = mutableMapOf()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
+
+        viewModel.setUnicode()
+        var uniRef = viewModel.getUni()
+        var uni: Long = 0
 
         val annulla = view.findViewById<Button>(R.id.annulla)
         val conferma = view.findViewById<Button>(R.id.conferma)
@@ -41,6 +47,17 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
         val dropdown= view.findViewById<TextView>(R.id.dropdown)
         var adapterList: ArrayList<String> = firstSet
         var imageId: ArrayList<Int> = arrayListOf(0, 0, 0)
+
+        uniRef.observe(viewLifecycleOwner,Observer {
+            uni = uniRef.value!!
+        })
+
+        /*nome.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                Log.d("dio", "cane")
+                (activity as HomeActivity?)?.hideFooter()
+            }
+        })*/
 
         dropdown.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
@@ -156,18 +173,18 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                 }
             }
 
-            newPlant.put("plantName", nome.text.toString())
+            newPlant.put("plantName", nome.text.trim().toString())
             newPlant.put("owner", viewModel.userDB)
-            newPlant.put("humidity", "50")
-            newPlant.put("waterInTank", "50")
+            newPlant.put("humidity", 50)
+            newPlant.put("waterInTank", 50)
 
-            val plantDbKey= viewModel.plantsNum
+            val plantDbKey= uni
 
-            viewModel.db.child("plants").child("plant" + plantDbKey)
+            viewModel.db.child("plants").child(plantDbKey.toString())
                 .setValue(newPlant)
             viewModel.db.child("users").child(viewModel.userDB).child("ownedPlants")
-                .child("plant" + plantDbKey).setValue("true")
-            findNavController().navigate(R.id.action_creazione_pianta_to_mainFragment)
+                .child( plantDbKey.toString()).setValue("true")
+            findNavController().navigate(R.id.action_creazione_pianta_to_instructionsFragment)
         }
 
     }
