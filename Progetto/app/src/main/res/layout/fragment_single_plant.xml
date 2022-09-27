@@ -102,7 +102,7 @@
                     app:layout_constraintHorizontal_bias="0.493"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView"
-                    app:layout_constraintVertical_bias="0.657">
+                    app:layout_constraintVertical_bias="0.337">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -171,8 +171,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView8"
-                    android:layout_width="543dp"
-                    android:layout_height="371dp"
+                    android:layout_width="504dp"
+                    android:layout_height="388dp"
                     android:layout_marginBottom="508dp"
                     android:backgroundTint="#F0E2E2"
                     app:cardCornerRadius="200dp"
@@ -237,8 +237,9 @@
 
                 <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/plantImage"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="152dp"
+                    android:layout_height="147dp"
+                    android:layout_marginTop="16dp"
                     android:scaleType="fitXY"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
