@@ -19,8 +19,11 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageView"
@@ -34,12 +37,11 @@
                 android:textAlignment="center"
                 app:shapeAppearanceOverlay="@style/Circular" />
 
-
             <androidx.cardview.widget.CardView
                 android:layout_width="330dp"
                 android:layout_height="60dp"
                 android:layout_marginBottom="30dp"
-                app:cardCornerRadius="15dp" >
+                app:cardCornerRadius="15dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -73,8 +75,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="45dp"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
                         android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView5"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

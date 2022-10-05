@@ -24,9 +24,10 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="500px"
+        android:layout_width="312dp"
+        android:layout_height="282dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,42 +38,62 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/plantNameHome1"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="5dp"
-                android:paddingBottom="3dp"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/plantSpeciesHome1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="5dp"
-                android:paddingBottom="3dp"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/plantNameHome1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="3dp"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-           <pl.droidsonroids.gif.GifImageButton
-               android:id="@+id/plantImageHome1"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:scaleType="centerInside"
-               android:layout_margin="5dp"
-               android:backgroundTint="#FFFFFF"
-               android:padding="5dp"
-               android:visibility="visible"
-               tools:ignore="SpeakableTextPresentCheck"
-               />
+                <TextView
+                    android:id="@+id/plantSpeciesHome1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="3dp"
+                    android:text="TextView"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/plantNameHome1" />
+
+                <pl.droidsonroids.gif.GifImageButton
+                    android:id="@+id/plantImageHome1"
+                    android:layout_width="179dp"
+                    android:layout_height="170dp"
+                    android:layout_margin="5dp"
+                    android:background="#ffffff"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.503"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/plantSpeciesHome1"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
