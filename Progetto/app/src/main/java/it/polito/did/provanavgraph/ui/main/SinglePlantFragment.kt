@@ -72,14 +72,43 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
 
 
             when {
-                liveData.value!!.get(viewModel.focusPlant).waterInTank > 70 ->
-                    plantImage.setImageResource(R.drawable.happycactusnew)
-                liveData.value!!.get(viewModel.focusPlant).waterInTank > 45 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 70 ->
-                    plantImage.setImageResource(R.drawable.angrycactusnew)
-                liveData.value!!.get(viewModel.focusPlant).waterInTank > 15 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 45 ->
-                    plantImage.setImageResource(R.drawable.sadcactusnew)
-                liveData.value!!.get(viewModel.focusPlant).waterInTank >= 0 && liveData.value!!.get(viewModel.focusPlant).waterInTank <= 15 ->
-                    plantImage.setImageResource(R.drawable.deadcactusnew)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank >= 75 && liveData.value!!.get(viewModel.focusPlant).humidity >=75->
+                    plantImage.setImageResource(R.drawable.happy_verdeacceso)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank >= 75 && liveData.value!!.get(viewModel.focusPlant).humidity <75 && liveData.value!!.get(viewModel.focusPlant).humidity >=50->
+                    plantImage.setImageResource(R.drawable.happyverdespento)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank >= 75 && liveData.value!!.get(viewModel.focusPlant).humidity <50 && liveData.value!!.get(viewModel.focusPlant).humidity >=25->
+                    plantImage.setImageResource(R.drawable.happy_giallo)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank >= 75 && liveData.value!!.get(viewModel.focusPlant).humidity <25 ->
+                    plantImage.setImageResource(R.drawable.happy_marroncino)
+
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 75 &&liveData.value!!.get(viewModel.focusPlant).waterInTank >=50 && liveData.value!!.get(viewModel.focusPlant).humidity >=75->
+                    plantImage.setImageResource(R.drawable.angry_verdeacceso)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 75 &&liveData.value!!.get(viewModel.focusPlant).waterInTank >=50 && liveData.value!!.get(viewModel.focusPlant).humidity <75 && liveData.value!!.get(viewModel.focusPlant).humidity >=50->
+                    plantImage.setImageResource(R.drawable.angry_verdespento)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 75 &&liveData.value!!.get(viewModel.focusPlant).waterInTank >=50 && liveData.value!!.get(viewModel.focusPlant).humidity <50 && liveData.value!!.get(viewModel.focusPlant).humidity >=25->
+                    plantImage.setImageResource(R.drawable.angry_giallo)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 75 &&liveData.value!!.get(viewModel.focusPlant).waterInTank >=50 && liveData.value!!.get(viewModel.focusPlant).humidity <25 ->
+                    plantImage.setImageResource(R.drawable.angry_marroncino)
+
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 50 &&liveData.value!!.get(viewModel.focusPlant).waterInTank >=25 && liveData.value!!.get(viewModel.focusPlant).humidity >=75->
+                    plantImage.setImageResource(R.drawable.sad_verdeacceso)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 50 &&liveData.value!!.get(viewModel.focusPlant).waterInTank >=25 && liveData.value!!.get(viewModel.focusPlant).humidity <75 && liveData.value!!.get(viewModel.focusPlant).humidity >=50->
+                    plantImage.setImageResource(R.drawable.sad_verdespento)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 50 &&liveData.value!!.get(viewModel.focusPlant).waterInTank >=25 && liveData.value!!.get(viewModel.focusPlant).humidity <50 && liveData.value!!.get(viewModel.focusPlant).humidity >=25->
+                    plantImage.setImageResource(R.drawable.sad_giallo)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 50 &&liveData.value!!.get(viewModel.focusPlant).waterInTank >=25 && liveData.value!!.get(viewModel.focusPlant).humidity <25 ->
+                    plantImage.setImageResource(R.drawable.sad_marroncino)
+
+                liveData.value!!.get(viewModel.focusPlant).waterInTank < 25 && liveData.value!!.get(viewModel.focusPlant).humidity >=75->
+                    plantImage.setImageResource(R.drawable.dejected_verdeacceso)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank <25 && liveData.value!!.get(viewModel.focusPlant).humidity <75 && liveData.value!!.get(viewModel.focusPlant).humidity >=50->
+                    plantImage.setImageResource(R.drawable.dejected_verdespento)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank <25 && liveData.value!!.get(viewModel.focusPlant).humidity <50 && liveData.value!!.get(viewModel.focusPlant).humidity >=25->
+                    plantImage.setImageResource(R.drawable.dejected_giallo)
+                liveData.value!!.get(viewModel.focusPlant).waterInTank <25 && liveData.value!!.get(viewModel.focusPlant).humidity <25 ->
+                    plantImage.setImageResource(R.drawable.dejected_marroncino)
+
+                
                 else -> {
                     plantImage.setImageResource(R.drawable.happycactusnew)
                 }
