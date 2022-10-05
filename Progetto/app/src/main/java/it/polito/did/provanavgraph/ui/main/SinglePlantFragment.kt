@@ -75,7 +75,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                 liveData.value!!.get(viewModel.focusPlant).waterInTank >= 75 && liveData.value!!.get(viewModel.focusPlant).humidity >=75->
                     plantImage.setImageResource(R.drawable.happy_verdeacceso)
                 liveData.value!!.get(viewModel.focusPlant).waterInTank >= 75 && liveData.value!!.get(viewModel.focusPlant).humidity <75 && liveData.value!!.get(viewModel.focusPlant).humidity >=50->
-                    plantImage.setImageResource(R.drawable.happyverdespento)
+                    plantImage.setImageResource(R.drawable.happy_verdespento)
                 liveData.value!!.get(viewModel.focusPlant).waterInTank >= 75 && liveData.value!!.get(viewModel.focusPlant).humidity <50 && liveData.value!!.get(viewModel.focusPlant).humidity >=25->
                     plantImage.setImageResource(R.drawable.happy_giallo)
                 liveData.value!!.get(viewModel.focusPlant).waterInTank >= 75 && liveData.value!!.get(viewModel.focusPlant).humidity <25 ->
