@@ -149,10 +149,44 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     //dare dei dati sensati al water in tank
                     holder.plantButton1.setImageDrawable(fragment.activity?.let {
                         when {
-                            list.get(position).waterInTank > 70 ->  ContextCompat.getDrawable(it, R.drawable.happycactus)
-                            list.get(position).waterInTank > 45 && list.get(position).waterInTank <= 70 -> ContextCompat.getDrawable(it, R.drawable.angrycactus)
-                            list.get(position).waterInTank > 15 && list.get(position).waterInTank <= 45 -> ContextCompat.getDrawable(it, R.drawable.sadcactus)
-                            list.get(position).waterInTank > 0 && list.get(position).waterInTank <= 15 -> ContextCompat.getDrawable(it, R.drawable.deadcactus)
+
+
+                            list.get(position).waterInTank >= 75 && list.get(position).humidity >=75->
+                                ContextCompat.getDrawable(it,R.drawable.happy_verdeacceso_img)
+                            list.get(position).waterInTank >= 75 && list.get(position).humidity <75 && list.get(position).humidity >=50->
+                                ContextCompat.getDrawable(it,R.drawable.happy_verdespento_img)
+                            list.get(position).waterInTank >= 75 && list.get(position).humidity <50 && list.get(position).humidity >=25->
+                                ContextCompat.getDrawable(it,R.drawable.happy_giallo_img)
+                            list.get(position).waterInTank >= 75 && list.get(position).humidity <25 ->
+                                ContextCompat.getDrawable(it,R.drawable.happy_marroncino_img)
+
+                            list.get(position).waterInTank < 75 &&list.get(position).waterInTank >=50 && list.get(position).humidity >=75->
+                                ContextCompat.getDrawable(it,R.drawable.angry_verdeacceso_img)
+                            list.get(position).waterInTank < 75 &&list.get(position).waterInTank >=50 && list.get(position).humidity <75 && list.get(position).humidity >=50->
+                                ContextCompat.getDrawable(it,R.drawable.angry_verdespento_img)
+                            list.get(position).waterInTank < 75 &&list.get(position).waterInTank >=50 && list.get(position).humidity <50 &&list.get(position).humidity >=25->
+                                ContextCompat.getDrawable(it,R.drawable.angry_giallo_img)
+                            list.get(position).waterInTank < 75 &&list.get(position).waterInTank >=50 && list.get(position).humidity <25 ->
+                                ContextCompat.getDrawable(it,R.drawable.angry_marroncino_img)
+
+                            list.get(position).waterInTank < 50 &&list.get(position).waterInTank >=25 && list.get(position).humidity >=75->
+                                ContextCompat.getDrawable(it,R.drawable.sad_verdeacceso_img)
+                            list.get(position).waterInTank < 50 &&list.get(position).waterInTank >=25 && list.get(position).humidity <75 && list.get(position).humidity >=50->
+                                ContextCompat.getDrawable(it,R.drawable.sad_verdespento_img)
+                            list.get(position).waterInTank < 50 &&list.get(position).waterInTank >=25 && list.get(position).humidity <50 && list.get(position).humidity >=25->
+                                ContextCompat.getDrawable(it,R.drawable.sad_giallo_img)
+                            list.get(position).waterInTank < 50 &&list.get(position).waterInTank >=25 && list.get(position).humidity <25 ->
+                                ContextCompat.getDrawable(it,R.drawable.sad_marroncino_img)
+
+                            list.get(position).waterInTank < 25 && list.get(position).waterInTank >=75->
+                                ContextCompat.getDrawable(it,R.drawable.dejected_verdeacceso_img)
+                            list.get(position).waterInTank <25 && list.get(position).humidity  <75 && list.get(position).humidity  >=50->
+                                ContextCompat.getDrawable(it,R.drawable.dejected_verdespento_img)
+                            list.get(position).waterInTank <25 && list.get(position).humidity  <50 && list.get(position).humidity  >=25->
+                                ContextCompat.getDrawable(it,R.drawable.dejected_giallo_img)
+                            list.get(position).waterInTank <25 && list.get(position).humidity  <25 ->
+                                ContextCompat.getDrawable(it,R.drawable.dejected_marroncino_img)
+                            
                             else -> {
                                 ContextCompat.getDrawable(it, R.drawable.happycactusnew)
                             }

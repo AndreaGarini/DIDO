@@ -108,7 +108,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                 liveData.value!!.get(viewModel.focusPlant).waterInTank <25 && liveData.value!!.get(viewModel.focusPlant).humidity <25 ->
                     plantImage.setImageResource(R.drawable.dejected_marroncino)
 
-                
+
                 else -> {
                     plantImage.setImageResource(R.drawable.happycactusnew)
                 }
