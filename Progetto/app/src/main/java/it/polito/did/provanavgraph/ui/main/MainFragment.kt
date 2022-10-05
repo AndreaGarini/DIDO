@@ -149,6 +149,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     //dare dei dati sensati al water in tank
                     holder.plantButton1.setImageDrawable(fragment.activity?.let {
                         when {
+<<<<<<< Updated upstream
 
 
                             list.get(position).waterInTank >= 75 && list.get(position).humidity >=75->
@@ -187,6 +188,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                             list.get(position).waterInTank <25 && list.get(position).humidity  <25 ->
                                 ContextCompat.getDrawable(it,R.drawable.dejected_marroncino_img)
                             
+=======
+                            list.get(position).waterInTank > 70 ->  ContextCompat.getDrawable(it, R.drawable.happy_verdeacceso_img)
+                            list.get(position).waterInTank > 45 && list.get(position).waterInTank <= 70 -> ContextCompat.getDrawable(it, R.drawable.angry_verdeacceso_img)
+                            list.get(position).waterInTank > 15 && list.get(position).waterInTank <= 45 -> ContextCompat.getDrawable(it, R.drawable.sad_verdeacceso_img)
+                            list.get(position).waterInTank > 0 && list.get(position).waterInTank <= 15 -> ContextCompat.getDrawable(it, R.drawable.dead_img)
+>>>>>>> Stashed changes
                             else -> {
                                 ContextCompat.getDrawable(it, R.drawable.happycactusnew)
                             }
