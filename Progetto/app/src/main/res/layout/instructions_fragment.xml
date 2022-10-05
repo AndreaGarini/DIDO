@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInst1"
-        app:srcCompat="@drawable/ic_dropdown_arrow" />
+        app:srcCompat="@drawable/ic_baseline_arrow_downward_24" />
 
     <TextView
         android:id="@+id/textInst2"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInst2"
-        app:srcCompat="@drawable/ic_dropdown_arrow" />
+        app:srcCompat="@drawable/ic_baseline_arrow_downward_24" />
 
     <TextView
         android:id="@+id/textInst3"

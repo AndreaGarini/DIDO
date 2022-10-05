@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -71,12 +72,20 @@ class MessageFragment : Fragment(R.layout.fragment_message) {
             if (list != null) {
                     if (list.get(position).origin.equals("Water")) {
                         holder.text.text = "Lefya ha bagnato " + getPlantNameFromCode(list.get(position).name) + " oggi!"
+                        holder.plantIcon.setImageDrawable(fragment.activity?.let {
+                            ContextCompat.getDrawable(
+                                it, R.drawable.ic_baseline_bubble_chart_24)
+                        })
                     }
                     else{
                         holder.text.text = "L' acqua di " + getPlantNameFromCode(list.get(position).name) + " sta finendo"
+                        holder.plantIcon.setImageDrawable(fragment.activity?.let {
+                            ContextCompat.getDrawable(
+                                it, R.drawable.ic_baseline_water_damage_24)
+                        })
                     }
                     holder.time.text = convertDate(list.get(position).time)
-                    //aggiungere binding icone
+
             }
         }
 

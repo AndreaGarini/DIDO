@@ -8,119 +8,108 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#F2E4E4">
 
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:backgroundTint="#E1DCDC"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#E1DCDC"
-                android:orientation="vertical">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="206dp"
-                    android:layout_height="206dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="24dp"
-                    android:foregroundGravity="top"
-                    android:src="@drawable/cactus"
-                    android:textAlignment="center"
-                    app:shapeAppearanceOverlay="@style/Circular"/>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="40dp"
+                android:foregroundGravity="top"
+                android:src="@drawable/cactus"
+                android:textAlignment="center"
+                app:shapeAppearanceOverlay="@style/Circular" />
 
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="330dp"
-                    android:layout_height="72dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="16dp"
-                    app:contentPaddingBottom="10dp"
-                    app:contentPaddingLeft="0dp"
-                    app:contentPaddingRight="10dp"
-                    app:contentPaddingTop="10dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="30dp"
+                app:cardCornerRadius="15dp" >
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="10dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="SUONO"
-                            android:textColor="#2B2B43"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.293"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.571" />
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/ic_baseline_music_note_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageButton
-                            android:id="@+id/imageButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:backgroundTint="#FFFFFF"
-                            android:src="@android:drawable/ic_lock_silent_mode_off"
-                            android:tint="#000000"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/textView5"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SUONO"
+                        android:textColor="#050505"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView9"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <Switch
-                            android:id="@+id/switch1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.884"
-                            app:layout_constraintStart_toEndOf="@+id/textView5"
-                            app:layout_constraintTop_toTopOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                    <Switch
+                        android:id="@+id/switch2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:textColor="#000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView5"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="330dp"
-                    android:layout_height="72dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="#FFFFFF"
-                    android:text="Modifica password"
-                    android:textColor="#2B2B43"
-                    app:cornerRadius="16dp"
-                    app:icon="@android:drawable/ic_lock_idle_lock"
-                    app:iconTint="#000000" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="330dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="#FFFFFF"
+                android:text="Modifica password"
+                android:textAlignment="viewStart"
+                android:textColor="#2B2B43"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_lock_idle_lock"
+                app:iconSize="40dp"
+                app:iconTint="#000000" />
 
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="330dp"
-                    android:layout_height="72dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="#ffffff"
-                    android:text="Credits"
-                    android:textColor="#2B2B43"
-                    app:cornerRadius="16dp"
-                    app:icon="@android:drawable/ic_dialog_info"
-                    app:iconTint="#000000" />
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="330dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#ffffff"
+                android:text="Credits"
+                android:textAlignment="viewStart"
+                android:textColor="#2B2B43"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_dialog_info"
+                app:iconSize="40dp"
+                app:iconTint="#000000" />
 
-            </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -79,7 +79,8 @@
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="335dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
                 android:text="Accedi con i dati che hai inserito durante la registrazione"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -94,6 +95,7 @@
                 android:id="@+id/cardView3"
                 android:layout_width="358dp"
                 android:layout_height="58dp"
+                android:layout_marginTop="10dp"
                 app:contentPadding="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/cardView2"
                 app:layout_constraintEnd_toEndOf="parent"

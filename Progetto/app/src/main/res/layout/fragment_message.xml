@@ -9,12 +9,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F2E4E4"
         android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#C4C4C4"
+            android:backgroundTint="#C4C4C4"
+            app:cardBackgroundColor="#F2E4E4"
+            app:cardCornerRadius="40dp" >
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Notifiche"
+                android:textColor="#2F5653"
+                android:textSize="48sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/noteRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="700dp" />
+            android:layout_height="match_parent"
+            android:background="#F2E4E4" />
     </LinearLayout>
     <![CDATA[
 =======

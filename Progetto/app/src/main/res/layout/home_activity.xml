@@ -9,61 +9,70 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/generalconstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView5"
-            android:name="it.polito.did.provanavgraph.ui.main.MainFragment"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_gravity="bottom"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="RtlCompat">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:itemIconTint="#2F5653"
+                app:itemTextColor="#2F5653"
+                app:menu="@menu/nav_menu"
+                tools:layout_conversion_absoluteHeight="80dp"
+                tools:layout_conversion_absoluteWidth="411dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="651dp">
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
 
             <ImageView
                 android:id="@+id/notesImageNum"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="#00FFFFFF"
-                android:backgroundTint="#00FFFFFF"
-                tools:srcCompat="@android:color/transparent" />
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="20dp"
+                app:srcCompat="@drawable/circle" />
 
             <TextView
                 android:id="@+id/notesNumber"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="20dp"
                 android:textColor="#F8F8F8"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:layout_conversion_absoluteHeight="25dp"
+                tools:layout_conversion_absoluteWidth="0dp"
+                tools:layout_editor_absoluteX="211dp"
+                tools:layout_editor_absoluteY="654dp" />
+
         </FrameLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_nav"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView5"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="630dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/frameLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/nav_menu" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_nav" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

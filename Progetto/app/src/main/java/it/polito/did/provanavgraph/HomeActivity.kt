@@ -44,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
         val notesNum = findViewById<TextView>(R.id.notesNumber)
         val notesNumImage = findViewById<ImageView>(R.id.notesImageNum)
 
-        //setCurrentTag()
+        setCurrentTag()
 
         viewModel.newTimestamp()
         viewModel.setUserNotes()
@@ -71,31 +71,44 @@ class HomeActivity : AppCompatActivity() {
 
         val bottomListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.home -> {
-                    val fragment = MainFragment()
-                    supportFragmentManager.beginTransaction().replace(
-                        R.id.fragmentContainerView5,
-                        fragment
-                    )
-                        .commit()
+                R.id.home -> {setCurrentTag()
+                if (currentFrag.equals("profile")) {
+                    findNavController(R.id.fragmentContainerView5).navigate(R.id.action_profileFragment_to_mainFragment)
+                }
+                    if (currentFrag.equals("message")) {
+                    findNavController(R.id.fragmentContainerView5).navigate(R.id.action_messageFragment_to_mainFragment)
+                }
+                if (currentFrag.equals("single")) {
+                    findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_mainFragment)
+                }
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.msg -> {
-                    val fragment = MessageFragment()
-                    supportFragmentManager.beginTransaction().replace(
-                        R.id.fragmentContainerView5,
-                        fragment
-                    )
-                        .commit()
+                    setCurrentTag()
+                    notesNum.text = ""
+                    viewModel.newTimestamp()
+                    if (currentFrag.equals("main")) {
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_mainFragment_to_messageFragment)
+                    }
+                    if (currentFrag.equals("profile")) {
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_profileFragment_to_messageFragment)
+                    }
+                    if (currentFrag.equals("single")) {
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_messageFragment)
+                    }
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.prof -> {
-                    val fragment = ProfileFragment()
-                    supportFragmentManager.beginTransaction().replace(
-                        R.id.fragmentContainerView5,
-                        fragment
-                    )
-                        .commit()
+                    setCurrentTag()
+                    if (currentFrag.equals("main")) {
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_mainFragment_to_profileFragment)
+                    }
+                    if (currentFrag.equals("message")) {
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_messageFragment_to_profileFragment)
+                    }
+                    if (currentFrag.equals("single")) {
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_profileFragment)
+                    }
                     return@OnNavigationItemSelectedListener true
                 }
             }
@@ -103,67 +116,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
         bottom_nav.setOnNavigationItemSelectedListener(bottomListener)
-
-
-        /* homeButton.setOnClickListener {
-            setCurrentTag()
-            if (currentFrag.equals("profile")) {
-                findNavController(R.id.fragmentContainerView5).navigate(R.id.action_profileFragment_to_mainFragment)
-            }
-            if (currentFrag.equals("message")) {
-                findNavController(R.id.fragmentContainerView5).navigate(R.id.action_messageFragment_to_mainFragment)
-            }
-            if (currentFrag.equals("single")) {
-                findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_mainFragment)
-            }
-        }
-        profileButton.setOnClickListener{
-            setCurrentTag()
-             if (currentFrag.equals("main")) {
-                 findNavController(R.id.fragmentContainerView5).navigate(R.id.action_mainFragment_to_profileFragment)
-             }
-            if (currentFrag.equals("message")) {
-                findNavController(R.id.fragmentContainerView5).navigate(R.id.action_messageFragment_to_profileFragment)
-            }
-            if (currentFrag.equals("single")) {
-                findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_profileFragment)
-            }
-        }
-
-        messageButton.setOnClickListener{
-            setCurrentTag()
-            notesNum.text = ""
-            viewModel.newTimestamp()
-            if (currentFrag.equals("main")) {
-                findNavController(R.id.fragmentContainerView5).navigate(R.id.action_mainFragment_to_messageFragment)
-            }
-            if (currentFrag.equals("profile")) {
-                findNavController(R.id.fragmentContainerView5).navigate(R.id.action_profileFragment_to_messageFragment)
-            }
-            if (currentFrag.equals("single")) {
-                findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_messageFragment)
-            }
-        }
-    } */
-
-
-        fun setCurrentTag() {
-            currentFrag =
-                supportFragmentManager.findFragmentById(R.id.fragmentContainerView5)?.childFragmentManager?.fragments?.get(
-                    0
-                )?.arguments?.get("Tag").toString()
-        }
-
-        /* public fun hideFooter(){
-        homeButton.visibility = View.INVISIBLE
-        profileButton.visibility = View.INVISIBLE
-        messageButton.visibility = View.INVISIBLE
     }
 
-    public fun showFooter(){
-        homeButton.visibility = View.VISIBLE
-        profileButton.visibility = View.VISIBLE
-        messageButton.visibility = View.VISIBLE
-    }*/
+    fun setCurrentTag() {
+        currentFrag =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView5)?.childFragmentManager?.fragments?.get(
+                0
+            )?.arguments?.get("Tag").toString()
     }
 }
