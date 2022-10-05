@@ -23,13 +23,14 @@
                 android:layout_width="360dp"
                 android:layout_height="72dp"
                 app:cardCornerRadius="16dp"
+                app:cardElevation="10dp"
                 app:contentPadding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.484"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.172">
+                app:layout_constraintVertical_bias="0.086">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

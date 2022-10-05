@@ -24,82 +24,100 @@
             app:layout_constraintBottom_toBottomOf="@+id/cardView9"
             app:layout_constraintTop_toBottomOf="@+id/cardView9">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView9"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:backgroundTint="#C4C4C4"
-                android:clipToPadding="false"
-                app:cardCornerRadius="40dp"
-                app:cardElevation="10dp"
-                app:cardPreventCornerOverlap="false"
-                app:contentPadding="10dp"
+            <LinearLayout
+                android:layout_width="391dp"
+                android:layout_height="736dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
-
-                    <TextView
-                        android:id="@+id/textGarden"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="#2F5653"
-                        android:textSize="34dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cardView10" />
+                    android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView10"
-                        android:layout_width="201dp"
-                        android:layout_height="44dp"
-                        app:cardCornerRadius="8dp"
-                        app:contentPadding="8dp"
+                        android:id="@+id/cardView9"
+                        android:layout_width="394dp"
+                        android:layout_height="267dp"
+                        android:layout_marginBottom="560dp"
+                        android:backgroundTint="#C4C4C4"
+                        android:clipToPadding="false"
+                        app:cardCornerRadius="40dp"
+                        app:cardElevation="10dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:contentPadding="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.901"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.316">
+                        app:layout_constraintHorizontal_bias="0.666"
+                        app:layout_constraintStart_toStartOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_width="373dp"
+                            android:layout_height="237dp">
 
-                            <SearchView
-                                android:id="@+id/searchPlant"
+                            <TextView
+                                android:id="@+id/textGarden"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:backgroundTint="#ffffff"
-                                android:queryHint="Cerca piante"
+                                android:textAlignment="center"
+                                android:textColor="#2F5653"
+                                android:textSize="34dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.466"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cardView10"
+                                app:layout_constraintVertical_bias="1.0" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView10"
+                                android:layout_width="201dp"
+                                android:layout_height="44dp"
+                                app:cardCornerRadius="8dp"
+                                app:contentPadding="8dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.907"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.533" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                app:layout_constraintVertical_bias="0.605">
 
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <SearchView
+                                        android:id="@+id/searchPlant"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="#ffffff"
+                                        android:queryHint="Cerca piante"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintHorizontal_bias="0.466"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintVertical_bias="0.533" />
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="371dp"
+                        android:layout_height="492dp"
+                        android:backgroundTint="#F2E4E4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView9"
+                        app:layout_constraintVertical_bias="0.375" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="#F2E4E4"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView9" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
