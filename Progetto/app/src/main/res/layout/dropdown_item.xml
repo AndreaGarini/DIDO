@@ -41,7 +41,7 @@
             android:clickable="false"
             android:gravity="center"
             android:text="text"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:textColor="#354044"
             android:textSize="16sp"
             tools:ignore="RtlCompat" />

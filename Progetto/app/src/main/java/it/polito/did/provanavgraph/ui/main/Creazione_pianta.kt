@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import it.polito.did.provanavgraph.R
@@ -49,7 +50,8 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
 
         val dropdown= view.findViewById<TextView>(R.id.dropdown)
         var adapterList: ArrayList<String> = firstSet
-        var imageId: ArrayList<Int> = arrayListOf(0, 0, 0)
+        var imageId: ArrayList<Int> = arrayListOf(R.drawable.plantimg1, R.drawable.plantimg5, R.drawable.plantimg3)
+        var imageIdDown: ArrayList<Int> = arrayListOf(R.drawable.plantimg4, R.drawable.plantimg5, R.drawable.plantimg6)
 
         uniRef.observe(viewLifecycleOwner,Observer {
             uni = uniRef.value!!
@@ -161,7 +163,6 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                 }
             val alert = builder.create()
             alert.show()
-
         }
 
         conferma.setOnClickListener{
@@ -203,7 +204,7 @@ class MyListAdapter(private val context: Activity, private val data: ArrayList<S
         val image: ImageView = rowView.findViewById(R.id.dropdown_image)
 
         plantName.text = data[position]
-        image.setImageResource(imgid[position])
+        image.setImageDrawable(ContextCompat.getDrawable(context, imgid[position]))
 
         return rowView
     }

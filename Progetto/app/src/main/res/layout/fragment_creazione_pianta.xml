@@ -34,37 +34,6 @@
                 app:shapeAppearanceOverlay="@style/Circular" />
 
             <TextView
-                android:id="@+id/textView11"
-                android:layout_width="328dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="40dp"
-                android:paddingBottom="8dp"
-                android:text="Nome" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="328dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                app:contentPadding="10dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <EditText
-                        android:id="@+id/nome"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="SpeakableTextPresentCheck" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <TextView
                 android:id="@+id/textView12"
                 android:layout_width="328dp"
                 android:layout_height="wrap_content"
@@ -92,6 +61,38 @@
                     android:layout_gravity="center"
                     android:text="Esterno" />
             </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="328dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="40dp"
+                android:paddingBottom="8dp"
+                android:text="Nome" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="328dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                app:contentPadding="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/nome"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView15"
