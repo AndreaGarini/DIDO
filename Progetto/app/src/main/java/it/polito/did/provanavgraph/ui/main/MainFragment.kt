@@ -242,6 +242,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     )
                     var res: Drawable = fragment.resources.getDrawable(imageResource)
                     holder.plantButton1.setImageDrawable(res)
+                    holder.name1.text = "Aggiungi"
+                    holder.species1.text = "pianta"
                     holder.plantButton1.setOnClickListener {
                         fragment.findNavController()
                             .navigate(R.id.action_mainFragment_to_creazione_pianta)

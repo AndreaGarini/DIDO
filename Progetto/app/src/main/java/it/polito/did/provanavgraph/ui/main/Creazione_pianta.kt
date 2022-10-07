@@ -126,6 +126,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                         position: Int,
                         id: Long
                     ) {
+                        Log.d("button status: ", buttonStatus)
                         if(buttonStatus.equals("down")){
                             newPlant.put("category", adapter.getItem(position).toString())
                             adapterList= secondSet
@@ -137,8 +138,9 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                         else{
                             newPlant.put("species", adapter.getItem(position).toString())
                             desMap[adapter.getItem(position).toString()]?.let { newPlant.put("desHum", it) }
-                            adapterList= firstSet
                             dropdown.text=adapter.getItem(position)
+                            adapterList= firstSet
+                            buttonStatus="down"
                             dialog.dismiss()
                         }
                     }

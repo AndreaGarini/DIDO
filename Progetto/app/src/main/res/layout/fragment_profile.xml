@@ -86,7 +86,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/changePassButton"
                 android:layout_width="330dp"
                 android:layout_height="72dp"
                 android:layout_gravity="center"
@@ -101,7 +101,7 @@
                 app:iconTint="#000000" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/creditsButton"
                 android:layout_width="330dp"
                 android:layout_height="72dp"
                 android:layout_gravity="center"

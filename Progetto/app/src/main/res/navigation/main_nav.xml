@@ -79,6 +79,12 @@
         <action
             android:id="@+id/action_profileFragment_to_messageFragment"
             app:destination="@id/messageFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_creditsFragment"
+            app:destination="@id/creditsFragment" />
     </fragment>
     <fragment
         android:id="@+id/creazione_pianta"
@@ -110,5 +116,21 @@
         <action
             android:id="@+id/action_endCreationFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="it.polito.did.provanavgraph.changePasswordFragment"
+        android:label="changePasswordFragment" >
+        <action
+            android:id="@+id/action_changePasswordFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/creditsFragment"
+        android:name="it.polito.did.provanavgraph.ui.main.creditsFragment"
+        android:label="creditsFragment" >
+        <action
+            android:id="@+id/action_creditsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>
