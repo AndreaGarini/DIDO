@@ -8,8 +8,8 @@
     android:layout_marginTop="30dp">
 
     <LinearLayout
-        android:layout_width="389dp"
-        android:layout_height="161dp"
+        android:layout_width="392dp"
+        android:layout_height="111dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,8 +21,8 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="389dp"
+                android:layout_height="117dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -31,22 +31,21 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="134dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView12"
-                        android:layout_width="348dp"
-                        android:layout_height="114dp"
+                        android:layout_width="350dp"
+                        android:layout_height="88dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="10dp"
-                        app:contentPadding="10dp"
+                        app:contentPadding="7dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.487"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.021">
+                        app:layout_constraintVertical_bias="0.304">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -54,8 +53,8 @@
 
                             <ImageView
                                 android:id="@+id/infoIcon"
-                                android:layout_width="50dp"
-                                android:layout_height="65dp"
+                                android:layout_width="44dp"
+                                android:layout_height="57dp"
                                 android:layout_weight="1"
                                 android:padding="10px"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -68,8 +67,8 @@
 
                             <TextView
                                 android:id="@+id/infoText"
-                                android:layout_width="268dp"
-                                android:layout_height="67dp"
+                                android:layout_width="284dp"
+                                android:layout_height="57dp"
                                 android:layout_weight="3"
                                 android:gravity="center|start"
                                 android:paddingLeft="30px"
@@ -77,10 +76,10 @@
                                 android:textSize="18dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.85"
+                                app:layout_constraintHorizontal_bias="0.977"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.148" />
+                                app:layout_constraintVertical_bias="0.135" />
 
                             <TextView
                                 android:id="@+id/infoTimestamp"
