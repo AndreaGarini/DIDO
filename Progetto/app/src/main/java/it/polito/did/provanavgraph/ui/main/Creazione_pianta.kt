@@ -21,6 +21,7 @@ import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.repository.PlantRepository
 import androidx.lifecycle.Observer
 import it.polito.did.provanavgraph.HomeActivity
+import it.polito.did.provanavgraph.models.Plant
 
 
 class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
@@ -70,10 +71,9 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.show()
 
-                var edit: EditText= dialog.findViewById(R.id.dialogDropdown)
+                var searchDropdown = dialog.findViewById<SearchView>(R.id.searchDropdown)
                 var image: ImageButton= dialog.findViewById(R.id.dialogImage)
                 var list: ListView= dialog.findViewById(R.id.listView)
-                // qui sottoinserire il layout specifico se serve per il singolo item
                 var adapter = MyListAdapter(requireActivity(),adapterList,imageId)
                 list.adapter= adapter
 
@@ -95,28 +95,56 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                     }
                 }
 
-                edit.addTextChangedListener(object : TextWatcher{
-                    override fun beforeTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        count: Int,
-                        after: Int
-                    ) {
+                searchDropdown.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+                    override fun onQueryTextSubmit(query: String): Boolean {
+                        createShortList(query)
+                        return false
                     }
 
-                    override fun onTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        before: Int,
-                        count: Int
-                    ) {
-                        adapter.filter.filter(s)
+                    override fun onQueryTextChange(newText: String): Boolean {
+                        createShortList(newText)
+                        return false
                     }
 
-                    override fun afterTextChanged(s: Editable?) {
+                    fun createShortList(txt: String) {
+                        var shortList: ArrayList<String> = arrayListOf()
 
+                        when(buttonStatus){
+                            "down"->{
+                                if (txt != "") {
+                                    for (item in firstSet) {
+                                        if (item.contains(txt, ignoreCase = true)) {
+                                            shortList!!.add(item)
+                                        }
+                                        adapterList = shortList
+                                    }
+                                    adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                                    list.adapter = adapter
+                                } else {
+                                    adapterList = firstSet
+                                    adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                                    list.adapter = adapter
+                                }
+                            }
+                            "back"->{
+                                if (txt != "" && buttonStatus.equals("back")) {
+                                    for (item in secondSet) {
+                                        if (item.contains(txt, ignoreCase = true)) {
+                                            shortList!!.add(item)
+                                        }
+                                        adapterList = shortList
+                                    }
+                                    adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                                    list.adapter = adapter
+                                } else {
+                                    Log.d("button status: ", buttonStatus)
+                                    adapterList = secondSet
+                                    adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                                    list.adapter = adapter
+                                }
+                            }
+                        }
                     }
-
                 })
 
                 list.setOnItemClickListener(object : AdapterView.OnItemClickListener{
@@ -126,7 +154,6 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                         position: Int,
                         id: Long
                     ) {
-                        Log.d("button status: ", buttonStatus)
                         if(buttonStatus.equals("down")){
                             newPlant.put("category", adapter.getItem(position).toString())
                             adapterList= secondSet

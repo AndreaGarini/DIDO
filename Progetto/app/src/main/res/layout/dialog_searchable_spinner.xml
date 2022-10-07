@@ -23,23 +23,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="20dp">
 
-        <EditText
-            android:id="@+id/dialogDropdown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="10"
-            android:background="@android:drawable/editbox_background"
-            android:hint="Cerca..."
-            android:padding="12dp"
-            android:singleLine="true" />
+        <SearchView
+            android:id="@+id/searchDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <ImageButton
             android:id="@+id/dialogImage"
-            android:layout_width="40dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"

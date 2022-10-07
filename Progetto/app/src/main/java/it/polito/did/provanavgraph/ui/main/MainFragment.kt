@@ -53,7 +53,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel.setUserName()
         val liveName = viewModel.getUserName()
         liveName.observe(viewLifecycleOwner, Observer {
-            textGarden.text = "giardino di " + liveName.value
+            textGarden.text = "Giardino di " + liveName.value
         })
 
 
