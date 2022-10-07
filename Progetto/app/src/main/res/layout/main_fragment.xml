@@ -39,9 +39,9 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView9"
-                        android:layout_width="394dp"
-                        android:layout_height="267dp"
-                        android:layout_marginBottom="560dp"
+                        android:layout_width="403dp"
+                        android:layout_height="237dp"
+                        android:layout_marginBottom="608dp"
                         android:backgroundTint="#C4C4C4"
                         android:clipToPadding="false"
                         app:cardCornerRadius="40dp"
@@ -50,12 +50,11 @@
                         app:contentPadding="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.666"
                         app:layout_constraintStart_toStartOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="373dp"
-                            android:layout_height="237dp">
+                            android:layout_width="377dp"
+                            android:layout_height="209dp">
 
                             <TextView
                                 android:id="@+id/textGarden"
@@ -78,10 +77,10 @@
                                 app:contentPadding="8dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.907"
+                                app:layout_constraintHorizontal_bias="0.906"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.605">
+                                app:layout_constraintVertical_bias="0.757">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="wrap_content"
@@ -115,7 +114,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cardView9"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintVertical_bias="0.155" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
