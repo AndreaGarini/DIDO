@@ -188,6 +188,7 @@
                         android:layout_gravity="right"
                         android:layout_weight="1"
                         android:backgroundTint="#2F787D"
+                        android:enabled="false"
                         android:paddingLeft="16dp"
                         android:text="Conferma"
                         app:cornerRadius="8dp" />

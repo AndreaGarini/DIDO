@@ -62,6 +62,33 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
             desMap = des.value!!
         })
 
+        radioGr.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
+            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                if (nome.text.toString() != "" && dropdown.text.toString() != ""){
+                    conferma.isEnabled = true
+                }
+            }
+        })
+
+        nome.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (radioGr.checkedRadioButtonId != -1 && dropdown.text.toString() != ""){
+                    conferma.isEnabled = true
+                }
+                if (s.toString().equals("")){
+                    conferma.isEnabled = false
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+              
+            }
+
+        })
 
         dropdown.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
@@ -161,6 +188,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                             list.adapter= adapter
                             buttonStatus="back"
                             image.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_back))
+
                         }
                         else{
                             newPlant.put("species", adapter.getItem(position).toString())
@@ -169,13 +197,13 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                             adapterList= firstSet
                             buttonStatus="down"
                             dialog.dismiss()
+                            if (radioGr.checkedRadioButtonId != -1 && nome.text.toString() != ""){
+                                conferma.isEnabled = true
+                            }
                         }
                     }
-
                 })
-
             }
-
         })
 
         annulla.setOnClickListener{
