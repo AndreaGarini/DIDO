@@ -33,6 +33,7 @@ class endCreationFragment : Fragment(R.layout.fragment_endcreation) {
             }
 
             override fun onFinish() {
+                (activity as HomeActivity).showFooter()
                 findNavController().navigate(R.id.action_endCreationFragment_to_mainFragment)
             }
         }

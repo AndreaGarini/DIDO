@@ -16,6 +16,7 @@ import androidx.navigation.findNavController
 import it.polito.did.provanavgraph.repository.PlantRepository
 import it.polito.did.provanavgraph.ui.main.MainFragment
 import android.graphics.Rect
+import android.opengl.Visibility
 
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
@@ -32,6 +33,8 @@ class HomeActivity : AppCompatActivity() {
     lateinit var viewModel: PlantRepository
     lateinit var currentFrag: String
 
+    lateinit var bot_nav: BottomNavigationView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,8 @@ class HomeActivity : AppCompatActivity() {
         val bottom_nav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         val notesNum = findViewById<TextView>(R.id.notesNumber)
         val notesNumImage = findViewById<ImageView>(R.id.notesImageNum)
+
+        bot_nav = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
         setCurrentTag()
 
@@ -123,5 +128,13 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView5)?.childFragmentManager?.fragments?.get(
                 0
             )?.arguments?.get("Tag").toString()
+    }
+
+    fun hideFooter() {
+        bot_nav.visibility = View.INVISIBLE
+    }
+
+    fun showFooter() {
+        bot_nav.visibility = View.VISIBLE
     }
 }

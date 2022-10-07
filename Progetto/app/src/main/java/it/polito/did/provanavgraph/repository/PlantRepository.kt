@@ -27,23 +27,13 @@ class PlantRepository: ViewModel() {
     var userPlants: MutableLiveData<MutableList<String>> = MutableLiveData()
     var usersNum: Int=0
     var plantsNum: Int=0
+    var users: MutableLiveData<Map<String, String>> = MutableLiveData()
     var unicode: MutableLiveData<Long> = MutableLiveData()
     var userName: MutableLiveData<String> = MutableLiveData()
+    var userPass: MutableLiveData<String> = MutableLiveData()
     var desHum: MutableLiveData<Map<String, Long>> = MutableLiveData()
     var openTimestamp: Double = 0.0
 
-
-    val usersRef= db.child("users").addValueEventListener(object : ValueEventListener
-    {
-        override fun onDataChange(snapshot: DataSnapshot) {
-          usersNum= snapshot.childrenCount.toInt()
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-
-    })
 
     fun newTimestamp(){
         openTimestamp = System.currentTimeMillis().toDouble()
@@ -71,6 +61,8 @@ class PlantRepository: ViewModel() {
         })
     }
 
+
+
     fun getDes() : MutableLiveData<Map<String, Long>>{
         return desHum
     }
@@ -96,6 +88,7 @@ class PlantRepository: ViewModel() {
         db.child("users").orderByChild("email").equalTo(user).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userName.value = snapshot.children.first().child("username").value.toString()
+                userPass.value = snapshot.children.first().child("password").value.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -107,6 +100,10 @@ class PlantRepository: ViewModel() {
 
     fun getUserName(): LiveData<String> {
         return userName
+    }
+
+    fun getUserPass(): LiveData<String> {
+        return userPass
     }
 
 

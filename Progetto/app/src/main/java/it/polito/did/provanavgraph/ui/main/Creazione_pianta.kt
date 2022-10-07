@@ -51,7 +51,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
         val dropdown= view.findViewById<TextView>(R.id.dropdown)
         var adapterList: ArrayList<String> = firstSet
         var imageId: ArrayList<Int> = arrayListOf(R.drawable.foto_flower, R.drawable.foto_aromatic, R.drawable.foto_other)
-        var imageIdDown: ArrayList<Int> = arrayListOf(R.drawable.plantimg4, R.drawable.plantimg5, R.drawable.plantimg6)
+        var imageIdDown: ArrayList<Int> = arrayListOf(R.drawable.aloe, R.drawable.plantimg5, R.drawable.zamia)
 
         uniRef.observe(viewLifecycleOwner,Observer {
             uni = uniRef.value!!
@@ -87,7 +87,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                         }
                         "back"->{
                             adapterList= secondSet
-                            adapter = MyListAdapter(requireActivity(),adapterList,imageId)
+                            adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
                             list.adapter= adapter
                             buttonStatus="down"
                             image.setImageDrawable(resources.getDrawable(R.drawable.ic_dropdown_arrow))
@@ -129,7 +129,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                         if(buttonStatus.equals("down")){
                             newPlant.put("category", adapter.getItem(position).toString())
                             adapterList= secondSet
-                            adapter = MyListAdapter(requireActivity(),adapterList,imageId)
+                            adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
                             list.adapter= adapter
                             buttonStatus="back"
                             image.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_back))
@@ -154,8 +154,9 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
             val builder = AlertDialog.Builder(requireActivity())
             builder.setMessage("Sei sicuro di voler annullare? ")
                 .setCancelable(false)
-                .setPositiveButton("Yes"){ dialog, id ->
+                .setPositiveButton("Si"){ dialog, id ->
                     newPlant.clear()
+                    (activity as HomeActivity).showFooter()
                     findNavController().navigate(R.id.action_creazione_pianta_to_mainFragment)
                 }
                 .setNegativeButton("No") { dialog, id ->
