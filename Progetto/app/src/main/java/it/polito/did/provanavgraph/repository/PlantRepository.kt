@@ -76,7 +76,6 @@ class PlantRepository: ViewModel() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
 
@@ -180,7 +179,6 @@ class PlantRepository: ViewModel() {
                             list.add(plant.key.toString())
                         }
                         userPlants.value=list
-
                     }
                 }
             }
@@ -190,8 +188,6 @@ class PlantRepository: ViewModel() {
             }
 
         }
-
-
         )
     }
 

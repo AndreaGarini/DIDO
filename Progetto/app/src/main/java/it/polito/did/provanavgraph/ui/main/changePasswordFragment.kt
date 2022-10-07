@@ -2,6 +2,7 @@ package it.polito.did.provanavgraph
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -20,7 +21,6 @@ class changePasswordFragment: Fragment(R.layout.change_password_fragment) {
 
         viewModel = ViewModelProvider(requireActivity()).get(PlantRepository::class.java)
 
-        var inputUser = view.findViewById<EditText>(R.id.inputUsername)
         var inputPass = view.findViewById<EditText>(R.id.inputPassword)
         var newPass = view.findViewById<EditText>(R.id.newPassword)
         var annulla = view.findViewById<Button>(R.id.newPassAnnulla)
@@ -29,10 +29,13 @@ class changePasswordFragment: Fragment(R.layout.change_password_fragment) {
 
         conferma.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                if (inputUser.text.trim().equals(viewModel.userName.value) && inputPass.text.trim().equals(viewModel.userPass.value)){
-                    viewModel.db.child("users").child(viewModel.user)
-                        .setValue(newPass.text)
+                if (inputPass.text.toString().trim() == viewModel.userPass.value.toString().trim()){
                     Toast.makeText(requireActivity(), "Password modificata!", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Log.d("password: ", viewModel.userPass.value.toString().trim())
+                    Log.d("myPassword: ", inputPass.text.toString().trim())
+                    Toast.makeText(requireActivity(), "Password o username errati!", Toast.LENGTH_LONG).show()
                 }
             }
         })
