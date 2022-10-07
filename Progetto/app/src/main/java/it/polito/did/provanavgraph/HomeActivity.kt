@@ -20,6 +20,7 @@ import android.opengl.Visibility
 
 import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import android.widget.FrameLayout
 import androidx.annotation.ContentView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
@@ -33,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var viewModel: PlantRepository
     lateinit var currentFrag: String
 
-    lateinit var bot_nav: BottomNavigationView
+    lateinit var bot_nav: FrameLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +48,7 @@ class HomeActivity : AppCompatActivity() {
         val notesNum = findViewById<TextView>(R.id.notesNumber)
         val notesNumImage = findViewById<ImageView>(R.id.notesImageNum)
 
-        bot_nav = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bot_nav = findViewById<FrameLayout>(R.id.frameLayoutFooter)
 
         setCurrentTag()
 

@@ -21,6 +21,7 @@ import it.polito.did.provanavgraph.repository.PlantRepository
 import android.graphics.drawable.Drawable
 import android.widget.*
 import androidx.core.content.ContextCompat
+import it.polito.did.provanavgraph.HomeActivity
 import pl.droidsonroids.gif.GifImageView
 
 
@@ -245,6 +246,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                     holder.name1.text = "Aggiungi"
                     holder.species1.text = "pianta"
                     holder.plantButton1.setOnClickListener {
+                        (fragment.activity as HomeActivity).hideFooter()
                         fragment.findNavController()
                             .navigate(R.id.action_mainFragment_to_creazione_pianta)
                     }

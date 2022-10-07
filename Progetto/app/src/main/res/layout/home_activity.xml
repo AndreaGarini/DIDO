@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="630dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+            app:layout_constraintBottom_toTopOf="@+id/frameLayoutFooter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
             app:navGraph="@navigation/main_nav" />
 
         <FrameLayout
-            android:id="@+id/frameLayout"
+            android:id="@+id/frameLayoutFooter"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_gravity="bottom"
