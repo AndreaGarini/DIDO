@@ -124,6 +124,16 @@
         <action
             android:id="@+id/action_changePasswordFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="Tag"
+            app:argType="string"
+            android:defaultValue="changePassword" />
+        <action
+            android:id="@+id/action_changePasswordFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_changePasswordFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
     </fragment>
     <fragment
         android:id="@+id/creditsFragment"
@@ -132,5 +142,15 @@
         <action
             android:id="@+id/action_creditsFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="Tag"
+            app:argType="string"
+            android:defaultValue="credits" />
+        <action
+            android:id="@+id/action_creditsFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
+        <action
+            android:id="@+id/action_creditsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

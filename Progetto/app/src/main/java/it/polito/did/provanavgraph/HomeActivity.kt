@@ -77,6 +77,8 @@ class HomeActivity : AppCompatActivity() {
 
         val bottomListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
+
+
                 R.id.home -> {setCurrentTag()
                 if (currentFrag.equals("profile")) {
                     findNavController(R.id.fragmentContainerView5).navigate(R.id.action_profileFragment_to_mainFragment)
@@ -87,12 +89,19 @@ class HomeActivity : AppCompatActivity() {
                 if (currentFrag.equals("single")) {
                     findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_mainFragment)
                 }
+                    if (currentFrag.equals("changePassword")){
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_changePasswordFragment_to_mainFragment)
+                    }
+                    if (currentFrag.equals("credits")){
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_creditsFragment_to_mainFragment)
+                    }
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.msg -> {
                     setCurrentTag()
                     notesNum.text = ""
                     viewModel.newTimestamp()
+
                     if (currentFrag.equals("main")) {
                         findNavController(R.id.fragmentContainerView5).navigate(R.id.action_mainFragment_to_messageFragment)
                     }
@@ -101,6 +110,12 @@ class HomeActivity : AppCompatActivity() {
                     }
                     if (currentFrag.equals("single")) {
                         findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_messageFragment)
+                    }
+                    if (currentFrag.equals("changePassword")){
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_changePasswordFragment_to_messageFragment)
+                    }
+                    if (currentFrag.equals("credits")){
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_creditsFragment_to_messageFragment)
                     }
                     return@OnNavigationItemSelectedListener true
                 }
@@ -114,6 +129,12 @@ class HomeActivity : AppCompatActivity() {
                     }
                     if (currentFrag.equals("single")) {
                         findNavController(R.id.fragmentContainerView5).navigate(R.id.action_singlePlantFragment_to_profileFragment)
+                    }
+                    if (currentFrag.equals("changePassword")){
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_changePasswordFragment_to_profileFragment)
+                    }
+                    if (currentFrag.equals("credits")){
+                        findNavController(R.id.fragmentContainerView5).navigate(R.id.action_creditsFragment_to_profileFragment)
                     }
                     return@OnNavigationItemSelectedListener true
                 }
