@@ -21,6 +21,10 @@ import it.polito.did.provanavgraph.repository.PlantRepository
 import android.graphics.drawable.Drawable
 import android.widget.*
 import androidx.core.content.ContextCompat
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import it.polito.did.provanavgraph.HomeActivity
 import pl.droidsonroids.gif.GifImageView
 
@@ -57,7 +61,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             textGarden.text = "Giardino di " + liveName.value
         })
 
-
+       viewModel.db.child("notifications").get().addOnSuccessListener{
+           for (note in it.children){
+               Log.d("data", note.children.first().key.toString())
+           }
+       }
         val liveData = viewModel.getPLants()
         list = liveData.value
 
@@ -217,6 +225,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
 
                                     deletePlant(position)
+                                    deletePlantNotes(position)
                                 }
                                 .setNegativeButton("No") { dialog, id ->
                                     dialog.dismiss()
@@ -268,6 +277,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
                 list.get(index).selected = true
                 currentSelectedIndex = index
+                // TODO: 07/10/22 forse è qui p'errore che fa fare il crash se ellimini tutte le piante
                 notifyDataSetChanged()
 
                 return true
@@ -283,6 +293,22 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 db.child("plants").child(chiave).removeValue()
                 db.child("users").child(utente).child("ownedPlants")
                     .child(chiave).removeValue()
+            }
+        }
+
+        fun deletePlantNotes(index: Int){
+            if (list != null) {
+                var db = Firebase.database.reference
+                var pianta: Plant = list.get(index)
+                var chiave: String = pianta.getPlantKey()
+                viewModel.db.child("notifications").get().addOnSuccessListener{
+                    for (note in it.children){
+                        if (note.children.first().key.toString().equals(chiave)){
+                            viewModel.db.child("notifications").child(note.key.toString()).removeValue()
+                        }
+                    }
+                }
+
             }
         }
 

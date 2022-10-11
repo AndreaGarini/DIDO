@@ -30,6 +30,7 @@ class PlantRepository: ViewModel() {
     var users: MutableLiveData<Map<String, String>> = MutableLiveData()
     var unicode: MutableLiveData<Long> = MutableLiveData()
     var userName: MutableLiveData<String> = MutableLiveData()
+    var userKey: MutableLiveData<String> = MutableLiveData()
     var userPass: MutableLiveData<String> = MutableLiveData()
     var desHum: MutableLiveData<Map<String, Long>> = MutableLiveData()
     var openTimestamp: Double = 0.0
@@ -88,6 +89,7 @@ class PlantRepository: ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userName.value = snapshot.children.first().child("username").value.toString()
                 userPass.value = snapshot.children.first().child("password").value.toString()
+                userKey.value = snapshot.children.first().key.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -100,6 +102,11 @@ class PlantRepository: ViewModel() {
     fun getUserName(): LiveData<String> {
         return userName
     }
+
+    fun getUserKey(): LiveData<String> {
+        return userKey
+    }
+
 
     fun getUserPass(): LiveData<String> {
         return userPass
@@ -201,7 +208,7 @@ class PlantRepository: ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var noteList: MutableList<Note> = mutableListOf()
                 for(item in snapshot.children){
-                    if(userPlants.value!!.contains(item.children.first().key.toString())){
+                    if(userPlants.value!!.contains(item.children.first().key as String)){
                        var note = Note(item.key.toString(), item.children.first().value.toString(), item.children.first().key.toString())
                         noteList.add(note)
                     }
