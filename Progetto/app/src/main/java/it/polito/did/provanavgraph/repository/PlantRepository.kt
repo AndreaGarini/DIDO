@@ -20,7 +20,6 @@ import java.util.stream.Collectors
 class PlantRepository: ViewModel() {
 
     var focusPlant: Int=0
-    lateinit var plantOnFocus: Plant //pianta per i dati di pianta singola
     var plantCounter=0
     var user: String= "null"
     var userDB: String= "null"
@@ -205,20 +204,25 @@ class PlantRepository: ViewModel() {
         return userPlants
     }
 
-    fun setUserNotes(){
-        db.child("notifications").orderByValue().addValueEventListener(object : ValueEventListener
-        {
+    fun setUserNotes() {
+        db.child("notifications").orderByValue().addValueEventListener(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onDataChange(snapshot: DataSnapshot) {
                 var noteList: MutableList<Note> = mutableListOf()
-                for(item in snapshot.children){
-                    if(userPlants.value!!.contains(item.children.first().key as String)){
-                       var note = Note(item.key.toString(), item.children.first().value.toString(), item.children.first().key.toString())
+                for (item in snapshot.children) {
+                    if (userPlants.value!!.contains(item.children.first().key as String)) {
+                        var note = Note(
+                            item.key.toString(),
+                            item.children.first().value.toString(),
+                            item.children.first().key.toString()
+                        )
                         noteList.add(note)
                         Log.d("nuova notelist: ", noteList.toString())
                     }
                 }
-                notes.value = noteList.stream().sorted(Comparator.comparing { a -> a.time.toDouble() }).collect(Collectors.toList()).reversed().toCollection(mutableListOf())
+                notes.value =
+                    noteList.stream().sorted(Comparator.comparing { a -> a.time.toDouble() })
+                        .collect(Collectors.toList()).reversed().toCollection(mutableListOf())
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -227,13 +231,11 @@ class PlantRepository: ViewModel() {
 
         }
         )
-
     }
 
-    fun getUserNotes() : LiveData<MutableList<Note>>{
-        return notes
-    }
-
+        fun getUserNotes(): LiveData<MutableList<Note>> {
+            return notes
+        }
 
 }
 

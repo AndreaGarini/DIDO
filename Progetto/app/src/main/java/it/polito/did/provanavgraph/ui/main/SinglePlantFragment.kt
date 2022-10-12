@@ -2,6 +2,8 @@ package it.polito.did.provanavgraph.ui.main
 
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.*
@@ -55,17 +57,44 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         val infoIcon = view.findViewById<ImageView>(R.id.infoIcon)
         val infoTime = view.findViewById<TextView>(R.id.infoTimestamp)
         val infoZone = view.findViewById<ConstraintLayout>(R.id.infoSinglePlant)
+        val changeName = view.findViewById<TextView>(R.id.changeNameSingle)
+        val changeIcon = view.findViewById<ImageView>(R.id.changeNameIcon)
+
+
+        var buttonChangeNameStatus : String = "change"
 
         viewModel.setUserNotes()
 
         val liveData = viewModel.getPLants()
         val liveNote = viewModel.getUserNotes()
 
+
+
         infoZone.setOnClickListener {
             findNavController().navigate(R.id.action_singlePlantFragment_to_messageFragment)
             (activity as HomeActivity).notesNum.text = ""
             viewModel.newTimestamp()
         }
+
+        changeIcon.setOnClickListener {
+            when(buttonChangeNameStatus){
+                "change" -> {
+                    plantName.visibility = View.INVISIBLE
+                    changeName.visibility = View.VISIBLE
+                    buttonChangeNameStatus = "confirm"
+                    changeIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_done_all_24))
+                }
+                "confirm" -> {
+                    viewModel.db.child("plants").child(liveData.value!!.get(viewModel.focusPlant).key).child("plantName").setValue(changeName.text.toString())
+                    plantName.text = changeName.text.toString()
+                    plantName.visibility = View.VISIBLE
+                    changeName.visibility = View.INVISIBLE
+                    buttonChangeNameStatus = "change"
+                    changeIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_pen))
+                }
+            }
+        }
+
 
         liveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
