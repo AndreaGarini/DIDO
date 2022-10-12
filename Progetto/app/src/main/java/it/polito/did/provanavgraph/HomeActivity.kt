@@ -59,17 +59,20 @@ class HomeActivity : AppCompatActivity() {
         liveNoteNum.observe(this, Observer {
             var counter: Int = 0
             for (note in liveNoteNum.value!!) {
+                Log.d ("timestamp maggiore: ", (note.time.toDouble() > viewModel.openTimestamp).toString())
                 if (note.time.toDouble() > viewModel.openTimestamp) {
                     counter++
                 }
             }
             Log.d("timestamp: ", viewModel.openTimestamp.toString())
             if (counter > 0) {
+                Log.d("dentro all' if: ", counter.toString())
                 notesNum.text = counter.toString()
                 notesNumImage.setImageDrawable(getDrawable(R.drawable.circle))
                 val color = Color.parseColor("#AE6118") //The color u want
                 notesNumImage.setColorFilter(color)
             } else {
+                Log.d("fuori dall' if: ", counter.toString())
                 notesNum.text = ""
                 notesNumImage.setImageResource(android.R.color.transparent)
             }

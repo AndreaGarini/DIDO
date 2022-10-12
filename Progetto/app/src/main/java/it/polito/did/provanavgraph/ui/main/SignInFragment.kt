@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import it.polito.did.provanavgraph.repository.PlantRepository
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
@@ -23,6 +24,11 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         val email= view.findViewById<TextView>(R.id.emailSignIn)
         val username= view.findViewById<TextView>(R.id.usernameSignIn)
         val password= view.findViewById<TextView>(R.id.passwordSignIn)
+        val loginButton = view.findViewById<Button>(R.id.buttonLogin)
+
+        loginButton.setOnClickListener{
+            findNavController().navigate(R.id.action_signInFragment_to_loginFragment)
+        }
 
 
         signIn.setOnClickListener {

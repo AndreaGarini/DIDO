@@ -37,7 +37,7 @@
             android:defaultValue="single" />
         <action
             android:id="@+id/action_singlePlantFragment_to_messageFragment"
-            app:destination="@id/messageFragment" />
+            app:destination="@id/messageFragment"/>
         <action
             android:id="@+id/action_singlePlantFragment_to_mainFragment"
             app:destination="@id/mainFragment" />

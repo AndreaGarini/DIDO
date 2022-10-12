@@ -33,11 +33,11 @@ class PlantRepository: ViewModel() {
     var userKey: MutableLiveData<String> = MutableLiveData()
     var userPass: MutableLiveData<String> = MutableLiveData()
     var desHum: MutableLiveData<Map<String, Long>> = MutableLiveData()
-    var openTimestamp: Double = 0.0
+    var openTimestamp: Long = 0
 
 
     fun newTimestamp(){
-        openTimestamp = System.currentTimeMillis().toDouble()
+        openTimestamp = System.currentTimeMillis()
     }
 
     fun setDesHum(){

@@ -66,7 +66,7 @@
                 android:id="@+id/LoginSingIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#00FFFFFF"
+                android:backgroundTint="#00E80D0D"
                 android:text="Sign In"
                 android:textColor="#2F787D"
                 app:layout_constraintBottom_toBottomOf="parent"

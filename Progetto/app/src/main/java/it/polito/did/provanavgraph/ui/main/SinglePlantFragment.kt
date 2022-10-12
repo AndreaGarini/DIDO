@@ -52,7 +52,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         val infoIcon = view.findViewById<ImageView>(R.id.infoIcon)
         val infoTime = view.findViewById<TextView>(R.id.infoTimestamp)
 
-        viewModel.setUserNotes()
+        // viewModel.setUserNotes()
 
         val liveData = viewModel.getPLants()
         val liveNote = viewModel.getUserNotes()

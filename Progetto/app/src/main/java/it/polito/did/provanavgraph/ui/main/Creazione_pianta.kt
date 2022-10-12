@@ -28,7 +28,9 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
     private lateinit var viewModel: PlantRepository
 
     private val firstSet = arrayListOf("Fiori", "Piante aromatiche", "Altro")
-    private val secondSet = arrayListOf("Aloe", "Cactus", "Zamia")
+    private val otherSet = arrayListOf("Aloe", "Cactus", "Zamia")
+    private val flowerSet = arrayListOf("Giglio", "Viola", "Rosa")
+    private val aromSet = arrayListOf("Basilico", "Rosmarino", "Salvia")
     private var buttonStatus: String= "down"
 
     private var newPlant: MutableMap<String, Any> = mutableMapOf()
@@ -113,7 +115,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                             adapter.notifyDataSetChanged()
                         }
                         "back"->{
-                            adapterList= secondSet
+                            adapterList= firstSet
                             adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
                             list.adapter= adapter
                             buttonStatus="down"
@@ -155,7 +157,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                             }
                             "back"->{
                                 if (txt != "" && buttonStatus.equals("back")) {
-                                    for (item in secondSet) {
+                                    for (item in otherSet) {
                                         if (item.contains(txt, ignoreCase = true)) {
                                             shortList!!.add(item)
                                         }
@@ -165,7 +167,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                                     list.adapter = adapter
                                 } else {
                                     Log.d("button status: ", buttonStatus)
-                                    adapterList = secondSet
+                                    adapterList = otherSet
                                     adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
                                     list.adapter = adapter
                                 }
@@ -183,7 +185,11 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                     ) {
                         if(buttonStatus.equals("down")){
                             newPlant.put("category", adapter.getItem(position).toString())
-                            adapterList= secondSet
+                            when (position){
+                                0 -> adapterList = flowerSet
+                                1 -> adapterList = aromSet
+                                2 -> adapterList = otherSet
+                            }
                             adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
                             list.adapter= adapter
                             buttonStatus="back"
