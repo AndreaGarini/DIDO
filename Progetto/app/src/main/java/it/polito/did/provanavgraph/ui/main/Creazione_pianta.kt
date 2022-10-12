@@ -54,7 +54,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
         val dropdown= view.findViewById<TextView>(R.id.dropdown)
         var adapterList: ArrayList<String> = firstSet
         var imageId: ArrayList<Int> = arrayListOf(R.drawable.foto_flower, R.drawable.foto_aromatic, R.drawable.foto_other)
-        var imageIdDown: ArrayList<Int> = arrayListOf(R.drawable.aloe, R.drawable.plantimg5, R.drawable.zamia)
+        var imageIdDown: ArrayList<Int> = arrayListOf(R.drawable.aloe, R.drawable.cactus, R.drawable.zamia)
 
         uniRef.observe(viewLifecycleOwner,Observer {
             uni = uniRef.value!!
