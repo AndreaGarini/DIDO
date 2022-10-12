@@ -90,7 +90,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                     plantName.visibility = View.VISIBLE
                     changeName.visibility = View.INVISIBLE
                     buttonChangeNameStatus = "change"
-                    changeIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_pen))
+                    changeIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_baseline_edit_24))
                 }
             }
         }
