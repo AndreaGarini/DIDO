@@ -54,7 +54,9 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
         val dropdown= view.findViewById<TextView>(R.id.dropdown)
         var adapterList: ArrayList<String> = firstSet
         var imageId: ArrayList<Int> = arrayListOf(R.drawable.foto_flower, R.drawable.foto_aromatic, R.drawable.foto_other)
-        var imageIdDown: ArrayList<Int> = arrayListOf(R.drawable.aloe, R.drawable.cactus, R.drawable.zamia)
+        var imageIdOther: ArrayList<Int> = arrayListOf(R.drawable.aloe, R.drawable.cactus, R.drawable.zamia)
+        var imageIdFlower: ArrayList<Int> = arrayListOf(R.drawable.giglio, R.drawable.viola, R.drawable.rosa)
+        var imageIdArom: ArrayList<Int> = arrayListOf(R.drawable.aloe, R.drawable.cactus, R.drawable.zamia)
 
         uniRef.observe(viewLifecycleOwner,Observer {
             uni = uniRef.value!!
@@ -94,7 +96,8 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
 
         dropdown.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                val dialog: Dialog= Dialog(requireActivity())
+                var set: String = "null"
+                val dialog= Dialog(requireActivity())
                 dialog.setContentView(R.layout.dialog_searchable_spinner)
                 dialog.window?.setLayout(800, 1200 )
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -116,7 +119,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                         }
                         "back"->{
                             adapterList= firstSet
-                            adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                            adapter = MyListAdapter(requireActivity(),adapterList,imageId)
                             list.adapter= adapter
                             buttonStatus="down"
                             image.setImageDrawable(resources.getDrawable(R.drawable.ic_dropdown_arrow))
@@ -141,34 +144,52 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                         when(buttonStatus){
                             "down"->{
                                 if (txt != "") {
+
                                     for (item in firstSet) {
                                         if (item.contains(txt, ignoreCase = true)) {
                                             shortList!!.add(item)
                                         }
                                         adapterList = shortList
                                     }
-                                    adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                                    adapter = MyListAdapter(requireActivity(),adapterList,imageId)
                                     list.adapter = adapter
                                 } else {
                                     adapterList = firstSet
-                                    adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                                    adapter = MyListAdapter(requireActivity(),adapterList,imageId)
                                     list.adapter = adapter
                                 }
                             }
                             "back"->{
                                 if (txt != "" && buttonStatus.equals("back")) {
-                                    for (item in otherSet) {
+                                    lateinit var avatarListImg : ArrayList<Int>
+                                    lateinit var avatarList : ArrayList<String>
+                                    when (set){
+                                        "flower" -> {avatarListImg = imageIdFlower
+                                        avatarList = flowerSet}
+                                        "arom" -> {avatarListImg = imageIdArom
+                                        avatarList = aromSet}
+                                        "other" -> {avatarListImg = imageIdOther
+                                        avatarList = otherSet}
+                                    }
+                                    for (item in avatarList) {
                                         if (item.contains(txt, ignoreCase = true)) {
                                             shortList!!.add(item)
                                         }
                                         adapterList = shortList
                                     }
-                                    adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                                    adapter = MyListAdapter(requireActivity(),adapterList,avatarListImg)
                                     list.adapter = adapter
                                 } else {
-                                    Log.d("button status: ", buttonStatus)
-                                    adapterList = otherSet
-                                    adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                                    lateinit var avatarList : ArrayList<Int>
+                                    when (set){
+                                        "flower" -> {avatarList = imageIdFlower
+                                        adapterList = flowerSet}
+                                        "arom" -> {avatarList = imageIdArom
+                                        adapterList= aromSet}
+                                        "other" -> {avatarList = imageIdOther
+                                        adapterList= otherSet}
+                                    }
+                                    adapter = MyListAdapter(requireActivity(),adapterList, avatarList)
                                     list.adapter = adapter
                                 }
                             }
@@ -185,12 +206,22 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                     ) {
                         if(buttonStatus.equals("down")){
                             newPlant.put("category", adapter.getItem(position).toString())
+                            lateinit var avatarList: ArrayList<Int>
                             when (position){
-                                0 -> adapterList = flowerSet
-                                1 -> adapterList = aromSet
-                                2 -> adapterList = otherSet
+                                0 -> {adapterList = flowerSet
+                                    avatarList = imageIdFlower
+                                    set = "flower"
+                                }
+                                1 -> {adapterList = aromSet
+                                    avatarList = imageIdArom
+                                    set = "arom"
+                                }
+                                2 -> {adapterList = otherSet
+                                    avatarList = imageIdOther
+                                    set = "other"
+                                }
                             }
-                            adapter = MyListAdapter(requireActivity(),adapterList,imageIdDown)
+                            adapter = MyListAdapter(requireActivity(),adapterList, avatarList)
                             list.adapter= adapter
                             buttonStatus="back"
                             image.setImageDrawable(resources.getDrawable(R.drawable.ic_arrow_back))
