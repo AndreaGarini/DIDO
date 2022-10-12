@@ -1,6 +1,8 @@
 package it.polito.did.provanavgraph.repository
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +15,7 @@ import com.google.firebase.ktx.Firebase
 import it.polito.did.provanavgraph.models.Note
 import it.polito.did.provanavgraph.models.Plant
 import kotlinx.coroutines.newFixedThreadPoolContext
+import java.util.stream.Collectors
 
 class PlantRepository: ViewModel() {
 
@@ -205,15 +208,17 @@ class PlantRepository: ViewModel() {
     fun setUserNotes(){
         db.child("notifications").orderByValue().addValueEventListener(object : ValueEventListener
         {
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun onDataChange(snapshot: DataSnapshot) {
                 var noteList: MutableList<Note> = mutableListOf()
                 for(item in snapshot.children){
                     if(userPlants.value!!.contains(item.children.first().key as String)){
                        var note = Note(item.key.toString(), item.children.first().value.toString(), item.children.first().key.toString())
                         noteList.add(note)
+                        Log.d("nuova notelist: ", noteList.toString())
                     }
                 }
-                notes.value = noteList
+                notes.value = noteList.stream().sorted(Comparator.comparing { a -> a.time.toDouble() }).collect(Collectors.toList()).reversed().toCollection(mutableListOf())
             }
 
             override fun onCancelled(error: DatabaseError) {
