@@ -205,6 +205,7 @@
                             android:text="plantName"
                             android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                            android:textColor="#2F5653"
                             app:layout_constraintBottom_toTopOf="@+id/plantSpecies"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.501"
@@ -218,6 +219,7 @@
                             android:layout_height="wrap_content"
                             android:text="plantSpecies"
                             android:textAlignment="center"
+                            android:textColor="#2F5653"
                             app:layout_constraintBottom_toTopOf="@+id/plantLocation"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.489"
@@ -231,12 +233,24 @@
                             android:layout_height="18dp"
                             android:text="plantLocation"
                             android:textAlignment="center"
+                            android:textColor="#2F5653"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.491"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.941" />
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="204dp"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/plantName"
+                            app:layout_constraintVertical_bias="0.609" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
