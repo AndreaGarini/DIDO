@@ -23,9 +23,9 @@ class instructionsFragment : Fragment(R.layout.instructions_fragment) {
         val text2 = view.findViewById<TextView>(R.id.textInst2)
         val text3 = view.findViewById<TextView>(R.id.textInst3)
 
-        text1.text = "utilizza un qualsiasi device con connessione ad internet per cercare e collegarti alla rete LEAFYA01"
-        text2.text = "una volta giunto sulla pagina di reindirizzamento seleziona il tuo wi-fi di casa, inserisci la password e premi SAVE"
-        text3.text = "attendi che la creazione della tua pianta sia completata"
+        text1.text = "Utilizza un qualsiasi device con connessione ad internet per cercare e collegarti alla rete LEAFYA01"
+        text2.text = "Una volta giunto sulla pagina di reindirizzamento seleziona il tuo wi-fi di casa, inserisci la password e premi SAVE"
+        text3.text = "Attendi che la creazione della tua pianta sia completata"
 
 
 
