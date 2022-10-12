@@ -185,12 +185,13 @@
 
                         <ImageView
                             android:id="@+id/changeNameIcon"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="230dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="100dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/plantName"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/plantName"
+                            app:layout_constraintTop_toTopOf="@+id/plantName"
                             app:srcCompat="@drawable/ic_baseline_edit_24" />
 
                         <Button
@@ -241,7 +242,7 @@
                                 android:backgroundTint="#F0E2E2"
                                 android:inputType="textPersonName"
                                 android:textSize="20sp"
-                                android:visibility="invisible" />
+                                android:visibility="gone" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <TextView
@@ -251,12 +252,10 @@
                             android:text="plantSpecies"
                             android:textAlignment="center"
                             android:textColor="#2F5653"
-                            app:layout_constraintBottom_toTopOf="@+id/plantLocation"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.489"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="1" />
+                            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
                         <TextView
                             android:id="@+id/plantLocation"
@@ -269,19 +268,16 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.491"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.941" />
+                            app:layout_constraintTop_toBottomOf="@+id/plantSpecies" />
 
                         <ImageView
                             android:id="@+id/imageView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="204dp"
                             android:src="@drawable/ic_baseline_location_on_24"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/plantName"
-                            app:layout_constraintVertical_bias="0.609" />
+                            app:layout_constraintBottom_toBottomOf="@+id/plantLocation"
+                            app:layout_constraintEnd_toStartOf="@+id/plantLocation"
+                            app:layout_constraintTop_toTopOf="@+id/plantLocation" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
