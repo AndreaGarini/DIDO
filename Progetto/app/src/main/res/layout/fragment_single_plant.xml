@@ -91,8 +91,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView7"
-                    android:layout_width="328dp"
-                    android:layout_height="140dp"
+                    android:layout_width="329dp"
+                    android:layout_height="130dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:contentPadding="10dp"
@@ -126,8 +126,8 @@
 
                                 <ImageView
                                     android:id="@+id/infoIcon"
-                                    android:layout_width="30dp"
-                                    android:layout_height="40dp"
+                                    android:layout_width="56dp"
+                                    android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:padding="10px"
                                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
