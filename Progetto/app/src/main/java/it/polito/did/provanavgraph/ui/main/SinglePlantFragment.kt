@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import it.polito.did.provanavgraph.HomeActivity
 import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.repository.PlantRepository
 import java.util.*
@@ -51,11 +54,18 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         val infoText = view.findViewById<TextView>(R.id.infoText)
         val infoIcon = view.findViewById<ImageView>(R.id.infoIcon)
         val infoTime = view.findViewById<TextView>(R.id.infoTimestamp)
+        val infoZone = view.findViewById<ConstraintLayout>(R.id.infoSinglePlant)
 
-        // viewModel.setUserNotes()
+        viewModel.setUserNotes()
 
         val liveData = viewModel.getPLants()
         val liveNote = viewModel.getUserNotes()
+
+        infoZone.setOnClickListener {
+            findNavController().navigate(R.id.action_singlePlantFragment_to_messageFragment)
+            (activity as HomeActivity).notesNum.text = ""
+            viewModel.newTimestamp()
+        }
 
         liveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
@@ -112,9 +122,6 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                 liveData.value!!.get(viewModel.focusPlant).waterInTank >=0 &&  liveData.value!!.get(viewModel.focusPlant).waterInTank <25 && liveData.value!!.get(viewModel.focusPlant).waterInTank >=0 && liveData.value!!.get(viewModel.focusPlant).humidity >=0 && liveData.value!!.get(viewModel.focusPlant).humidity <25   ->
                     plantImage.setImageResource(R.drawable.dejected_marroncino)
 
-
-
-
                 else -> {
                     plantImage.setImageResource(R.drawable.happycactusnew)
                 }
@@ -122,14 +129,14 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
         })
 
         liveNote.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            var time: Long = 0
+            var time: Double = 0.0
             var name: String = "null"
             var origin: String = "null"
 
             for (note in liveNote.value!!)
             {
-                if(note.time.toLong() > time && note.name.equals(liveData.value!!.get(viewModel.focusPlant).key)){
-                    time = note.time.toLong()
+                if(note.time.toDouble() > time && note.name.equals(liveData.value!!.get(viewModel.focusPlant).key)){
+                    time = note.time.toDouble()
                     name = getPlantNameFromCode(note.name)
                     origin = note.origin
                 }
@@ -151,7 +158,6 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                             it, R.drawable.ic_baseline_water_damage_24)
                     })
                 }
-
             }
             else{
                 infoTime.text = ""
@@ -163,23 +169,19 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
             }
         })
 
-
-
         backButton.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 activity?.findNavController(R.id.fragmentContainerView5)?.navigate(R.id.action_singlePlantFragment_to_mainFragment)
             }
-
         })
-
-
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun convertDate(dateInMilliseconds: String): String? {
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-
-        val instant = Instant.ofEpochMilli(dateInMilliseconds.toLong())
+        val num = dateInMilliseconds.toDouble()
+        val instant = Instant.ofEpochMilli(num.toLong())
 
         val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
         return formatter.format(date)

@@ -203,7 +203,7 @@ class PlantRepository: ViewModel() {
     }
 
     fun setUserNotes(){
-        db.child("notifications").orderByKey().addValueEventListener(object : ValueEventListener
+        db.child("notifications").orderByValue().addValueEventListener(object : ValueEventListener
         {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var noteList: MutableList<Note> = mutableListOf()
@@ -221,8 +221,6 @@ class PlantRepository: ViewModel() {
             }
 
         }
-
-
         )
 
     }

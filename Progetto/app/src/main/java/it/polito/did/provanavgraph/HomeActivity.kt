@@ -35,6 +35,8 @@ class HomeActivity : AppCompatActivity() {
     lateinit var currentFrag: String
 
     lateinit var bot_nav: FrameLayout
+    lateinit var notesNum : TextView
+    lateinit var notesNumImage : ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +47,8 @@ class HomeActivity : AppCompatActivity() {
 
 
         val bottom_nav = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        val notesNum = findViewById<TextView>(R.id.notesNumber)
-        val notesNumImage = findViewById<ImageView>(R.id.notesImageNum)
+        notesNum = findViewById(R.id.notesNumber)
+        notesNumImage = findViewById(R.id.notesImageNum)
 
         bot_nav = findViewById<FrameLayout>(R.id.frameLayoutFooter)
 

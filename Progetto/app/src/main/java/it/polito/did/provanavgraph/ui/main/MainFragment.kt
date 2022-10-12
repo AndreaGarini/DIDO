@@ -204,7 +204,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                                 ContextCompat.getDrawable(it, R.drawable.dead_img)*/
 
 
-
                             else -> {
                                 ContextCompat.getDrawable(it, R.drawable.happycactusnew)
                             }
@@ -283,7 +282,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
                 list.get(index).selected = true
                 currentSelectedIndex = index
-                // TODO: 07/10/22 forse è qui p'errore che fa fare il crash se ellimini tutte le piante
                 notifyDataSetChanged()
 
                 return true
@@ -304,7 +302,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         fun deletePlantNotes(index: Int){
             if (list != null) {
-                var db = Firebase.database.reference
                 var pianta: Plant = list.get(index)
                 var chiave: String = pianta.getPlantKey()
                 viewModel.db.child("notifications").get().addOnSuccessListener{
