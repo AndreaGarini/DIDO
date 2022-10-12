@@ -221,18 +221,18 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                         holder.deletePlantButton.setOnClickListener {
                             val builder = AlertDialog.Builder(fragment.requireActivity())
                             builder.setMessage(
-                                "Are you sure you want to delete " + list.get(
+                                "Vuoi davvero eliminare " + list.get(
                                     position
                                 ).name + "?"
                             )
                                 .setCancelable(false)
-                                .setPositiveButton("Yes") { dialog, id ->
+                                .setPositiveButton("Conferma") { dialog, id ->
 
 
                                     deletePlant(position)
                                     deletePlantNotes(position)
                                 }
-                                .setNegativeButton("No") { dialog, id ->
+                                .setNegativeButton("Annulla") { dialog, id ->
                                     dialog.dismiss()
                                 }
                             val alert = builder.create()
