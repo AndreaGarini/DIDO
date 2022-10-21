@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_singlePlantFragment_to_mainFragment2"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_singlePlantFragment_to_instructionsFragment"
+            app:destination="@id/instructionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/messageFragment"
