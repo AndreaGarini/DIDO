@@ -1,4 +1,6 @@
 package it.polito.did.provanavgraph
+import android.app.Service
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -27,6 +29,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import it.polito.did.provanavgraph.ui.main.MessageFragment
 import it.polito.did.provanavgraph.ui.main.ProfileFragment
+import android.media.AudioManager
+import android.provider.Settings
 
 
 class HomeActivity : AppCompatActivity() {
@@ -151,6 +155,16 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView5)?.childFragmentManager?.fragments?.get(
                 0
             )?.arguments?.get("Tag").toString()
+    }
+
+    fun mute() {
+        val amanager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true)
+    }
+
+    fun unmute() {
+        val amanager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, false)
     }
 
     fun hideFooter() {

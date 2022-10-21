@@ -42,12 +42,12 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
 
         val backButton: Button = view.findViewById(R.id.frecciaBack)
 
-        plantName = view.findViewById<TextView>(R.id.plantName)
-        plantSpecies = view.findViewById<TextView>(R.id.plantSpecies)
-        plantLocation = view.findViewById<TextView>(R.id.plantLocation)
-        plantHumidity = view.findViewById<ProgressBar>(R.id.plantHumidity)
-        plantWaterInTank = view.findViewById<ProgressBar>(R.id.plantWaterInTank)
-        plantImage = view.findViewById<ImageView>(R.id.plantImage)
+        plantName = view.findViewById(R.id.plantName)
+        plantSpecies = view.findViewById(R.id.plantSpecies)
+        plantLocation = view.findViewById(R.id.plantLocation)
+        plantHumidity = view.findViewById(R.id.plantHumidity)
+        plantWaterInTank = view.findViewById(R.id.plantWaterInTank)
+        plantImage = view.findViewById(R.id.plantImage)
 
         val infoText = view.findViewById<TextView>(R.id.infoText)
         val infoIcon = view.findViewById<ImageView>(R.id.infoIcon)
