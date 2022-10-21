@@ -130,7 +130,7 @@
                                     android:layout_width="56dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:padding="10px"
+                                    android:padding="5dp"
                                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                                 <TextView

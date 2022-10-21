@@ -1,5 +1,6 @@
 package it.polito.did.provanavgraph.ui.main
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -22,11 +23,6 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
@@ -71,9 +67,14 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
 
 
         infoZone.setOnClickListener {
-            findNavController().navigate(R.id.action_singlePlantFragment_to_messageFragment)
-            (activity as HomeActivity).notesNum.text = ""
-            viewModel.newTimestamp()
+            if(liveData.value!!.get(viewModel.focusPlant).humidity==0 && liveData.value!!.get(viewModel.focusPlant).waterInTank==0){
+                findNavController().navigate(R.id.action_singlePlantFragment_to_instructionsFragment)
+            }
+            else {
+                findNavController().navigate(R.id.action_singlePlantFragment_to_messageFragment)
+                (activity as HomeActivity).notesNum.text = ""
+                viewModel.newTimestamp()
+            }
         }
 
         changeIcon.setOnClickListener {
@@ -162,39 +163,59 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
             var name: String = "null"
             var origin: String = "null"
 
-            for (note in liveNote.value!!)
+            if(liveData.value!!.get(viewModel.focusPlant).humidity==0 && liveData.value!!.get(viewModel.focusPlant).waterInTank==0)
             {
-                if(note.time.toDouble() > time && note.name.equals(liveData.value!!.get(viewModel.focusPlant).key)){
-                    time = note.time.toDouble()
-                    name = getPlantNameFromCode(note.name)
-                    origin = note.origin
-                }
-            }
-
-            if (name!= "null"){
-                infoTime.text = convertDate(time.toString())
-                if (origin.equals("Water")){
-                    infoText.text = "Lefya ha bagnato " + name + " oggi!"
-                    infoIcon.setImageDrawable(activity?.let {
-                        ContextCompat.getDrawable(
-                            it, R.drawable.ic_baseline_bubble_chart_24)
-                    })
-                }
-                else {
-                    infoText.text = "L' acqua nel serbatoio di " + name + " sta finendo"
-                    infoIcon.setImageDrawable(activity?.let {
-                        ContextCompat.getDrawable(
-                            it, R.drawable.ic_baseline_water_damage_24)
-                    })
-                }
-            }
-            else{
-                infoTime.text = ""
-                infoText.text = "leafya sorveglia. passo e chiudo."
+                infoText.text = "Completa la creazione della tua pianta"
+                infoText.setTextColor(Color.RED)
                 infoIcon.setImageDrawable(activity?.let {
                     ContextCompat.getDrawable(
-                        it, R.drawable.ic_baseline_autorenew_24)
-                })
+                        it, R.drawable.ic_baseline_error_24
+                    )})
+
+            }
+
+            else {
+
+
+                for (note in liveNote.value!!) {
+                    if (note.time.toDouble() > time && note.name.equals(
+                            liveData.value!!.get(
+                                viewModel.focusPlant
+                            ).key
+                        )
+                    ) {
+                        time = note.time.toDouble()
+                        name = getPlantNameFromCode(note.name)
+                        origin = note.origin
+                    }
+                }
+
+                if (name != "null") {
+                    infoTime.text = convertDate(time.toString())
+                    if (origin.equals("Water")) {
+                        infoText.text = "Lefya ha bagnato " + name + " oggi!"
+                        infoIcon.setImageDrawable(activity?.let {
+                            ContextCompat.getDrawable(
+                                it, R.drawable.ic_baseline_bubble_chart_24
+                            )
+                        })
+                    } else {
+                        infoText.text = "L' acqua nel serbatoio di " + name + " sta finendo"
+                        infoIcon.setImageDrawable(activity?.let {
+                            ContextCompat.getDrawable(
+                                it, R.drawable.ic_baseline_water_damage_24
+                            )
+                        })
+                    }
+                } else {
+                    infoTime.text = ""
+                    infoText.text = "leafya sorveglia. passo e chiudo."
+                    infoIcon.setImageDrawable(activity?.let {
+                        ContextCompat.getDrawable(
+                            it, R.drawable.ic_baseline_autorenew_24
+                        )
+                    })
+                }
             }
         })
 

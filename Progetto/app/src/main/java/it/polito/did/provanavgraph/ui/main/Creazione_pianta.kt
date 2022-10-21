@@ -273,8 +273,8 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
 
             newPlant.put("plantName", nome.text.trim().toString())
             newPlant.put("owner", viewModel.userDB)
-            newPlant.put("humidity", 50)
-            newPlant.put("waterInTank", 50)
+            newPlant.put("humidity", 0)
+            newPlant.put("waterInTank", 0)
 
             val plantDbKey= uni
 
@@ -282,6 +282,7 @@ class Creazione_pianta : Fragment(R.layout.fragment_creazione_pianta) {
                 .setValue(newPlant)
             viewModel.db.child("users").child(viewModel.userDB).child("ownedPlants")
                 .child( plantDbKey.toString()).setValue("true")
+            viewModel.lastUnicode = viewModel.getUni().value!!;
             findNavController().navigate(R.id.action_creazione_pianta_to_instructionsFragment)
         }
 

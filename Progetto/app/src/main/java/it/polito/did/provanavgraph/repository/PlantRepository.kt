@@ -29,8 +29,8 @@ class PlantRepository: ViewModel() {
     var userPlants: MutableLiveData<MutableList<String>> = MutableLiveData()
     var usersNum: Int=0
     var plantsNum: Int=0
-    var users: MutableLiveData<Map<String, String>> = MutableLiveData()
     var unicode: MutableLiveData<Long> = MutableLiveData()
+    var lastUnicode : Long = 0;
     var userName: MutableLiveData<String> = MutableLiveData()
     var userKey: MutableLiveData<String> = MutableLiveData()
     var userPass: MutableLiveData<String> = MutableLiveData()
