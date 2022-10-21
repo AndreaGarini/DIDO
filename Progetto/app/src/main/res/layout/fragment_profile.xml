@@ -33,7 +33,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="40dp"
                 android:foregroundGravity="top"
-                android:src="@drawable/dead_img"
+                android:src="@drawable/leafy_lowlogo"
                 android:textAlignment="center"
                 app:shapeAppearanceOverlay="@style/Circular" />
 
