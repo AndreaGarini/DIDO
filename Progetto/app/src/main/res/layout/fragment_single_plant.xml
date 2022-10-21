@@ -170,18 +170,19 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView8"
-                    android:layout_width="504dp"
-                    android:layout_height="388dp"
-                    android:layout_marginBottom="508dp"
+                    android:layout_width="510dp"
+                    android:layout_height="307dp"
+                    android:layout_marginBottom="528dp"
                     android:backgroundTint="#F0E2E2"
-                    app:cardCornerRadius="200dp"
+                    app:cardCornerRadius="150dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="344dp">
+                        android:layout_height="268dp">
 
                         <ImageView
                             android:id="@+id/changeNameIcon"
@@ -190,8 +191,10 @@
                             android:layout_marginEnd="100dp"
                             app:layout_constraintBottom_toBottomOf="@+id/plantName"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toEndOf="@+id/plantName"
                             app:layout_constraintTop_toTopOf="@+id/plantName"
+                            app:layout_constraintVertical_bias="0.0"
                             app:srcCompat="@drawable/ic_baseline_edit_24" />
 
                         <Button
@@ -203,10 +206,10 @@
                             app:icon="@drawable/freccia_back"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.176"
+                            app:layout_constraintHorizontal_bias="0.178"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.772"
+                            app:layout_constraintVertical_bias="0.692"
                             tools:ignore="SpeakableTextPresentCheck" />
 
                         <TextView
@@ -231,14 +234,19 @@
                             android:id="@+id/textInputLayout"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+<<<<<<< Updated upstream
                             android:layout_marginStart="150dp"
                             android:layout_marginTop="230dp"
                             android:layout_marginEnd="150dp"
+=======
+>>>>>>> Stashed changes
                             android:backgroundTint="#F0E2E2"
                             android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.787">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/changeNameSingle"
