@@ -211,8 +211,11 @@
 
                         <TextView
                             android:id="@+id/plantName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="150dp"
+                            android:layout_marginTop="235dp"
+                            android:layout_marginEnd="150dp"
                             android:text="plantName"
                             android:textAlignment="center"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -226,9 +229,11 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/textInputLayout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="150dp"
                             android:layout_marginTop="230dp"
+                            android:layout_marginEnd="150dp"
                             android:backgroundTint="#F0E2E2"
                             android:visibility="visible"
                             app:layout_constraintEnd_toEndOf="parent"
