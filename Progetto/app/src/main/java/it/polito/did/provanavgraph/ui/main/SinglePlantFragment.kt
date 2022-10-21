@@ -193,7 +193,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                 if (name != "null") {
                     infoTime.text = convertDate(time.toString())
                     if (origin.equals("Water")) {
-                        infoText.text = "Lefya ha bagnato " + name + " oggi!"
+                        infoText.text = "Leafya ha bagnato " + name + " oggi!"
                         infoIcon.setImageDrawable(activity?.let {
                             ContextCompat.getDrawable(
                                 it, R.drawable.ic_baseline_bubble_chart_24
@@ -209,7 +209,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
                     }
                 } else {
                     infoTime.text = ""
-                    infoText.text = "leafya sorveglia. passo e chiudo."
+                    infoText.text = "Leafya sorveglia. passo e chiudo."
                     infoIcon.setImageDrawable(activity?.let {
                         ContextCompat.getDrawable(
                             it, R.drawable.ic_baseline_autorenew_24

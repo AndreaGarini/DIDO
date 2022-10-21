@@ -71,7 +71,7 @@ class MessageFragment : Fragment(R.layout.fragment_message) {
 
             if (list != null) {
                     if (list.get(position).origin.equals("Water")) {
-                        holder.text.text = "Lefya ha bagnato " + getPlantNameFromCode(list.get(position).name) + " oggi!"
+                        holder.text.text = "Leafya ha bagnato " + getPlantNameFromCode(list.get(position).name) + " oggi!"
                         holder.plantIcon.setImageDrawable(fragment.activity?.let {
                             ContextCompat.getDrawable(
                                 it, R.drawable.ic_baseline_bubble_chart_24)
