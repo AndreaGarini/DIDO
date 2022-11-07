@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
@@ -27,16 +28,21 @@ class instructionsFragment : Fragment(R.layout.instructions_fragment) {
         text2.text = "Una volta giunto sulla pagina di reindirizzamento seleziona il tuo wi-fi di casa, inserisci la password e premi SAVE"
         text3.text = "Attendi che la creazione della tua pianta sia completata"
 
-        var wit: Long = 0
+        viewModel.setUnicode()
+        viewModel.setWaterInTank()
+        var wit: Long? = 0
 
 
         val liveData = viewModel.waterInTank
-        wit = liveData.value!!
+        wit = liveData.value
 
-
-        if(wit as Int !=0){
-            findNavController().navigate(R.id.action_instructionsFragment_to_endCreationFragment)
-        }
-
+        liveData.observe(viewLifecycleOwner, Observer {
+            wit = liveData.value
+            Log.d("cond:", (wit!=null).toString())
+            Log.d("cond:", (wit != 0L).toString())
+            if( wit!=null && wit != 0L){
+                findNavController().navigate(R.id.action_instructionsFragment_to_endCreationFragment)
+            }
+        })
     }
 }
