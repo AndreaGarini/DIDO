@@ -6,12 +6,14 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import it.polito.did.provanavgraph.R
 import it.polito.did.provanavgraph.models.Note
 import it.polito.did.provanavgraph.models.Plant
 import kotlinx.coroutines.newFixedThreadPoolContext
@@ -30,6 +32,7 @@ class PlantRepository: ViewModel() {
     var usersNum: Int=0
     var plantsNum: Int=0
     var unicode: MutableLiveData<Long> = MutableLiveData()
+    var waterInTank : MutableLiveData<Long> = MutableLiveData()
     var lastUnicode : Long = 0;
     var userName: MutableLiveData<String> = MutableLiveData()
     var userKey: MutableLiveData<String> = MutableLiveData()
@@ -64,6 +67,20 @@ class PlantRepository: ViewModel() {
         })
     }
 
+    fun setWaterInTank(){
+        db.child("plants").child(unicode.value.toString()).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("humidity").value.toString() != "0" ){
+                    waterInTank.value = snapshot.child("humidity").value as Long
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
 
 
     fun getDes() : MutableLiveData<Map<String, Long>>{

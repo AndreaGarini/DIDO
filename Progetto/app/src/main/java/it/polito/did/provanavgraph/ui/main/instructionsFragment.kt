@@ -27,24 +27,16 @@ class instructionsFragment : Fragment(R.layout.instructions_fragment) {
         text2.text = "Una volta giunto sulla pagina di reindirizzamento seleziona il tuo wi-fi di casa, inserisci la password e premi SAVE"
         text3.text = "Attendi che la creazione della tua pianta sia completata"
 
+        var wit: Long = 0
 
 
-        var uni: String = viewModel.getUni().value!!.toString()
+        val liveData = viewModel.waterInTank
+        wit = liveData.value!!
 
 
-
-        viewModel.db.child("plants").child(uni).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.child("humidity").value.toString() != "0"  ){
-                    findNavController().navigate(R.id.action_instructionsFragment_to_endCreationFragment)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
+        if(wit as Int !=0){
+            findNavController().navigate(R.id.action_instructionsFragment_to_endCreationFragment)
+        }
 
     }
 }
