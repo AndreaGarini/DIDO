@@ -35,7 +35,7 @@ class instructionsFragment : Fragment(R.layout.instructions_fragment) {
 
         viewModel.db.child("plants").child(uni).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.child("humidity").value.toString() != "0" && snapshot.child("waterInTank").value.toString() != "0" ){
+                if (snapshot.child("humidity").value.toString() != "0"  ){
                     findNavController().navigate(R.id.action_instructionsFragment_to_endCreationFragment)
                 }
             }

@@ -49,8 +49,8 @@ class PlantRepository: ViewModel() {
                for (cat in snapshot.children){
                    Log.d ("cat: ", cat.toString())
                    for (species in cat.children){
-                       var hum = species.child("desiredHumidity").value as Long
-                       var spc = species.child("name").value as String
+                       var hum = species.value as Long
+                       var spc = species.key as String
                        map.put(spc, hum)
                    }
                }
