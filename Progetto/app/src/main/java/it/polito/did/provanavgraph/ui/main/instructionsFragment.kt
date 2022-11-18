@@ -30,7 +30,7 @@ class instructionsFragment : Fragment(R.layout.instructions_fragment) {
 
         viewModel.setUnicode()
         viewModel.setWaterInTank()
-        var wit: Long? = 0
+        var wit: Long? = 0L
 
 
         val liveData = viewModel.waterInTank

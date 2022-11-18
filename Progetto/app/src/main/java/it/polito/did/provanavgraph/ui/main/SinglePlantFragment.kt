@@ -67,7 +67,7 @@ class SinglePlantFragment : Fragment(R.layout.fragment_single_plant) {
 
 
         infoZone.setOnClickListener {
-            if(liveData.value!!.get(viewModel.focusPlant).humidity==0 && liveData.value!!.get(viewModel.focusPlant).waterInTank==0){
+            if(liveData.value?.get(viewModel.focusPlant)?.humidity==0 && liveData.value?.get(viewModel.focusPlant)?.waterInTank==0){
                 findNavController().navigate(R.id.action_singlePlantFragment_to_instructionsFragment)
             }
             else {
