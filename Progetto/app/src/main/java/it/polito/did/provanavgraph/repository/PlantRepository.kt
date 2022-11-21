@@ -68,8 +68,6 @@ class PlantRepository: ViewModel() {
     }
 
     fun setWaterInTank(){
-        Log.d("truc", "gveat")
-        Log.d("unicode :", unicode.value.toString())
         db.child("plants").child(unicode.value.toString()).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                     waterInTank.value = snapshot.child("waterInTank").value as Long
@@ -228,14 +226,16 @@ class PlantRepository: ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var noteList: MutableList<Note> = mutableListOf()
                 for (item in snapshot.children) {
-                    if (userPlants.value!!.contains(item.children.first().key as String)) {
-                        var note = Note(
-                            item.key.toString(),
-                            item.children.first().value.toString(),
-                            item.children.first().key.toString()
-                        )
-                        noteList.add(note)
-                        Log.d("nuova notelist: ", noteList.toString())
+                    if (userPlants.value != null) {
+                        if (userPlants.value!!.contains(item.children.first().key as String)) {
+                            var note = Note(
+                                item.key.toString(),
+                                item.children.first().value.toString(),
+                                item.children.first().key.toString()
+                            )
+                            noteList.add(note)
+                            Log.d("nuova notelist: ", noteList.toString())
+                        }
                     }
                 }
                 notes.value =

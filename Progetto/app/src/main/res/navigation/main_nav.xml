@@ -111,6 +111,10 @@
         <action
             android:id="@+id/action_instructionsFragment_to_endCreationFragment"
             app:destination="@id/endCreationFragment" />
+        <argument
+            android:name="tag"
+            app:argType="string"
+            android:defaultValue="instructionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/endCreationFragment"

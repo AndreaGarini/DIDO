@@ -31,6 +31,7 @@ class instructionsFragment : Fragment(R.layout.instructions_fragment) {
         viewModel.setUnicode()
         viewModel.setWaterInTank()
         var wit: Long? = 0L
+        var navigate: Boolean = false
 
 
         val liveData = viewModel.waterInTank
@@ -38,9 +39,8 @@ class instructionsFragment : Fragment(R.layout.instructions_fragment) {
 
         liveData.observe(viewLifecycleOwner, Observer {
             wit = liveData.value
-            Log.d("cond:", (wit!=null).toString())
-            Log.d("cond:", (wit != 0L).toString())
-            if( wit!=null && wit != 0L){
+            if(wit!=null && wit != 0L && !navigate){
+                navigate = true
                 findNavController().navigate(R.id.action_instructionsFragment_to_endCreationFragment)
             }
         })
