@@ -70,8 +70,10 @@ class PlantRepository: ViewModel() {
     fun setWaterInTank(){
         db.child("plants").child(unicode.value.toString()).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                    waterInTank.value = snapshot.child("waterInTank").value as Long
-                Log.d("wit: ", snapshot.child("waterInTank").value.toString())
+                    if(snapshot.child("waterInTank").value!=null){
+                        waterInTank.value = snapshot.child("waterInTank").value as Long
+                        Log.d("wit: ", snapshot.child("waterInTank").value.toString())
+                    }
             }
 
             override fun onCancelled(error: DatabaseError) {
