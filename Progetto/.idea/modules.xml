@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Malnati.OleandriForReal.Progetto.ProvaNavGraph.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Malnati.OleandriForReal.Progetto.ProvaNavGraph.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Malnati.OleandriForReal.Progetto.ProvaNavGraph.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Malnati.OleandriForReal.Progetto.ProvaNavGraph.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Malnati.OleandriForReal.Progetto.ProvaNavGraph.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Malnati.OleandriForReal.Progetto.ProvaNavGraph.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Malnati.OleandriForReal.Progetto.ProvaNavGraph.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Malnati.OleandriForReal.Progetto.ProvaNavGraph.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GitHub.OleandriForReal.Progetto.ProvaNavGraph.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GitHub.OleandriForReal.Progetto.ProvaNavGraph.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/OleandriForReal.Progetto.ProvaNavGraph.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/OleandriForReal.Progetto.ProvaNavGraph.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Progetto.ProvaNavGraph.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Progetto.ProvaNavGraph.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProvaNavGraph.iml" filepath="$PROJECT_DIR$/.idea/modules/ProvaNavGraph.iml" />

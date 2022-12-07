@@ -34,7 +34,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         signIn.setOnClickListener {
             val builder = AlertDialog.Builder(requireActivity())
             builder.setMessage(
-                "Do you want to confirm?\n" +
+                "Vuoi confermare?\n" +
                         "Email: " + email.text + "\n" +
                         "Username: " + username.text
             )
